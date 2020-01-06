@@ -1,0 +1,29 @@
+diff --git a/src/make_config.cc b/src/make_config.cc
+index 2784e13..e8708cd 100644
+--- a/src/make_config.cc
++++ b/src/make_config.cc
+@@ -336,22 +336,13 @@ void generate_xkb_file(xkb_keymap *keymap, Config &config, Settings &settings) {
+     FILE * xkbfile;
+     if (settings.xkb_conf_output == NULL) {
+         char buf[1024];
+-        if (system("mkdir -p $HOME/.xkb/symbols/") != 0) {
+-            fprintf(stderr,"Failed creating $HOME/.xkb/symbols/");
+-            exit(1);
+-        }
+-        int len = snprintf(buf,1024, "%s/.xkb/rules/evdev-doublebind", getenv("HOME"));
+-        if (len >= 1023) {
+-            fprintf(stderr,"WOW, your home path is really long, CRITICAL ERROR");
+-            fprintf(stderr,"You should specify the xkb conf output manually");
+-            exit(1);
+-        }
++        snprintf(buf,1024, "/usr/share/X11/xkb/rules/evdev-doublebind");
+         if (access(buf, F_OK) == -1) {
+             fprintf(stderr, "Warning: ~/.xkb/rules/evdev-doublebind is missing. To use the XKB\n");
+             fprintf(stderr, "        option 'evdoublebind:mapping' a custom rule set is needed.\n");
+             fprintf(stderr, "        Running `evdoublebind-make-config  -g` will generate one.\n\n");
+         }
+-        snprintf(buf,1024, "%s/.xkb/symbols/evdoublebind", getenv("HOME"));
++        snprintf(buf,1024, "/usr/share/X11/xkb/symbols/evdoublebind");
+         fprintf(stderr,"Outputing XKB option[evdoublebind:mapping] to:\n    %s\n", buf);
+         xkbfile = fopen(buf, "w");
+     } else {

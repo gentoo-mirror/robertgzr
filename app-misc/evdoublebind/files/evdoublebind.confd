@@ -1,0 +1,7 @@
+
+# Uncomment to hardcode the configuration
+# EVDOUBLEBIND_ARGS
+
+# Uncomment to generate the arguments on startup from a custom configuration
+# file (default: /etc/evdoublebind/config)
+# EVDOUBLEBIND_CONFIG

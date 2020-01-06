@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+command="/usr/bin/evdoublebind"
+command_args="${EVDOUBLEBIND_ARGS}"
+command_background=true
+
+pidfile="/var/run/${RC_SVCNAME}.pid"
+output_log="/var/log/${RC_SVCNAME}.log"
+error_log="/var/log/${RC_SVCNAME}.log"
+
+EVDOUBLEBIND_CONFIG=${EVDOUBLEBIND_CONFIG:-/etc/${RC_SVCNAME}/config}
+
+start_pre() {
+    if [[ -z "${EVDOUBLEBIND_ARGS}" ]]; then
+        EVDOUBLEBIND_ARGS=$(evdoublebind-make-config ${EVDOUBLEBIND_CONFIG} 2>/dev/null)
+    fi
+}
