@@ -13,26 +13,30 @@ SRC_URI="https://www.omnibus-type.com/wp-content/uploads/Rosario.zip -> ${P}.zip
 
 LICENSE="OFL-1.1"
 SLOT="0"
-IUSE="+otf ttf woff woff2 eot"
+IUSE="ttf woff woff2 eot"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
 
 DEPEND="app-arch/unzip"
 
 S="${WORKDIR}/${FONT_PN}"
+FONT_S="${S}/otf"
+FONT_SUFFIX="otf"
 
 src_prepare() {
 	default
 
-	FONT_S="$(usev otf ${S}/otf)"
-	FONT_S+="$(usev ttf ${S}/ttf)"
-	FONT_S+="$(usev woff ${S}/woff)"
-	FONT_S+="$(usev woff2 ${S}/woff2)"
-	FONT_S+="$(usev eot ${S}/eot)"
-
-	FONT_SUFFIX="$(usev otf otf)"
-	FONT_SUFFIX+="$(usev ttf ttf)"
-	FONT_SUFFIX+="$(usev woff woff)"
-	FONT_SUFFIX+="$(usev woff2 woff2)"
-	FONT_SUFFIX+="$(usev eot eot)"
+	if use ttf; then
+		FONT_S+=" ${S}/ttf"
+		FONT_SUFFIX+=" ttf"
+	elif use woff; then
+		FONT_S+=" ${S}/woff"
+		FONT_SUFFIX+=" woff"
+	elif use woff2; then
+		FONT_S+=" ${S}/woff2"
+		FONT_SUFFIX+=" woff2"
+	elif use eot; then
+		FONT_S+=" ${S}/eot"
+		FONT_SUFFIX+=" eot"
+	fi
 }
 

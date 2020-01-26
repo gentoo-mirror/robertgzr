@@ -37,7 +37,7 @@ RESTRICT="mirrors"
 
 LICENSE="OFL-1.1"
 SLOT="0"
-IUSE="+term type termlig slab curly -aile -etoile -sparkle"
+IUSE="unhinted woff woff2 +term type termlig slab curly -aile -etoile -sparkle"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
 
 DEPEND="app-arch/unzip"
@@ -45,3 +45,17 @@ DEPEND="app-arch/unzip"
 S="${WORKDIR}"
 FONT_S="${S}/ttf"
 FONT_SUFFIX="ttf"
+
+src_prepare() {
+	default
+
+	if use unhinted; then
+		FONT_S+=" ${S}/unhinted-ttf"
+	elif use woff; then
+		FONT_S+=" ${S}/woff"
+		FONT_SUFFIX+=" woff"
+	elif use woff2; then
+		FONT_S+=" ${S}/woff2"
+		FONT_SUFFIX+=" woff2"
+	fi
+}
