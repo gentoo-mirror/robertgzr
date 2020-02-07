@@ -16,11 +16,22 @@ else
 	KEYWORDS="~amd64"
 fi
 
+DATE_PV="2.4.1"
+GTK_LAYER_SHELL_PV="0.1.0"
+
+SRC_URI+="
+https://github.com/HowardHinnant/date/archive/v${DATE_PV}.tar.gz -> hinnant-date-${DATE_PV}.tar.gz
+https://github.com/mesonbuild/hinnant-date/releases/download/${DATE_PV}-1/hinnant-date.zip -> hinnant-date-${DATE_PV}-patch.zip
+https://github.com/wmww/gtk-layer-shell/archive/v${GTK_LAYER_SHELL_PV}/gtk-layer-shell-${GTK_LAYER_SHELL_PV}.tar.gz
+"
+
 LICENSE="MIT"
 SLOT="0"
 IUSE="mpd network pulseaudio tray +udev"
+RESTRICT="mirrors"
 
 BDEPEND="
+	app-arch/unzip
 	>=app-text/scdoc-1.9.2
 	virtual/pkgconfig
 "
@@ -47,6 +58,19 @@ RDEPEND="${DEPEND}"
 if [[ ${PV} != 9999 ]]; then
 	S="${WORKDIR}/${PN^}-${PV}"
 fi
+
+src_unpack() {
+	default
+
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+	fi
+
+	mv "${WORKDIR}/date-${DATE_PV}" "${S}/subprojects/date" \
+		&& rm "${S}/subprojects/date.wrap"
+	mv "${WORKDIR}/gtk-layer-shell-${GTK_LAYER_SHELL_PV}" "${S}/subprojects/gtk-layer-shell" \
+		&& rm "${S}/subprojects/gtk-layer-shell.wrap"
+}
 
 src_configure() {
 	local emesonargs=(
