@@ -10,7 +10,8 @@ HOMEPAGE="https://be5invis.github.io/Iosevka/"
 
 MY_PV=$(ver_rs 3 '-' 4 '.')
 
-SRC_URI="https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/01-${PN}-${MY_PV}.zip
+SRC_URI="
+	default? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/01-${PN}-${MY_PV}.zip )
 	slab? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/05-${PN}-slab-${MY_PV}.zip )
 	curly? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/09-${PN}-curly-${MY_PV}.zip )
 	term? (
@@ -25,6 +26,8 @@ SRC_URI="https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/01-${PN}-
 	aile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-aile-${MY_PV}.zip )
 	etoile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-etoile-${MY_PV}.zip )
 	sparkle? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-sparkle-${MY_PV}.zip )
+	ss05? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-ss05-${MY_PV}.zip )
+	ss08? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-ss08-${MY_PV}.zip )
 "
 		# slab? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/06-${PN}-term-slab-${MY_PV}.zip )
 		# curly? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/10-${PN}-term-slab-${MY_PV}.zip )
@@ -33,11 +36,9 @@ SRC_URI="https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/01-${PN}-
 		# slab? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/08-${PN}-term-lig-slab-${MY_PV}.zip )
 		# curly? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/12-${PN}-term-lig-slab-${MY_PV}.zip )
 
-RESTRICT="mirrors"
-
 LICENSE="OFL-1.1"
 SLOT="0"
-IUSE="unhinted woff woff2 +term type termlig slab curly -aile -etoile -sparkle"
+IUSE="aile curly +default etoile slab sparkle ss05 ss08 +term termlig type unhinted woff woff2"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
 
 DEPEND="app-arch/unzip"
