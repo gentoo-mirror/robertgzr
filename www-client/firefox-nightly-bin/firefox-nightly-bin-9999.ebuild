@@ -4,20 +4,17 @@
 EAPI=6
 
 MOZ_PN="${PN/-bin}"
-MOZ_PV="${PV}.0a1"
-
-MOZ_HTTP_URI="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
+MOZ_PV="${PV}"
 
 inherit nsplugins pax-utils xdg-utils eapi7-ver
 
 DESCRIPTION="Firefox Web Browser"
-SRC_URI="${SRC_URI}
-	amd64? ( ${MOZ_HTTP_URI%/}/firefox-${MOZ_PV}.en-US.linux-x86_64.tar.bz2 -> ${PN}_x86_64-${MOZ_PV}.tar.bz2 )
-	x86? ( ${MOZ_HTTP_URI%/}/firefox-${MOZ_PV}.en-US.linux-i686.tar.bz2 -> ${PN}_i686-${MOZ_PV}.tar.bz2 )"
-HOMEPAGE="https://www.mozilla.org/en-US/firefox/channel/desktop/"
-RESTRICT="strip mirror"
+HOMEPAGE="https://www.mozilla.org/en-US/firefox/nightly/notes/"
 
-KEYWORDS="-* ~amd64 ~x86"
+MY_SRC_URI="https://download.mozilla.org/?product=firefox-nightly-latest-ssl&lang=en-US&os=linux64"
+
+RESTRICT="strip mirror network-sandbox"
+KEYWORDS="-* ~amd64"
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 IUSE="+alsa +ffmpeg +pulseaudio selinux startup-notification"
@@ -72,6 +69,11 @@ QA_PREBUILT="
 "
 
 S="${WORKDIR}/firefox"
+
+src_unpack() {
+	wget -O ./"${P}.tar.bz2" "${MY_SRC_URI}" || die
+	unpack ./"${P}.tar.bz2"
+}
 
 src_install() {
 	declare MOZILLA_FIVE_HOME=/opt/${MOZ_PN}
