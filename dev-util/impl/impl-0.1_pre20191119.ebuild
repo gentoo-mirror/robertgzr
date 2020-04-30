@@ -12,7 +12,6 @@ EGO_PN="github.com/josharian/${PN}"
 EGO_COMMIT="6b9658ad00c7fbd61a7b50c195754413f6c4142c"
 EGO_VENDOR=(
 	"golang.org/x/tools 3fe2afc github.com/golang/tools"
-
 )
 
 MY_P="${PN}-${EGO_COMMIT}"
