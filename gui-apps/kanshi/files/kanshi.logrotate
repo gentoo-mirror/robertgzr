@@ -1,0 +1,7 @@
+# kanshi logrotate script for Gentoo
+
+/var/log/kanshi.log {
+    missingok
+    copytruncate
+    notifempty
+}
