@@ -11,16 +11,16 @@ HOMEPAGE="https://be5invis.github.io/Iosevka/"
 MY_PV=$(ver_rs 3 '-' 4 '.')
 
 SRC_URI="
-	default? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/01-${PN}-${MY_PV}.zip )
-	fixed? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/02-${PN}-fixed-${MY_PV}.zip )
-	term? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/03-${PN}-term-${MY_PV}.zip )
-	aile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-aile-${MY_PV}.zip )
-	etoile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-etoile-${MY_PV}.zip )
-	sparkle? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-sparkle-${MY_PV}.zip )
+	default? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-${MY_PV}.zip )
+	fixed? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-fixed-${MY_PV}.zip )
+	term? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-term-${MY_PV}.zip )
+	aile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-aile-${MY_PV}.zip )
+	etoile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-etoile-${MY_PV}.zip )
+	sparkle? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-sparkle-${MY_PV}.zip )
 
 	ss05? (
-		https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-ss05-${MY_PV}.zip
-		term? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/${PN}-term-ss05-${MY_PV}.zip )
+		https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-ss05-${MY_PV}.zip
+		term? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-term-ss05-${MY_PV}.zip )
 	)
 "
 
