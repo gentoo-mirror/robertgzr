@@ -16,40 +16,40 @@ else
 	KEYWORDS="~amd64"
 fi
 
-DATE_PV="2.4.1"
-GTK_LAYER_SHELL_PV="0.1.0"
+DATE_PV="3.0.0"
 
 SRC_URI+="
 https://github.com/HowardHinnant/date/archive/v${DATE_PV}.tar.gz -> hinnant-date-${DATE_PV}.tar.gz
 https://github.com/mesonbuild/hinnant-date/releases/download/${DATE_PV}-1/hinnant-date.zip -> hinnant-date-${DATE_PV}-patch.zip
-layer-shell? ( https://github.com/wmww/gtk-layer-shell/archive/v${GTK_LAYER_SHELL_PV}/gtk-layer-shell-${GTK_LAYER_SHELL_PV}.tar.gz )
 "
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="mpd network pulseaudio tray +udev layer-shell"
+IUSE="+gtk-layer-shell man mpd network pulseaudio systemd tray +udev"
 RESTRICT="mirrors"
 
 BDEPEND="
 	app-arch/unzip
-	>=app-text/scdoc-1.9.2
 	virtual/pkgconfig
-"
-
-DEPEND="
-	dev-cpp/gtkmm:3.0
-	dev-libs/jsoncpp:=
-	dev-libs/libinput:=
-	dev-libs/libsigc++:2
-	>=dev-libs/libfmt-5.3.0:=
-	>=dev-libs/spdlog-1.3.1:=
 	dev-libs/wayland
 	dev-libs/wayland-protocols
 	gui-libs/wlroots
+	man? ( >=app-text/scdoc-1.9.2 )
+"
+
+DEPEND="
+	>=dev-cpp/gtkmm-3.22.0:=
+	>=dev-libs/libfmt-5.3.0:=
+	>=dev-libs/spdlog-1.3.1:=
+	dev-libs/jsoncpp:=
+	dev-libs/libinput:=
+	dev-libs/libsigc++:2
+	gtk-layer-shell? ( gui-libs/gtk-layer-shell )
 	mpd? ( media-libs/libmpdclient )
 	network? ( dev-libs/libnl:3 )
 	pulseaudio? ( media-sound/pulseaudio )
-	tray? ( dev-libs/libdbusmenu[gtk3] )
+	systemd? ( sys-apps/systemd )
+	tray? ( dev-libs/libdbusmenu[gtk3] dev-libs/libappindicator )
 	udev? ( virtual/libudev:= )
 "
 
@@ -68,15 +68,16 @@ src_unpack() {
 
 	mv "${WORKDIR}/date-${DATE_PV}" "${S}/subprojects/date" \
 		&& rm "${S}/subprojects/date.wrap"
-	mv "${WORKDIR}/gtk-layer-shell-${GTK_LAYER_SHELL_PV}" "${S}/subprojects/gtk-layer-shell" \
-		&& rm "${S}/subprojects/gtk-layer-shell.wrap"
 }
 
 src_configure() {
 	local emesonargs=(
+		$(meson_feature gtk-layer-shell)
+		$(meson_feature man man-pages)
 		$(meson_feature mpd)
 		$(meson_feature network libnl)
 		$(meson_feature pulseaudio)
+		$(meson_feature systemd)
 		$(meson_feature tray dbusmenu-gtk)
 		$(meson_feature udev libudev)
 	)
