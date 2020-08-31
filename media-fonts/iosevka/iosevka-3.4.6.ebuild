@@ -22,6 +22,10 @@ SRC_URI="
 		https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-ss05-${MY_PV}.zip
 		term? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-term-ss05-${MY_PV}.zip )
 	)
+	ss14? (
+		https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-ss14-${MY_PV}.zip
+		term? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-term-ss14-${MY_PV}.zip )
+	)
 "
 
 	# slab? (
