@@ -100,25 +100,19 @@ SRC_URI="
 
 LICENSE="OFL-1.1"
 SLOT="0"
-IUSE="aile curly +default etoile slab sparkle ss01 ss02 ss03 ss04 ss05 ss06 ss07 ss08 ss09 ss10 ss11 ss12 ss13 ss14 +fixed term unhinted woff woff2"
+IUSE="aile curly +default etoile slab sparkle ss01 ss02 ss03 ss04 ss05 ss06 ss07 ss08 ss09 ss10 ss11 ss12 ss13 ss14 +fixed term unhinted woff2"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
 
 DEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
-FONT_S="${S}/ttf"
+FONT_S="${S}"
 FONT_SUFFIX="ttf"
 
 src_prepare() {
 	default
 
-	if use unhinted; then
-		FONT_S+=" ${S}/unhinted-ttf"
-	elif use woff; then
-		FONT_S+=" ${S}/woff"
-		FONT_SUFFIX+=" woff"
-	elif use woff2; then
-		FONT_S+=" ${S}/woff2"
+	if use woff2; then
 		FONT_SUFFIX+=" woff2"
 	fi
 }
