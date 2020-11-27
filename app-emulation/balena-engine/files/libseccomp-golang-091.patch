@@ -1,0 +1,808 @@
+diff --git a/vendor.conf b/vendor.conf
+index 8e41594d10..179d7f0d16 100644
+--- a/vendor.conf
++++ b/vendor.conf
+@@ -79,7 +79,7 @@ google.golang.org/grpc                              39e8a7b072a67ca2a75f57fa2e0d
+ github.com/opencontainers/runc                      c3c0a3c50364a365b2b8870b912b986c4cfb5c26 https://github.com/balena-os/balena-runc
+ github.com/opencontainers/runtime-spec              29686dbc5559d93fb1ef402eeda3e35c38d75af4 # v1.0.1-59-g29686db
+ github.com/opencontainers/image-spec                d60099175f88c47cd379c4738d158884749ed235 # v1.0.1
+-github.com/seccomp/libseccomp-golang                32f571b70023028bd57d9288c20efbcb237f3ce0
++github.com/seccomp/libseccomp-golang                689e3c1541a84461afc49c1c87352a6cedf72e9c # v0.9.1
+
+ # systemd integration (journald, daemon/listeners, containerd/cgroups)
+ github.com/coreos/go-systemd                        39ca1b05acc7ad1220e09f133283b8859a8b71ab # v17
+diff --git a/vendor/github.com/seccomp/libseccomp-golang/README b/vendor/github.com/seccomp/libseccomp-golang/README
+index 64cab6911d..66839a4668 100644
+--- a/vendor/github.com/seccomp/libseccomp-golang/README
++++ b/vendor/github.com/seccomp/libseccomp-golang/README
+@@ -24,3 +24,28 @@ please note that a Google account is not required to subscribe to the mailing
+ list.
+
+ 	-> https://groups.google.com/d/forum/libseccomp
++
++Documentation is also available at:
++
++	-> https://godoc.org/github.com/seccomp/libseccomp-golang
++
++* Installing the package
++
++The libseccomp-golang bindings require at least Go v1.2.1 and GCC v4.8.4;
++earlier versions may yield unpredictable results.  If you meet these
++requirements you can install this package using the command below:
++
++	$ go get github.com/seccomp/libseccomp-golang
++
++* Testing the Library
++
++A number of tests and lint related recipes are provided in the Makefile, if
++you want to run the standard regression tests, you can excute the following:
++
++	$ make check
++
++In order to execute the 'make lint' recipe the 'golint' tool is needed, it
++can be found at:
++
++	-> https://github.com/golang/lint
++
+diff --git a/vendor/github.com/seccomp/libseccomp-golang/seccomp.go b/vendor/github.com/seccomp/libseccomp-golang/seccomp.go
+index b2c010fc38..a3cc53822c 100644
+--- a/vendor/github.com/seccomp/libseccomp-golang/seccomp.go
++++ b/vendor/github.com/seccomp/libseccomp-golang/seccomp.go
+@@ -27,6 +27,28 @@ import "C"
+
+ // Exported types
+
++// VersionError denotes that the system libseccomp version is incompatible
++// with this package.
++type VersionError struct {
++	message string
++	minimum string
++}
++
++func (e VersionError) Error() string {
++	format := "Libseccomp version too low: "
++	if e.message != "" {
++		format += e.message + ": "
++	}
++	format += "minimum supported is "
++	if e.minimum != "" {
++		format += e.minimum + ": "
++	} else {
++		format += "2.2.0: "
++	}
++	format += "detected %d.%d.%d"
++	return fmt.Sprintf(format, verMajor, verMinor, verMicro)
++}
++
+ // ScmpArch represents a CPU architecture. Seccomp can restrict syscalls on a
+ // per-architecture basis.
+ type ScmpArch uint
+@@ -54,8 +76,8 @@ type ScmpSyscall int32
+
+ const (
+ 	// Valid architectures recognized by libseccomp
+-	// ARM64 and all MIPS architectures are unsupported by versions of the
+-	// library before v2.2 and will return errors if used
++	// PowerPC and S390(x) architectures are unavailable below library version
++	// v2.3.0 and will returns errors if used with incompatible libraries
+
+ 	// ArchInvalid is a placeholder to ensure uninitialized ScmpArch
+ 	// variables are invalid
+@@ -115,6 +137,10 @@ const (
+ 	ActTrace ScmpAction = iota
+ 	// ActAllow permits the syscall to continue execution
+ 	ActAllow ScmpAction = iota
++	// ActLog permits the syscall to continue execution after logging it.
++	// This action is only usable when libseccomp API level 3 or higher is
++	// supported.
++	ActLog ScmpAction = iota
+ )
+
+ const (
+@@ -151,6 +177,10 @@ const (
+ // GetArchFromString returns an ScmpArch constant from a string representing an
+ // architecture
+ func GetArchFromString(arch string) (ScmpArch, error) {
++	if err := ensureSupportedVersion(); err != nil {
++		return ArchInvalid, err
++	}
++
+ 	switch strings.ToLower(arch) {
+ 	case "x86":
+ 		return ArchX86, nil
+@@ -185,7 +215,7 @@ func GetArchFromString(arch string) (ScmpArch, error) {
+ 	case "s390x":
+ 		return ArchS390X, nil
+ 	default:
+-		return ArchInvalid, fmt.Errorf("cannot convert unrecognized string %s", arch)
++		return ArchInvalid, fmt.Errorf("cannot convert unrecognized string %q", arch)
+ 	}
+ }
+
+@@ -229,7 +259,7 @@ func (a ScmpArch) String() string {
+ 	case ArchInvalid:
+ 		return "Invalid architecture"
+ 	default:
+-		return "Unknown architecture"
++		return fmt.Sprintf("Unknown architecture %#x", uint(a))
+ 	}
+ }
+
+@@ -253,7 +283,7 @@ func (a ScmpCompareOp) String() string {
+ 	case CompareInvalid:
+ 		return "Invalid comparison operator"
+ 	default:
+-		return "Unrecognized comparison operator"
++		return fmt.Sprintf("Unrecognized comparison operator %#x", uint(a))
+ 	}
+ }
+
+@@ -269,10 +299,12 @@ func (a ScmpAction) String() string {
+ 	case ActTrace:
+ 		return fmt.Sprintf("Action: Notify tracing processes with code %d",
+ 			(a >> 16))
++	case ActLog:
++		return "Action: Log system call"
+ 	case ActAllow:
+ 		return "Action: Allow system call"
+ 	default:
+-		return "Unrecognized Action"
++		return fmt.Sprintf("Unrecognized Action %#x", uint(a))
+ 	}
+ }
+
+@@ -298,10 +330,29 @@ func (a ScmpAction) GetReturnCode() int16 {
+ // GetLibraryVersion returns the version of the library the bindings are built
+ // against.
+ // The version is formatted as follows: Major.Minor.Micro
+-func GetLibraryVersion() (major, minor, micro int) {
++func GetLibraryVersion() (major, minor, micro uint) {
+ 	return verMajor, verMinor, verMicro
+ }
+
++// GetApi returns the API level supported by the system.
++// Returns a positive int containing the API level, or 0 with an error if the
++// API level could not be detected due to the library being older than v2.4.0.
++// See the seccomp_api_get(3) man page for details on available API levels:
++// https://github.com/seccomp/libseccomp/blob/master/doc/man/man3/seccomp_api_get.3
++func GetApi() (uint, error) {
++	return getApi()
++}
++
++// SetApi forcibly sets the API level. General use of this function is strongly
++// discouraged.
++// Returns an error if the API level could not be set. An error is always
++// returned if the library is older than v2.4.0
++// See the seccomp_api_get(3) man page for details on available API levels:
++// https://github.com/seccomp/libseccomp/blob/master/doc/man/man3/seccomp_api_get.3
++func SetApi(api uint) error {
++	return setApi(api)
++}
++
+ // Syscall functions
+
+ // GetName retrieves the name of a syscall from its number.
+@@ -324,7 +375,7 @@ func (s ScmpSyscall) GetNameByArch(arch ScmpArch) (string, error) {
+
+ 	cString := C.seccomp_syscall_resolve_num_arch(arch.toNative(), C.int(s))
+ 	if cString == nil {
+-		return "", fmt.Errorf("could not resolve syscall name")
++		return "", fmt.Errorf("could not resolve syscall name for %#x", int32(s))
+ 	}
+ 	defer C.free(unsafe.Pointer(cString))
+
+@@ -338,12 +389,16 @@ func (s ScmpSyscall) GetNameByArch(arch ScmpArch) (string, error) {
+ // Returns the number of the syscall, or an error if no syscall with that name
+ // was found.
+ func GetSyscallFromName(name string) (ScmpSyscall, error) {
++	if err := ensureSupportedVersion(); err != nil {
++		return 0, err
++	}
++
+ 	cString := C.CString(name)
+ 	defer C.free(unsafe.Pointer(cString))
+
+ 	result := C.seccomp_syscall_resolve_name(cString)
+ 	if result == scmpError {
+-		return 0, fmt.Errorf("could not resolve name to syscall")
++		return 0, fmt.Errorf("could not resolve name to syscall: %q", name)
+ 	}
+
+ 	return ScmpSyscall(result), nil
+@@ -355,6 +410,9 @@ func GetSyscallFromName(name string) (ScmpSyscall, error) {
+ // Returns the number of the syscall, or an error if an invalid architecture is
+ // passed or a syscall with that name was not found.
+ func GetSyscallFromNameByArch(name string, arch ScmpArch) (ScmpSyscall, error) {
++	if err := ensureSupportedVersion(); err != nil {
++		return 0, err
++	}
+ 	if err := sanitizeArch(arch); err != nil {
+ 		return 0, err
+ 	}
+@@ -364,7 +422,7 @@ func GetSyscallFromNameByArch(name string, arch ScmpArch) (ScmpSyscall, error) {
+
+ 	result := C.seccomp_syscall_resolve_name_arch(arch.toNative(), cString)
+ 	if result == scmpError {
+-		return 0, fmt.Errorf("could not resolve name to syscall")
++		return 0, fmt.Errorf("could not resolve name to syscall: %q on %v", name, arch)
+ 	}
+
+ 	return ScmpSyscall(result), nil
+@@ -386,12 +444,16 @@ func GetSyscallFromNameByArch(name string, arch ScmpArch) (ScmpSyscall, error) {
+ func MakeCondition(arg uint, comparison ScmpCompareOp, values ...uint64) (ScmpCondition, error) {
+ 	var condStruct ScmpCondition
+
++	if err := ensureSupportedVersion(); err != nil {
++		return condStruct, err
++	}
++
+ 	if comparison == CompareInvalid {
+ 		return condStruct, fmt.Errorf("invalid comparison operator")
+ 	} else if arg > 5 {
+-		return condStruct, fmt.Errorf("syscalls only have up to 6 arguments")
++		return condStruct, fmt.Errorf("syscalls only have up to 6 arguments (%d given)", arg)
+ 	} else if len(values) > 2 {
+-		return condStruct, fmt.Errorf("conditions can have at most 2 arguments")
++		return condStruct, fmt.Errorf("conditions can have at most 2 arguments (%d given)", len(values))
+ 	} else if len(values) == 0 {
+ 		return condStruct, fmt.Errorf("must provide at least one value to compare against")
+ 	}
+@@ -413,6 +475,10 @@ func MakeCondition(arg uint, comparison ScmpCompareOp, values ...uint64) (ScmpCo
+ // GetNativeArch returns architecture token representing the native kernel
+ // architecture
+ func GetNativeArch() (ScmpArch, error) {
++	if err := ensureSupportedVersion(); err != nil {
++		return ArchInvalid, err
++	}
++
+ 	arch := C.seccomp_arch_native()
+
+ 	return archFromNative(arch)
+@@ -435,6 +501,10 @@ type ScmpFilter struct {
+ // Returns a reference to a valid filter context, or nil and an error if the
+ // filter context could not be created or an invalid default action was given.
+ func NewFilter(defaultAction ScmpAction) (*ScmpFilter, error) {
++	if err := ensureSupportedVersion(); err != nil {
++		return nil, err
++	}
++
+ 	if err := sanitizeAction(defaultAction); err != nil {
+ 		return nil, err
+ 	}
+@@ -449,6 +519,13 @@ func NewFilter(defaultAction ScmpAction) (*ScmpFilter, error) {
+ 	filter.valid = true
+ 	runtime.SetFinalizer(filter, filterFinalizer)
+
++	// Enable TSync so all goroutines will receive the same rules
++	// If the kernel does not support TSYNC, allow us to continue without error
++	if err := filter.setFilterAttr(filterAttrTsync, 0x1); err != nil && err != syscall.ENOTSUP {
++		filter.Release()
++		return nil, fmt.Errorf("could not create filter - error setting tsync bit: %v", err)
++	}
++
+ 	return filter, nil
+ }
+
+@@ -505,7 +582,7 @@ func (f *ScmpFilter) Release() {
+ // The source filter src will be released as part of the process, and will no
+ // longer be usable or valid after this call.
+ // To be merged, filters must NOT share any architectures, and all their
+-// attributes (Default Action, Bad Arch Action, No New Privs and TSync bools)
++// attributes (Default Action, Bad Arch Action, and No New Privs bools)
+ // must match.
+ // The filter src will be merged into the filter this is called on.
+ // The architectures of the src filter not present in the destination, and all
+@@ -678,24 +755,24 @@ func (f *ScmpFilter) GetNoNewPrivsBit() (bool, error) {
+ 	return true, nil
+ }
+
+-// GetTsyncBit returns whether Thread Synchronization will be enabled on the
+-// filter being loaded, or an error if an issue was encountered retrieving the
+-// value.
+-// Thread Sync ensures that all members of the thread group of the calling
+-// process will share the same Seccomp filter set.
+-// Tsync is a fairly recent addition to the Linux kernel and older kernels
+-// lack support. If the running kernel does not support Tsync and it is
+-// requested in a filter, Libseccomp will not enable TSync support and will
+-// proceed as normal.
+-// This function is unavailable before v2.2 of libseccomp and will return an
+-// error.
+-func (f *ScmpFilter) GetTsyncBit() (bool, error) {
+-	tSync, err := f.getFilterAttr(filterAttrTsync)
++// GetLogBit returns the current state the Log bit will be set to on the filter
++// being loaded, or an error if an issue was encountered retrieving the value.
++// The Log bit tells the kernel that all actions taken by the filter, with the
++// exception of ActAllow, should be logged.
++// The Log bit is only usable when libseccomp API level 3 or higher is
++// supported.
++func (f *ScmpFilter) GetLogBit() (bool, error) {
++	log, err := f.getFilterAttr(filterAttrLog)
+ 	if err != nil {
++		api, apiErr := getApi()
++		if (apiErr != nil && api == 0) || (apiErr == nil && api < 3) {
++			return false, fmt.Errorf("getting the log bit is only supported in libseccomp 2.4.0 and newer with API level 3 or higher")
++		}
++
+ 		return false, err
+ 	}
+
+-	if tSync == 0 {
++	if log == 0 {
+ 		return false, nil
+ 	}
+
+@@ -728,25 +805,26 @@ func (f *ScmpFilter) SetNoNewPrivsBit(state bool) error {
+ 	return f.setFilterAttr(filterAttrNNP, toSet)
+ }
+
+-// SetTsync sets whether Thread Synchronization will be enabled on the filter
+-// being loaded. Returns an error if setting Tsync failed, or the filter is
+-// invalid.
+-// Thread Sync ensures that all members of the thread group of the calling
+-// process will share the same Seccomp filter set.
+-// Tsync is a fairly recent addition to the Linux kernel and older kernels
+-// lack support. If the running kernel does not support Tsync and it is
+-// requested in a filter, Libseccomp will not enable TSync support and will
+-// proceed as normal.
+-// This function is unavailable before v2.2 of libseccomp and will return an
+-// error.
+-func (f *ScmpFilter) SetTsync(enable bool) error {
++// SetLogBit sets the state of the Log bit, which will be applied on filter
++// load, or an error if an issue was encountered setting the value.
++// The Log bit is only usable when libseccomp API level 3 or higher is
++// supported.
++func (f *ScmpFilter) SetLogBit(state bool) error {
+ 	var toSet C.uint32_t = 0x0
+
+-	if enable {
++	if state {
+ 		toSet = 0x1
+ 	}
+
+-	return f.setFilterAttr(filterAttrTsync, toSet)
++	err := f.setFilterAttr(filterAttrLog, toSet)
++	if err != nil {
++		api, apiErr := getApi()
++		if (apiErr != nil && api == 0) || (apiErr == nil && api < 3) {
++			return fmt.Errorf("setting the log bit is only supported in libseccomp 2.4.0 and newer with API level 3 or higher")
++		}
++	}
++
++	return err
+ }
+
+ // SetSyscallPriority sets a syscall's priority.
+diff --git a/vendor/github.com/seccomp/libseccomp-golang/seccomp_internal.go b/vendor/github.com/seccomp/libseccomp-golang/seccomp_internal.go
+index ab67a3dedc..4e36b27ae8 100644
+--- a/vendor/github.com/seccomp/libseccomp-golang/seccomp_internal.go
++++ b/vendor/github.com/seccomp/libseccomp-golang/seccomp_internal.go
+@@ -7,7 +7,6 @@ package seccomp
+
+ import (
+ 	"fmt"
+-	"os"
+ 	"syscall"
+ )
+
+@@ -17,47 +16,20 @@ import (
+
+ // #cgo pkg-config: libseccomp
+ /*
++#include <errno.h>
+ #include <stdlib.h>
+ #include <seccomp.h>
+
+ #if SCMP_VER_MAJOR < 2
+-#error Minimum supported version of Libseccomp is v2.1.0
+-#elif SCMP_VER_MAJOR == 2 && SCMP_VER_MINOR < 1
+-#error Minimum supported version of Libseccomp is v2.1.0
++#error Minimum supported version of Libseccomp is v2.2.0
++#elif SCMP_VER_MAJOR == 2 && SCMP_VER_MINOR < 2
++#error Minimum supported version of Libseccomp is v2.2.0
+ #endif
+
+ #define ARCH_BAD ~0
+
+ const uint32_t C_ARCH_BAD = ARCH_BAD;
+
+-#ifndef SCMP_ARCH_AARCH64
+-#define SCMP_ARCH_AARCH64 ARCH_BAD
+-#endif
+-
+-#ifndef SCMP_ARCH_MIPS
+-#define SCMP_ARCH_MIPS ARCH_BAD
+-#endif
+-
+-#ifndef SCMP_ARCH_MIPS64
+-#define SCMP_ARCH_MIPS64 ARCH_BAD
+-#endif
+-
+-#ifndef SCMP_ARCH_MIPS64N32
+-#define SCMP_ARCH_MIPS64N32 ARCH_BAD
+-#endif
+-
+-#ifndef SCMP_ARCH_MIPSEL
+-#define SCMP_ARCH_MIPSEL ARCH_BAD
+-#endif
+-
+-#ifndef SCMP_ARCH_MIPSEL64
+-#define SCMP_ARCH_MIPSEL64 ARCH_BAD
+-#endif
+-
+-#ifndef SCMP_ARCH_MIPSEL64N32
+-#define SCMP_ARCH_MIPSEL64N32 ARCH_BAD
+-#endif
+-
+ #ifndef SCMP_ARCH_PPC
+ #define SCMP_ARCH_PPC ARCH_BAD
+ #endif
+@@ -96,22 +68,29 @@ const uint32_t C_ARCH_PPC64LE      = SCMP_ARCH_PPC64LE;
+ const uint32_t C_ARCH_S390         = SCMP_ARCH_S390;
+ const uint32_t C_ARCH_S390X        = SCMP_ARCH_S390X;
+
++#ifndef SCMP_ACT_LOG
++#define SCMP_ACT_LOG 0x7ffc0000U
++#endif
++
+ const uint32_t C_ACT_KILL          = SCMP_ACT_KILL;
+ const uint32_t C_ACT_TRAP          = SCMP_ACT_TRAP;
+ const uint32_t C_ACT_ERRNO         = SCMP_ACT_ERRNO(0);
+ const uint32_t C_ACT_TRACE         = SCMP_ACT_TRACE(0);
++const uint32_t C_ACT_LOG           = SCMP_ACT_LOG;
+ const uint32_t C_ACT_ALLOW         = SCMP_ACT_ALLOW;
+
+-// If TSync is not supported, make sure it doesn't map to a supported filter attribute
+-// Don't worry about major version < 2, the minimum version checks should catch that case
+-#if SCMP_VER_MAJOR == 2 && SCMP_VER_MINOR < 2
+-#define SCMP_FLTATR_CTL_TSYNC _SCMP_CMP_MIN
++// The libseccomp SCMP_FLTATR_CTL_LOG member of the scmp_filter_attr enum was
++// added in v2.4.0
++#if (SCMP_VER_MAJOR < 2) || \
++    (SCMP_VER_MAJOR == 2 && SCMP_VER_MINOR < 4)
++#define SCMP_FLTATR_CTL_LOG _SCMP_FLTATR_MIN
+ #endif
+
+ const uint32_t C_ATTRIBUTE_DEFAULT = (uint32_t)SCMP_FLTATR_ACT_DEFAULT;
+ const uint32_t C_ATTRIBUTE_BADARCH = (uint32_t)SCMP_FLTATR_ACT_BADARCH;
+ const uint32_t C_ATTRIBUTE_NNP     = (uint32_t)SCMP_FLTATR_CTL_NNP;
+ const uint32_t C_ATTRIBUTE_TSYNC   = (uint32_t)SCMP_FLTATR_CTL_TSYNC;
++const uint32_t C_ATTRIBUTE_LOG     = (uint32_t)SCMP_FLTATR_CTL_LOG;
+
+ const int      C_CMP_NE            = (int)SCMP_CMP_NE;
+ const int      C_CMP_LT            = (int)SCMP_CMP_LT;
+@@ -125,25 +104,80 @@ const int      C_VERSION_MAJOR     = SCMP_VER_MAJOR;
+ const int      C_VERSION_MINOR     = SCMP_VER_MINOR;
+ const int      C_VERSION_MICRO     = SCMP_VER_MICRO;
+
++#if SCMP_VER_MAJOR == 2 && SCMP_VER_MINOR >= 3
++unsigned int get_major_version()
++{
++        return seccomp_version()->major;
++}
++
++unsigned int get_minor_version()
++{
++        return seccomp_version()->minor;
++}
++
++unsigned int get_micro_version()
++{
++        return seccomp_version()->micro;
++}
++#else
++unsigned int get_major_version()
++{
++        return (unsigned int)C_VERSION_MAJOR;
++}
++
++unsigned int get_minor_version()
++{
++        return (unsigned int)C_VERSION_MINOR;
++}
++
++unsigned int get_micro_version()
++{
++        return (unsigned int)C_VERSION_MICRO;
++}
++#endif
++
++// The libseccomp API level functions were added in v2.4.0
++#if (SCMP_VER_MAJOR < 2) || \
++    (SCMP_VER_MAJOR == 2 && SCMP_VER_MINOR < 4)
++const unsigned int seccomp_api_get(void)
++{
++	// libseccomp-golang requires libseccomp v2.2.0, at a minimum, which
++	// supported API level 2. However, the kernel may not support API level
++	// 2 constructs which are the seccomp() system call and the TSYNC
++	// filter flag. Return the "reserved" value of 0 here to indicate that
++	// proper API level support is not available in libseccomp.
++	return 0;
++}
++
++int seccomp_api_set(unsigned int level)
++{
++	return -EOPNOTSUPP;
++}
++#endif
++
+ typedef struct scmp_arg_cmp* scmp_cast_t;
+
+-// Wrapper to create an scmp_arg_cmp struct
+-void*
+-make_struct_arg_cmp(
+-                    unsigned int arg,
+-                    int compare,
+-                    uint64_t a,
+-                    uint64_t b
+-                   )
++void* make_arg_cmp_array(unsigned int length)
+ {
+-	struct scmp_arg_cmp *s = malloc(sizeof(struct scmp_arg_cmp));
++        return calloc(length, sizeof(struct scmp_arg_cmp));
++}
+
+-	s->arg = arg;
+-	s->op = compare;
+-	s->datum_a = a;
+-	s->datum_b = b;
++// Wrapper to add an scmp_arg_cmp struct to an existing arg_cmp array
++void add_struct_arg_cmp(
++                        struct scmp_arg_cmp* arr,
++                        unsigned int pos,
++                        unsigned int arg,
++                        int compare,
++                        uint64_t a,
++                        uint64_t b
++                       )
++{
++        arr[pos].arg = arg;
++        arr[pos].op = compare;
++        arr[pos].datum_a = a;
++        arr[pos].datum_b = b;
+
+-	return s;
++        return;
+ }
+ */
+ import "C"
+@@ -158,6 +192,7 @@ const (
+ 	filterAttrActBadArch scmpFilterAttr = iota
+ 	filterAttrNNP        scmpFilterAttr = iota
+ 	filterAttrTsync      scmpFilterAttr = iota
++	filterAttrLog        scmpFilterAttr = iota
+ )
+
+ const (
+@@ -168,7 +203,7 @@ const (
+ 	archEnd   ScmpArch = ArchS390X
+ 	// Comparison boundaries to check for action validity
+ 	actionStart ScmpAction = ActKill
+-	actionEnd   ScmpAction = ActAllow
++	actionEnd   ScmpAction = ActLog
+ 	// Comparison boundaries to check for comparison operator validity
+ 	compareOpStart ScmpCompareOp = CompareNotEqual
+ 	compareOpEnd   ScmpCompareOp = CompareMaskedEqual
+@@ -178,26 +213,49 @@ var (
+ 	// Error thrown on bad filter context
+ 	errBadFilter = fmt.Errorf("filter is invalid or uninitialized")
+ 	// Constants representing library major, minor, and micro versions
+-	verMajor = int(C.C_VERSION_MAJOR)
+-	verMinor = int(C.C_VERSION_MINOR)
+-	verMicro = int(C.C_VERSION_MICRO)
++	verMajor = uint(C.get_major_version())
++	verMinor = uint(C.get_minor_version())
++	verMicro = uint(C.get_micro_version())
+ )
+
+ // Nonexported functions
+
+ // Check if library version is greater than or equal to the given one
+-func checkVersionAbove(major, minor, micro int) bool {
++func checkVersionAbove(major, minor, micro uint) bool {
+ 	return (verMajor > major) ||
+ 		(verMajor == major && verMinor > minor) ||
+ 		(verMajor == major && verMinor == minor && verMicro >= micro)
+ }
+
+-// Init function: Verify library version is appropriate
+-func init() {
+-	if !checkVersionAbove(2, 1, 0) {
+-		fmt.Fprintf(os.Stderr, "Libseccomp version too low: minimum supported is 2.1.0, detected %d.%d.%d", C.C_VERSION_MAJOR, C.C_VERSION_MINOR, C.C_VERSION_MICRO)
+-		os.Exit(-1)
++// Ensure that the library is supported, i.e. >= 2.2.0.
++func ensureSupportedVersion() error {
++	if !checkVersionAbove(2, 2, 0) {
++		return VersionError{}
++	}
++	return nil
++}
++
++// Get the API level
++func getApi() (uint, error) {
++	api := C.seccomp_api_get()
++	if api == 0 {
++		return 0, fmt.Errorf("API level operations are not supported")
+ 	}
++
++	return uint(api), nil
++}
++
++// Set the API level
++func setApi(api uint) error {
++	if retCode := C.seccomp_api_set(C.uint(api)); retCode != 0 {
++		if syscall.Errno(-1*retCode) == syscall.EOPNOTSUPP {
++			return fmt.Errorf("API level operations are not supported")
++		}
++
++		return fmt.Errorf("could not set API level: %v", retCode)
++	}
++
++	return nil
+ }
+
+ // Filter helpers
+@@ -216,10 +274,6 @@ func (f *ScmpFilter) getFilterAttr(attr scmpFilterAttr) (C.uint32_t, error) {
+ 		return 0x0, errBadFilter
+ 	}
+
+-	if !checkVersionAbove(2, 2, 0) && attr == filterAttrTsync {
+-		return 0x0, fmt.Errorf("the thread synchronization attribute is not supported in this version of the library")
+-	}
+-
+ 	var attribute C.uint32_t
+
+ 	retCode := C.seccomp_attr_get(f.filterCtx, attr.toNative(), &attribute)
+@@ -239,10 +293,6 @@ func (f *ScmpFilter) setFilterAttr(attr scmpFilterAttr, value C.uint32_t) error
+ 		return errBadFilter
+ 	}
+
+-	if !checkVersionAbove(2, 2, 0) && attr == filterAttrTsync {
+-		return fmt.Errorf("the thread synchronization attribute is not supported in this version of the library")
+-	}
+-
+ 	retCode := C.seccomp_attr_set(f.filterCtx, attr.toNative(), value)
+ 	if retCode != 0 {
+ 		return syscall.Errno(-1 * retCode)
+@@ -254,12 +304,9 @@ func (f *ScmpFilter) setFilterAttr(attr scmpFilterAttr, value C.uint32_t) error
+ // DOES NOT LOCK OR CHECK VALIDITY
+ // Assumes caller has already done this
+ // Wrapper for seccomp_rule_add_... functions
+-func (f *ScmpFilter) addRuleWrapper(call ScmpSyscall, action ScmpAction, exact bool, cond C.scmp_cast_t) error {
+-	var length C.uint
+-	if cond != nil {
+-		length = 1
+-	} else {
+-		length = 0
++func (f *ScmpFilter) addRuleWrapper(call ScmpSyscall, action ScmpAction, exact bool, length C.uint, cond C.scmp_cast_t) error {
++	if length != 0 && cond == nil {
++		return fmt.Errorf("null conditions list, but length is nonzero")
+ 	}
+
+ 	var retCode C.int
+@@ -270,9 +317,11 @@ func (f *ScmpFilter) addRuleWrapper(call ScmpSyscall, action ScmpAction, exact b
+ 	}
+
+ 	if syscall.Errno(-1*retCode) == syscall.EFAULT {
+-		return fmt.Errorf("unrecognized syscall")
++		return fmt.Errorf("unrecognized syscall %#x", int32(call))
+ 	} else if syscall.Errno(-1*retCode) == syscall.EPERM {
+ 		return fmt.Errorf("requested action matches default action of filter")
++	} else if syscall.Errno(-1*retCode) == syscall.EINVAL {
++		return fmt.Errorf("two checks on same syscall argument")
+ 	} else if retCode != 0 {
+ 		return syscall.Errno(-1 * retCode)
+ 	}
+@@ -290,22 +339,32 @@ func (f *ScmpFilter) addRuleGeneric(call ScmpSyscall, action ScmpAction, exact b
+ 	}
+
+ 	if len(conds) == 0 {
+-		if err := f.addRuleWrapper(call, action, exact, nil); err != nil {
++		if err := f.addRuleWrapper(call, action, exact, 0, nil); err != nil {
+ 			return err
+ 		}
+ 	} else {
+ 		// We don't support conditional filtering in library version v2.1
+ 		if !checkVersionAbove(2, 2, 1) {
+-			return fmt.Errorf("conditional filtering requires libseccomp version >= 2.2.1")
++			return VersionError{
++				message: "conditional filtering is not supported",
++				minimum: "2.2.1",
++			}
++		}
++
++		argsArr := C.make_arg_cmp_array(C.uint(len(conds)))
++		if argsArr == nil {
++			return fmt.Errorf("error allocating memory for conditions")
+ 		}
++		defer C.free(argsArr)
+
+-		for _, cond := range conds {
+-			cmpStruct := C.make_struct_arg_cmp(C.uint(cond.Argument), cond.Op.toNative(), C.uint64_t(cond.Operand1), C.uint64_t(cond.Operand2))
+-			defer C.free(cmpStruct)
++		for i, cond := range conds {
++			C.add_struct_arg_cmp(C.scmp_cast_t(argsArr), C.uint(i),
++				C.uint(cond.Argument), cond.Op.toNative(),
++				C.uint64_t(cond.Operand1), C.uint64_t(cond.Operand2))
++		}
+
+-			if err := f.addRuleWrapper(call, action, exact, C.scmp_cast_t(cmpStruct)); err != nil {
+-				return err
+-			}
++		if err := f.addRuleWrapper(call, action, exact, C.uint(len(conds)), C.scmp_cast_t(argsArr)); err != nil {
++			return err
+ 		}
+ 	}
+
+@@ -317,11 +376,11 @@ func (f *ScmpFilter) addRuleGeneric(call ScmpSyscall, action ScmpAction, exact b
+ // Helper - Sanitize Arch token input
+ func sanitizeArch(in ScmpArch) error {
+ 	if in < archStart || in > archEnd {
+-		return fmt.Errorf("unrecognized architecture")
++		return fmt.Errorf("unrecognized architecture %#x", uint(in))
+ 	}
+
+ 	if in.toNative() == C.C_ARCH_BAD {
+-		return fmt.Errorf("architecture is not supported on this version of the library")
++		return fmt.Errorf("architecture %v is not supported on this version of the library", in)
+ 	}
+
+ 	return nil
+@@ -330,7 +389,7 @@ func sanitizeArch(in ScmpArch) error {
+ func sanitizeAction(in ScmpAction) error {
+ 	inTmp := in & 0x0000FFFF
+ 	if inTmp < actionStart || inTmp > actionEnd {
+-		return fmt.Errorf("unrecognized action")
++		return fmt.Errorf("unrecognized action %#x", uint(inTmp))
+ 	}
+
+ 	if inTmp != ActTrace && inTmp != ActErrno && (in&0xFFFF0000) != 0 {
+@@ -342,7 +401,7 @@ func sanitizeAction(in ScmpAction) error {
+
+ func sanitizeCompareOp(in ScmpCompareOp) error {
+ 	if in < compareOpStart || in > compareOpEnd {
+-		return fmt.Errorf("unrecognized comparison operator")
++		return fmt.Errorf("unrecognized comparison operator %#x", uint(in))
+ 	}
+
+ 	return nil
+@@ -385,7 +444,7 @@ func archFromNative(a C.uint32_t) (ScmpArch, error) {
+ 	case C.C_ARCH_S390X:
+ 		return ArchS390X, nil
+ 	default:
+-		return 0x0, fmt.Errorf("unrecognized architecture")
++		return 0x0, fmt.Errorf("unrecognized architecture %#x", uint32(a))
+ 	}
+ }
+
+@@ -464,10 +523,12 @@ func actionFromNative(a C.uint32_t) (ScmpAction, error) {
+ 		return ActErrno.SetReturnCode(int16(aTmp)), nil
+ 	case C.C_ACT_TRACE:
+ 		return ActTrace.SetReturnCode(int16(aTmp)), nil
++	case C.C_ACT_LOG:
++		return ActLog, nil
+ 	case C.C_ACT_ALLOW:
+ 		return ActAllow, nil
+ 	default:
+-		return 0x0, fmt.Errorf("unrecognized action")
++		return 0x0, fmt.Errorf("unrecognized action %#x", uint32(a))
+ 	}
+ }
+
+@@ -482,6 +543,8 @@ func (a ScmpAction) toNative() C.uint32_t {
+ 		return C.C_ACT_ERRNO | (C.uint32_t(a) >> 16)
+ 	case ActTrace:
+ 		return C.C_ACT_TRACE | (C.uint32_t(a) >> 16)
++	case ActLog:
++		return C.C_ACT_LOG
+ 	case ActAllow:
+ 		return C.C_ACT_ALLOW
+ 	default:
+@@ -500,6 +563,8 @@ func (a scmpFilterAttr) toNative() uint32 {
+ 		return uint32(C.C_ATTRIBUTE_NNP)
+ 	case filterAttrTsync:
+ 		return uint32(C.C_ATTRIBUTE_TSYNC)
++	case filterAttrLog:
++		return uint32(C.C_ATTRIBUTE_LOG)
+ 	default:
+ 		return 0x0
+ 	}

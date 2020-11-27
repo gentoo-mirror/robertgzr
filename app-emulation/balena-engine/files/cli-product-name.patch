@@ -1,0 +1,13 @@
+diff --git a/vendor/github.com/docker/cli/cli/cobra.go b/vendor/github.com/docker/cli/cli/cobra.go
+index ed9c9b5bac..f200b1b320 100644
+--- a/vendor/github.com/docker/cli/cli/cobra.go
++++ b/vendor/github.com/docker/cli/cli/cobra.go
+@@ -54,7 +54,7 @@ func setupCommonRootCommand(rootCmd *cobra.Command) (*cliflags.ClientOptions, *p
+ func SetupRootCommand(rootCmd *cobra.Command) (*cliflags.ClientOptions, *pflag.FlagSet, *cobra.Command) {
+ 	opts, flags, helpCmd := setupCommonRootCommand(rootCmd)
+ 
+-	rootCmd.SetVersionTemplate("Docker version {{.Version}}\n")
++	rootCmd.SetVersionTemplate("balenaEngine version {{.Version}}\n")
+ 
+ 	return opts, flags, helpCmd
+ }
