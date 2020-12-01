@@ -25,7 +25,6 @@ https://github.com/mesonbuild/hinnant-date/releases/download/${DATE_PV}-1/hinnan
 
 LICENSE="MIT"
 SLOT="0"
-# TODO sndio, 1.7.0
 IUSE="+gtk-layer-shell man mpd network pulseaudio systemd tray +udev"
 RESTRICT="mirrors"
 
@@ -40,8 +39,8 @@ BDEPEND="
 
 DEPEND="
 	>=dev-cpp/gtkmm-3.22.0:=
-	>=dev-libs/libfmt-7.1.3:=
-	>=dev-libs/spdlog-1.8.0:=
+	>=dev-libs/libfmt-5.3.0:=
+	>=dev-libs/spdlog-1.3.1:=
 	dev-libs/jsoncpp:=
 	dev-libs/libinput:=
 	dev-libs/libsigc++:2
