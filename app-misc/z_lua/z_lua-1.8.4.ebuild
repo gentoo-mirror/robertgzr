@@ -3,7 +3,9 @@
 
 EAPI=7
 
-inherit toolchain-funcs
+LUA_COMPAT=( lua5-{1..4} luajit )
+
+inherit lua-single toolchain-funcs
 
 DESCRIPTION="cd command that helps you navigate faster by learning your habits"
 HOMEPAGE="https://github.com/skywind3000/z.lua"
@@ -18,12 +20,9 @@ LICENSE="MIT"
 SLOT="0"
 IUSE="czmod"
 
-DEPEND="
-	|| (
-		dev-lang/lua
-		dev-lang/luajit
-	)
-"
+REQUIRED_USE="${LUA_REQUIRED_USE}"
+DEPEND="${LUA_DEPS}"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_PN}-${PV}"
 
