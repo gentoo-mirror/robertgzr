@@ -1,0 +1,42 @@
+#!/bin/sh
+
+set -e
+[ -n "$DEBUG" ] && set -x
+
+if [ "$1" = "-h" ]; then
+    printf "usage: %s [-e] NEW_VERSION\n" "$(basename "$0")"
+    exit 1
+fi
+
+edit=
+if [ "$1" = "-e" ]; then
+    edit=1
+    shift
+fi
+
+log() {
+    printf "$(tput setaf 6)[${pkgname}]$(tput sgr0) %s\n" "$@"
+}
+
+newversion="${1:?missing new version}"
+pkgname="$(basename $(dirname "${PWD}"))/$(basename "${PWD}")"
+
+oldebuild=$(find . -type f -name \*.ebuild -print -quit)
+oldversion=$(printf "${oldebuild}" | cut -d\- -f2 | rev | cut -d\. -f2- | rev)
+newebuild=$(printf "${oldebuild}" | sed -e "s/${oldversion}/${newversion}/")
+
+log "new ebuild ${newversion}"
+
+cp -v "${oldebuild}" "${newebuild}"
+[ -n "${edit}" ] && exec $EDITOR "${newebuild}"
+
+log "updating manifest"
+
+ebuild "${newebuild}" manifest
+
+log "creating commit"
+
+git add "${newebuild}" Manifest
+git commit -m "${pkgname}: bump to ${newversion}"
+
+log "done"
