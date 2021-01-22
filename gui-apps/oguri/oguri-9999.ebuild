@@ -28,4 +28,6 @@ BDEPEND="
 src_install() {
 	dobin contrib/oguri-swaybg
 	meson_src_install
+	# doinitd ${FILESDIR}/oguri.initd
+	# doconfd ${FILESDIR}/oguri.confd
 }
