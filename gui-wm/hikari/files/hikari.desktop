@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Hikari
+Comment=A Wayland compositor
+Exec=hikari
+Type=Application
