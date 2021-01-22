@@ -6,6 +6,7 @@ EAPI=7
 DESCRIPTION="The official balena CLI tool."
 HOMEPAGE="https://github.com/balena-io/balena-cli"
 SRC_URI="https://github.com/balena-io/${PN}/releases/download/v${PV}/${PN}-v${PV}-linux-x64-standalone.zip -> ${P}.zip"
+
 RESTRICT="strip mirror"
 
 LICENSE="Apache-2.0"
