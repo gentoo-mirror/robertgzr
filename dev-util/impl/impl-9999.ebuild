@@ -3,30 +3,47 @@
 
 EAPI=7
 
-inherit git-r3 go-module
+inherit go-module
 
 DESCRIPTION="impl generates method stubs for implementing an interface"
 HOMEPAGE="https://github.com/josharian/impl"
 
-EGIT_REPO_URI="https://github.com/josharian/impl.git"
+EGO_SUM=(
+	"golang.org/x/tools 3fe2afc github.com/golang/tools"
+)
 
-RESTRICT="strip mirrors"
+go-module_set_globals
+
+if [[ ${PV} = *9999* ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/josharian/impl.git"
+else
+	SRC_URI="https://github.com/joasharian/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
+		${EGO_SUM_SRC_URI}"
+	KEYWORDS="~amd64 ~arm64 ~x86"
+fi
+
+RESTRICT="strip"
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
-KEYWORDS="~amd64 ~arm64 ~x86"
 
 RDEPEND="dev-vcs/git"
 
 src_unpack() {
-	git-r3_src_unpack
+	default
+
 	rm -r ${S}/{testdata,*_test.go}
 	go mod init github.com/josharian/${PN}
-	go-module_live_vendor
+
+	if [[ ${PV} = *9999* ]]; then
+		git-r3_src_unpack
+		go-module_live_vendor
+	fi
 }
 
 src_compile() {
-	go build -v -ldflags "-s -w" -o ${PN}
+	go build -o ${PN}
 }
 
 src_install() {
