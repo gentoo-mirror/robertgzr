@@ -22,7 +22,7 @@ newversion="${1:?missing new version}"
 pkgname="$(basename $(dirname "${PWD}"))/$(basename "${PWD}")"
 
 oldebuild=$(find . -type f -name \*.ebuild -print -quit)
-oldversion=$(printf "${oldebuild}" | cut -d\- -f2 | rev | cut -d\. -f2- | rev)
+oldversion=$(printf "${oldebuild}" | rev | cut -d\- -f1 | cut -d\. -f2- | rev)
 newebuild=$(printf "${oldebuild}" | sed -e "s/${oldversion}/${newversion}/")
 
 log "new ebuild ${newversion}"
@@ -36,6 +36,11 @@ ebuild "${newebuild}" manifest
 
 log "creating commit"
 
+if [ -n "$(git diff --staged --name-only)" ]; then
+    log "error: staging not clear"
+    git status -s --untracked-files=no
+    exit 1
+fi
 git add "${newebuild}" Manifest
 git commit -m "${pkgname}: bump to ${newversion}"
 
