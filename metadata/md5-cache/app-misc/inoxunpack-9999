@@ -1,0 +1,11 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=install unpack
+DESCRIPTION=downloads extensions from the chrome webstore and unpacks them
+EAPI=7
+HOMEPAGE=https://github.com/gcarq/inoxunpack
+KEYWORDS=~amd64 ~arm64 ~x86
+LICENSE=GPL-3
+PROPERTIES=live
+SLOT=0
+_eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441
+_md5_=fe31425b09be68ca13d1d7d930a29095

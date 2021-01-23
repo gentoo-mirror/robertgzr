@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm prepare setup
+DEPEND=app-arch/unzip X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
+DESCRIPTION=A typeface carefully crafted & designed for computer screens
+EAPI=7
+HOMEPAGE=https://rsms.me/inter/
+IUSE=woff woff2 X
+KEYWORDS=~amd64 ~arm ~arm64 ~ppc64 ~x86
+LICENSE=OFL-1.1
+SLOT=0
+SRC_URI=https://github.com/rsms/inter/releases/download/v3.15/Inter-3.15.zip -> inter-3.15.zip
+_eclasses_=font	dd073b36fe3fd8b868c23bc23209db45
+_md5_=baa297c6f4eeb5216639a533e096359b

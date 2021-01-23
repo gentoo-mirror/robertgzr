@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm prepare setup
+DEPEND=app-arch/unzip X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
+DESCRIPTION=Classic semiserif typeface, ideal for magazines and academic journals
+EAPI=7
+HOMEPAGE=https://www.omnibus-type.com/fonts/rosario/
+IUSE=ttf woff woff2 eot X
+KEYWORDS=~amd64 ~arm ~arm64 ~ppc64 ~x86
+LICENSE=OFL-1.1
+SLOT=0
+SRC_URI=https://www.omnibus-type.com/wp-content/uploads/Rosario.zip?1579544269 -> rosario-1579544269.zip
+_eclasses_=font	dd073b36fe3fd8b868c23bc23209db45
+_md5_=65fb61e6c1d7e51eef564b8fbada82fc

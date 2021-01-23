@@ -1,0 +1,13 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=install unpack
+DEPEND=>=sys-fs/fuse-2.2:0= >=dev-libs/gumbo-0.10.1
+DESCRIPTION=mount http directory listing
+EAPI=7
+HOMEPAGE=https://github.com/fangfufu/httpdirfs
+KEYWORDS=~amd64 ~arm64 ~x86
+LICENSE=GPL-3
+PROPERTIES=live
+RDEPEND=>=sys-fs/fuse-2.2:0= >=dev-libs/gumbo-0.10.1
+SLOT=0
+_eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441
+_md5_=38969fa3c14ee8bed0e96f40688b8270

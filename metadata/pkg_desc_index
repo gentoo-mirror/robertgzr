@@ -1,0 +1,45 @@
+app-admin/git-secret 0.3.3: a bash-tool to store your private data inside a git repository
+app-emulation/balena-engine 19.03.14: Moby-based Container Engine for Embedded, IoT, and Edge uses
+app-misc/an2linuxserver 9999: Sync Android notifications encrypted to a Linux desktop
+app-misc/evdoublebind 9999: Provides double key binds, via evdev
+app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
+app-misc/nb 5.7.8 9999: CLI plain-text note-taking, bookmarking, and archiving.
+app-misc/porcelain 9999: git status parser
+app-misc/z_lua 1.8.4: cd command that helps you navigate faster by learning your habits
+app-shells/imrsh 9999: 
+app-shells/mrsh 9999: A minimal POSIX shell
+dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
+dev-libs/bemenu 9999: dmenu clone for wayland
+dev-libs/libucl 0.8.1: Universal configuration library parser
+dev-util/balena-cli 12.38.5: The official balena CLI tool.
+dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
+dev-util/goimports 9999: official go auto-importer
+dev-util/gopls 9999: official go language server
+dev-util/impl 9999: impl generates method stubs for implementing an interface
+dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
+dev-util/rust-src 1.47.0: Source code of the rust programming language
+dev-util/yaegi 0.8.8: yet another elegant go interpreter
+gui-apps/foot 1.4.4 9999: fast, lightweight and minimalistic Wayland terminal emulator
+gui-apps/gammastep 2.0.7 9999: A screen color temperature adjusting software
+gui-apps/greetd-greeter-wlgreet 0.2: wayland greetd greeter
+gui-apps/kanshi 1.1.0 9999: Dynamic display configuration for Wayland
+gui-apps/oguri 9999: animated wallpaper daemon
+gui-apps/tinydm 1.0.4: tiny display manager - wayland/x11 session starter for single user machines
+gui-apps/wl-clipboard-x11 4 5 9999: A wrapper to use wl-clipboard as a drop-in replacement to X11 clipboard tools
+gui-apps/wofi 1.0 9999: launcher/menu program for wlroots based wayland compositors
+gui-apps/wshowkeys 9999: Displays keypresses on screen
+gui-wm/dwl 9999: wayland compositor inspired by dwm
+gui-wm/hikari 2.0.4: stacking wayland compositor with tiling capabilities
+media-fonts/cozette 1.9.0: A bitmap programming font optimized for coziness
+media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
+media-fonts/iosevka 2.3.3 4.5.0: Slender typeface for code, from code
+media-fonts/luciole 2019: 
+media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
+media-sound/pms 9999: Practical Music Search is an interactive Vim-like console client for MPD
+net-fs/httpdirfs 1.2.0 9999: mount http directory listing
+net-irc/soju 9999: user-friendly IRC bouncer
+net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
+sys-apps/autologin 1.0.0: daemon for automatic login on TTY
+sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
+www-client/firefox-nightly-bin 9999: Firefox Web Browser
+www-client/vimb 3.6.0: a fast, lightweight, vim-like browser based on webkit

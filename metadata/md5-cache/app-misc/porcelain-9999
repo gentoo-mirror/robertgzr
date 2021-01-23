@@ -1,0 +1,13 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl] >=dev-lang/go-1.12 app-arch/unzip
+DEFINED_PHASES=compile install postinst unpack
+DEPEND=dev-vcs/git
+DESCRIPTION=git status parser
+EAPI=7
+HOMEPAGE=https://github.com/robertgzr/porcelain
+KEYWORDS=~amd64 ~arm64 ~x86
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=strip
+SLOT=0
+_eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441	go-module	92660621959e7fab813173772987588b
+_md5_=b8320394148032b9c208e242015cff5f
