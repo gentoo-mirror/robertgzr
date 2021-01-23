@@ -11,15 +11,15 @@ HOMEPAGE="http://jonls.dk/redshift/"
 
 if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/jonls/${PN}.git"
+	EGIT_REPO_URI="https://gitlab.com/chinstrap/gammastep.git"
 else
-	SRC_URI="https://github.com/jonls/redshift/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://gitlab.com/chinstrap/gammastep/-/archive/v${PV}/gammastep-v${PV}.tar.gz"
 fi
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 arm64 x86"
-IUSE="ayatana geoclue gtk nls"
+IUSE="ayatana drm geoclue indicator nls apparmor randr vidmode wayland"
 
 COMMON_DEPEND=">=x11-libs/libX11-1.4
 	x11-libs/libXxf86vm
@@ -27,20 +27,18 @@ COMMON_DEPEND=">=x11-libs/libX11-1.4
 	x11-libs/libdrm
 	ayatana? ( dev-libs/libappindicator:3[introspection] )
 	geoclue? ( app-misc/geoclue:2.0 dev-libs/glib:2 )
-	gtk? ( ${PYTHON_DEPS} )"
+	indicator? ( ${PYTHON_DEPS} )"
 RDEPEND="${COMMON_DEPEND}
-	gtk? ( dev-python/pygobject[${PYTHON_USEDEP}]
+	indicator? ( dev-python/pygobject[${PYTHON_USEDEP}]
 		x11-libs/gtk+:3[introspection]
 		dev-python/pyxdg[${PYTHON_USEDEP}] )"
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50
 	nls? ( sys-devel/gettext )
 "
-REQUIRED_USE="gtk? ( ${PYTHON_REQUIRED_USE} )"
+REQUIRED_USE="indicator? ( ${PYTHON_REQUIRED_USE} )"
 
-PATCHES=(
-	"${FILESDIR}/0001-Implement-Wayland-support.patch"
-)
+S="${WORKDIR}/${PN}-v${PV}"
 
 src_prepare() {
 	default
@@ -48,51 +46,49 @@ src_prepare() {
 }
 
 src_configure() {
-	use gtk && python_setup
+	use indicator && python_setup
 
-	econf \
-		--disable-silent-rules \
-		$(use_enable nls) \
-		--enable-drm \
-		--enable-randr \
-		--enable-vidmode \
-		--disable-wingdi \
-		\
-		--disable-corelocation \
-		$(use_enable geoclue geoclue2) \
-		\
-		$(use_enable gtk gui) \
-		--with-systemduserunitdir="$(systemd_get_userunitdir)" \
-		--enable-apparmor \
-		--disable-quartz \
-		--disable-ubuntu
+	local myeconfargs=(
+		--disable-silent-rules
+		$(use_enable nls)
+		$(use_enable drm)
+		$(use_enable wayland)
+		$(use_enable randr)
+		$(use_enable vidmode)
+		$(use_enable geoclue geoclue2)
+		$(use_enable indicator gui)
+		$(use_enable apparmor)
+		--with-systemduserunitdir="$(systemd_get_userunitdir)"
+	)
+
+	econf "${myeconfargs[@]}"
 }
 
 _impl_specific_src_install() {
 	emake DESTDIR="${D}" pythondir="$(python_get_sitedir)" \
-			-C src/redshift-gtk install
+			-C src/${PN}-indicator install
 }
 
 src_install() {
 	emake DESTDIR="${D}" UPDATE_ICON_CACHE=/bin/true install
 
-	if use gtk; then
+	if use indicator; then
 		python_foreach_impl _impl_specific_src_install
-		python_replicate_script "${D}"/usr/bin/redshift-gtk
-		dosym redshift-gtk /usr/bin/gtk-redshift
+		python_replicate_script "${D}"/usr/bin/${PN}-indicator
+		dosym ${PN}-indicator /usr/bin/${PN}-indicator
 
 		python_foreach_impl python_optimize
 	fi
 }
 
 pkg_preinst() {
-	use gtk && gnome2_icon_savelist
+	use indicator && gnome2_icon_savelist
 }
 
 pkg_postinst() {
-	use gtk && gnome2_icon_cache_update
+	use indicator && gnome2_icon_cache_update
 }
 
 pkg_postrm() {
-	use gtk && gnome2_icon_cache_update
+	use indicator && gnome2_icon_cache_update
 }
