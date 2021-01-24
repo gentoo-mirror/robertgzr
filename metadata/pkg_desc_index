@@ -4,10 +4,9 @@ app-misc/an2linuxserver 9999: Sync Android notifications encrypted to a Linux de
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
 app-misc/nb 5.7.8 9999: CLI plain-text note-taking, bookmarking, and archiving.
-app-misc/porcelain 9999: git status parser
-app-misc/z_lua 1.8.4: cd command that helps you navigate faster by learning your habits
 app-shells/imrsh 9999: 
 app-shells/mrsh 9999: A minimal POSIX shell
+app-shells/porcelain 0.4.0: git status parser
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libucl 0.8.1: Universal configuration library parser
