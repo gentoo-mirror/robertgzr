@@ -10,7 +10,7 @@ app-shells/porcelain 0.4.0: git status parser
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libucl 0.8.1: Universal configuration library parser
-dev-util/balena-cli 12.38.5: The official balena CLI tool.
+dev-util/balena-cli 12.38.5 12.38.7: The official balena CLI tool.
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
 dev-util/goimports 9999: official go auto-importer
 dev-util/gopls 9999: official go language server
