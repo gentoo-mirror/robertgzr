@@ -35,6 +35,7 @@ media-fonts/iosevka 2.3.3 4.5.0: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
 media-sound/pms 9999: Practical Music Search is an interactive Vim-like console client for MPD
+media-video/obs-xdg-portal 9999: OBS Studio plugin using the desktop portal for screensharing
 net-fs/httpdirfs 1.2.0 9999: mount http directory listing
 net-irc/soju 9999: user-friendly IRC bouncer
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
