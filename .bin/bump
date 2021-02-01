@@ -18,6 +18,10 @@ log() {
     printf "$(tput setaf 6)[${pkgname}]$(tput sgr0) %s\n" "$@"
 }
 
+
+done=
+trap '{ [ -z "${done}" ] && { log "cleaning up ${newebuild}" && rm -v "${newebuild}"; }; }' EXIT
+
 newversion="${1:?missing new version}"
 pkgname="$(basename $(dirname "${PWD}"))/$(basename "${PWD}")"
 
@@ -34,6 +38,18 @@ log "updating manifest"
 
 ebuild "${newebuild}" manifest
 
+olderebuilds=$(find . -type f -name \*.ebuild -print | sort | grep -v "${oldebuild}" | grep -v "${newebuild}")
+num_olderebuilds=$(printf "${olderebuilds}" | wc -l)
+if [ "${num_olderebuilds}" -gt 0 ]; then
+    log "there is ${num_olderebuilds} ebuilds, you should drop some..."
+    set -x
+    for eb in ${olderebuilds}; do
+        printf "drop $eb ? (y/n) "
+        read -r yn
+        [ "$yn" = "y" ] && rm "$eb" || true
+    done
+fi
+
 log "creating commit"
 
 if [ -n "$(git diff --staged --name-only)" ]; then
@@ -42,6 +58,7 @@ if [ -n "$(git diff --staged --name-only)" ]; then
     exit 1
 fi
 git add "${newebuild}" Manifest
-git commit -m "${pkgname}: bump to ${newversion}"
+git commit -m "${pkgname}: bump to ${newversion}" || git reset . >/dev/null
 
+done=1
 log "done"
