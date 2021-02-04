@@ -35,7 +35,7 @@ src_compile() {
 
 src_install() {
 	insinto /usr/src/rust/
-	doins -r ./src
+	doins -r ./library
 }
 
 pkg_postinst() {
