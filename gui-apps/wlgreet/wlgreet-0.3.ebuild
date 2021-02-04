@@ -16,7 +16,7 @@ chrono-0.4.11
 dlib-0.4.1
 downcast-rs-1.1.1
 getopts-0.2.21
-greetd_ipc-0.5.1
+greetd_ipc-0.6.0
 itoa-0.4.5
 lazy_static-1.4.0
 libc-0.2.68
@@ -69,7 +69,7 @@ xml-rs-0.8.0
 inherit cargo
 
 MY_PN="${PN/greetd-greeter-}"
-DESCRIPTION="wayland greetd greeter"
+DESCRIPTION="wayland greeter for greetd"
 HOMEPAGE="https://kl.wtf/projects/greetd"
 
 if [[ ${PV} = *9999* ]]; then
@@ -84,7 +84,7 @@ fi
 RESTRICT="mirror"
 # License set may be more restrictive as OR is not respected
 # use cargo-license for a more accurate license picture
-LICENSE="Apache-2.0 BSL-1.0 GPL-3.0 ISC MIT Unlicense"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
