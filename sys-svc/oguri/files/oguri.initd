@@ -1,0 +1,25 @@
+#!/sbin/openrc-run
+# Copyright 1999-2020 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+description="Wallpaper daemon"
+
+command="/usr/bin/oguri"
+command_args="${OGURI_ARGS}"
+supervisor="supervise-daemon"
+
+user="${OGURI_USER}"
+group="${OGURI_GROUP}"
+retry="TERM/60/KILL/10"
+
+# OGURI_LOGFILE="/var/log/${RC_SVCNAME}.log"
+# output_log="${OGURI_LOGFILE}"
+# error_log="${OGURI_LOGFILE}"
+
+depend() {
+    after kanshi
+}
+
+# start_pre() {
+#    checkpath -f -m 0644 -o "${OGURI_USER}:${OGURI_GROUP}" "${OGURI_LOGFILE}"
+#}

@@ -1,0 +1,8 @@
+# /etc/conf.d/kanshi: config file for /etc/init.d/kanshi
+
+# user and group used to run kanshi
+#KANSHI_USER=""
+#KANSHI_GROUP=""
+
+# any other options
+KANSHI_ARGS=""
