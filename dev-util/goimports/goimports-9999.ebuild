@@ -10,7 +10,7 @@ HOMEPAGE="https://github.com/golang/tools/blob/master/cmd/goimports/doc.go"
 
 EGIT_REPO_URI="https://github.com/golang/tools.git"
 
-RESTRICT="strip mirrors"
+RESTRICT="network-sandbox"
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
@@ -19,6 +19,7 @@ KEYWORDS="~amd64 ~arm64 ~x86"
 S="${WORKDIR}/${P}/cmd/goimports"
 
 src_unpack() {
+	default
 	git-r3_src_unpack
 	go-module_live_vendor
 }
