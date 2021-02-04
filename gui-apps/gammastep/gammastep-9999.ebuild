@@ -14,7 +14,6 @@ EGIT_REPO_URI="https://gitlab.com/chinstrap/gammastep.git"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
 IUSE="ayatana drm geoclue indicator nls apparmor randr vidmode wayland"
 
 COMMON_DEPEND=">=x11-libs/libX11-1.4

@@ -12,7 +12,7 @@ SRC_URI="https://gitlab.com/chinstrap/gammastep/-/archive/v${PV}/gammastep-v${PV
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~x86"
+KEYWORDS="amd64 ~arm64 ~x86"
 IUSE="ayatana drm geoclue indicator nls apparmor randr vidmode wayland"
 
 COMMON_DEPEND=">=x11-libs/libX11-1.4
