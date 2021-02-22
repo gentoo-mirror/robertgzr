@@ -12,19 +12,19 @@ if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://codeberg.org/dnkl/${PN}.git"
 else
+	TLLIST_PV="1.0.4"
+	FCFT_PV="2.3.0"
 	SRC_URI="https://codeberg.org/dnkl/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	TLLIST_PV="1.0.2"
-	FCFT_PV="2.2.6"
 	SRC_URI+="
 		https://codeberg.org/dnkl/tllist/archive/${TLLIST_PV}.tar.gz -> tllist-${TLLIST_PV}.tar.gz
 		https://codeberg.org/dnkl/fcft/archive/${FCFT_PV}.tar.gz -> fcft-${FCFT_PV}.tar.gz"
+	KEYWORDS="~amd64 ~x86 ~arm64"
 fi
 
 
 LICENSE="MIT"
 SLOT="0"
 IUSE="+man"
-KEYWORDS="~amd64"
 
 DEPEND="
 	media-libs/freetype
