@@ -20,7 +20,7 @@ log() {
 
 
 done=
-trap '{ [ -z "${done}" ] && { log "cleaning up ${newebuild}" && rm -v "${newebuild}"; }; }' EXIT
+trap '{ [ -z "${done}" ] && { log "cleaning up ${newebuild}" && rename ebuild ebuild.rej "${newebuild}"; }; }' EXIT
 
 newversion="${1:?missing new version}"
 pkgname="$(basename $(dirname "${PWD}"))/$(basename "${PWD}")"
