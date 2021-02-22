@@ -1,0 +1,8 @@
+# /etc/conf.d/kanshi: config file for /etc/init.d/kanshi
+
+# user and group used to run kanshi
+#OGURI_USER=""
+#OGURI_GROUP=""
+
+# any other options
+OGURI_ARGS=""

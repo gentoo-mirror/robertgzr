@@ -3,20 +3,22 @@
 
 EAPI=7
 
-inherit git-r3 go-module
+inherit go-module
 
 DESCRIPTION="distributed, offline-first bug tracker"
 HOMEPAGE="https://github.com/MichaelMure/git-bug"
 
+inherit git-r3
 EGIT_REPO_URI="https://github.com/MichaelMure/${PN}"
 
-RESTRICT="strip"
+RESTRICT="network-sandbox"
 LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 KEYWORDS="~amd64 ~arm64 ~x86"
 
 src_unpack() {
+	default
 	git-r3_src_unpack
 	go-module_live_vendor
 }

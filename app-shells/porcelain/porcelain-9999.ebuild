@@ -5,12 +5,11 @@ EAPI=7
 
 inherit go-module
 
-DESCRIPTION="official go language server"
-HOMEPAGE="https://github.com/golang/tools/blob/master/gopls"
+DESCRIPTION="git status parser"
+HOMEPAGE="https://github.com/robertgzr/porcelain"
 
 inherit git-r3
-EGIT_REPO_URI="https://github.com/golang/tools.git"
-S="${WORKDIR}/${P}/gopls"
+EGIT_REPO_URI="https://github.com/robertgzr/${PN}.git"
 
 RESTRICT="network-sandbox"
 LICENSE="MIT"
@@ -24,9 +23,9 @@ src_unpack() {
 }
 
 src_compile() {
-	go build -o ${PN} || die
+	emake VERSION="${PV}" REV="HEAD"
 }
 
 src_install() {
-	dobin ${PN}
+	emake DESTDIR="${ED}" PREFIX=/usr install
 }

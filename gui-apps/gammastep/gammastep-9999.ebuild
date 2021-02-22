@@ -9,16 +9,11 @@ inherit systemd autotools eutils gnome2-utils python-r1
 DESCRIPTION="A screen color temperature adjusting software"
 HOMEPAGE="http://jonls.dk/redshift/"
 
-if [[ ${PV} = *9999* ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://gitlab.com/chinstrap/gammastep.git"
-else
-	SRC_URI="https://gitlab.com/chinstrap/gammastep/-/archive/v${PV}/gammastep-v${PV}.tar.gz"
-fi
+inherit git-r3
+EGIT_REPO_URI="https://gitlab.com/chinstrap/gammastep.git"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 arm64 x86"
 IUSE="ayatana drm geoclue indicator nls apparmor randr vidmode wayland"
 
 COMMON_DEPEND=">=x11-libs/libX11-1.4
@@ -37,8 +32,6 @@ DEPEND="${COMMON_DEPEND}
 	nls? ( sys-devel/gettext )
 "
 REQUIRED_USE="indicator? ( ${PYTHON_REQUIRED_USE} )"
-
-S="${WORKDIR}/${PN}-v${PV}"
 
 src_prepare() {
 	default
