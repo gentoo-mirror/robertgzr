@@ -6,7 +6,7 @@ EAPI=7
 inherit font
 
 DESCRIPTION="Slender typeface for code, from code"
-HOMEPAGE="https://be5invis.github.io/Iosevka/"
+HOMEPAGE="https://be5invis.github.io/iosevka"
 
 MY_PV=$(ver_rs 3 '-' 4 '.')
 
@@ -16,7 +16,6 @@ SRC_URI="
 	term? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-term-${MY_PV}.zip )
 	aile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-aile-${MY_PV}.zip )
 	etoile? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-etoile-${MY_PV}.zip )
-	sparkle? ( https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-sparkle-${MY_PV}.zip )
 
 	ss05? (
 		https://github.com/be5invis/${PN}/releases/download/v${MY_PV}/ttf-${PN}-ss05-${MY_PV}.zip
@@ -100,8 +99,8 @@ SRC_URI="
 
 LICENSE="OFL-1.1"
 SLOT="0"
-IUSE="aile curly +default etoile slab sparkle ss01 ss02 ss03 ss04 ss05 ss06 ss07 ss08 ss09 ss10 ss11 ss12 ss13 ss14 +fixed term unhinted woff2"
-KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
+IUSE="aile curly +default etoile slab ss01 ss02 ss03 ss04 ss05 ss06 ss07 ss08 ss09 ss10 ss11 ss12 ss13 ss14 +fixed term unhinted woff2"
+KEYWORDS="amd64 arm arm64 ppc64 x86"
 
 DEPEND="app-arch/unzip"
 
