@@ -11,6 +11,8 @@ HOMEPAGE="https://codeberg.org/dnkl/foot"
 if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://codeberg.org/dnkl/${PN}.git"
+	EGIT_TLLIST_REPO_URI="https://codeberg.org/dnkl/tllist.git"
+	EGIT_FCFT_REPO_URI="https://codeberg.org/dnkl/fcft.git"
 else
 	TLLIST_PV="1.0.4"
 	FCFT_PV="2.3.0"
@@ -24,7 +26,7 @@ fi
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="+man"
+IUSE="+man +ime +terminfo"
 
 DEPEND="
 	media-libs/freetype
@@ -39,6 +41,7 @@ BDEPEND="
 	dev-libs/wayland-protocols
 	sys-libs/ncurses
 	man? ( app-text/scdoc )
+	terminfo? ( sys-libs/ncurses )
 "
 
 if [[ ${PV} != 9999 ]]; then
@@ -51,10 +54,10 @@ src_unpack() {
 	mkdir -p "${S}/subprojects"
 	if [[ ${PV} == 9999 ]]; then
 		git-r3_src_unpack
-		git-r3_fetch "https://codeberg.org/dnkl/tllist.git"
-		git-r3_checkout "https://codeberg.org/dnkl/tllist.git" "${S}/subprojects/tllist"
-		git-r3_fetch "https://codeberg.org/dnkl/fcft.git"
-		git-r3_checkout "https://codeberg.org/dnkl/fcft.git" "${S}/subprojects/fcft"
+		git-r3_fetch "${EGIT_TLLIST_REPO_URI}"
+		git-r3_fetch "${EGIT_FCFT_REPO_URI}"
+		git-r3_checkout "${EGIT_TLLIST_REPO_URI}" "${S}/subprojects/tllist"
+		git-r3_checkout "${EGIT_FCFT_REPO_URI}" "${S}/subprojects/fcft"
 	else
 		mv "${WORKDIR}/tllist" "${S}/subprojects/tllist"
 		mv "${WORKDIR}/fcft" "${S}/subprojects/fcft"
@@ -62,7 +65,23 @@ src_unpack() {
 
 }
 
+src_configure() {
+	local emesonargs=(
+		$(meson_feature terminfo)
+		$(meson_use ime)
+	)
+	meson_src_configure
+}
+
 src_install() {
 	meson_src_install
 	rm -r "${D}/usr/share/doc/foot"
+}
+
+pkg_postinst() {
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
 }
