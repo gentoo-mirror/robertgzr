@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit meson
+inherit desktop meson
 
 DESCRIPTION="fast, lightweight and minimalistic Wayland terminal emulator "
 HOMEPAGE="https://codeberg.org/dnkl/foot"
@@ -26,7 +26,7 @@ fi
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="+man +ime +terminfo"
+IUSE="+man +ime pgo"
 
 DEPEND="
 	media-libs/freetype
@@ -39,9 +39,8 @@ RDEPEND="${DEPEND}"
 BDEPEND="
 	dev-libs/wayland
 	dev-libs/wayland-protocols
-	sys-libs/ncurses
+	sys-libs/ncurses:0
 	man? ( app-text/scdoc )
-	terminfo? ( sys-libs/ncurses )
 "
 
 if [[ ${PV} != 9999 ]]; then
@@ -67,21 +66,31 @@ src_unpack() {
 
 src_configure() {
 	local emesonargs=(
-		$(meson_feature terminfo)
+		-Dterminfo=enabled
+		$(use pgo && printf "-Db_pgo=use")
 		$(meson_use ime)
 	)
 	meson_src_configure
 }
 
+src_test() {
+	meson_src_test
+}
+
+DOCS=( LICENSE README.md CHANGELOG.md )
 src_install() {
 	meson_src_install
 	rm -r "${D}/usr/share/doc/foot"
+	rm -r "${D}/usr/share/zsh/site-functions/_foot"*
+	rm -r "${D}/usr/share/fish/vendor_completions.d/foot"*
 }
 
 pkg_postinst() {
 	xdg_icon_cache_update
+	xdg_desktop_database_update
 }
 
 pkg_postrm() {
 	xdg_icon_cache_update
+	xdg_desktop_database_update
 }
