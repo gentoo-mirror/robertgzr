@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit meson
+inherit desktop meson
 
 DESCRIPTION="fast, lightweight and minimalistic Wayland terminal emulator "
 HOMEPAGE="https://codeberg.org/dnkl/foot"
@@ -11,6 +11,8 @@ HOMEPAGE="https://codeberg.org/dnkl/foot"
 if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://codeberg.org/dnkl/${PN}.git"
+	EGIT_TLLIST_REPO_URI="https://codeberg.org/dnkl/tllist.git"
+	EGIT_FCFT_REPO_URI="https://codeberg.org/dnkl/fcft.git"
 else
 	TLLIST_PV="1.0.4"
 	FCFT_PV="2.3.0"
@@ -24,7 +26,7 @@ fi
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="+man"
+IUSE="+man +ime pgo"
 
 DEPEND="
 	media-libs/freetype
@@ -37,7 +39,7 @@ RDEPEND="${DEPEND}"
 BDEPEND="
 	dev-libs/wayland
 	dev-libs/wayland-protocols
-	sys-libs/ncurses
+	sys-libs/ncurses:0
 	man? ( app-text/scdoc )
 "
 
@@ -51,10 +53,10 @@ src_unpack() {
 	mkdir -p "${S}/subprojects"
 	if [[ ${PV} == 9999 ]]; then
 		git-r3_src_unpack
-		git-r3_fetch "https://codeberg.org/dnkl/tllist.git"
-		git-r3_checkout "https://codeberg.org/dnkl/tllist.git" "${S}/subprojects/tllist"
-		git-r3_fetch "https://codeberg.org/dnkl/fcft.git"
-		git-r3_checkout "https://codeberg.org/dnkl/fcft.git" "${S}/subprojects/fcft"
+		git-r3_fetch "${EGIT_TLLIST_REPO_URI}"
+		git-r3_fetch "${EGIT_FCFT_REPO_URI}"
+		git-r3_checkout "${EGIT_TLLIST_REPO_URI}" "${S}/subprojects/tllist"
+		git-r3_checkout "${EGIT_FCFT_REPO_URI}" "${S}/subprojects/fcft"
 	else
 		mv "${WORKDIR}/tllist" "${S}/subprojects/tllist"
 		mv "${WORKDIR}/fcft" "${S}/subprojects/fcft"
@@ -62,7 +64,33 @@ src_unpack() {
 
 }
 
+src_configure() {
+	local emesonargs=(
+		-Dterminfo=enabled
+		$(use pgo && printf "-Db_pgo=use")
+		$(meson_use ime)
+	)
+	meson_src_configure
+}
+
+src_test() {
+	meson_src_test
+}
+
+DOCS=( LICENSE README.md CHANGELOG.md )
 src_install() {
 	meson_src_install
 	rm -r "${D}/usr/share/doc/foot"
+	rm -r "${D}/usr/share/zsh/site-functions/_foot"*
+	rm -r "${D}/usr/share/fish/vendor_completions.d/foot"*
+}
+
+pkg_postinst() {
+	xdg_icon_cache_update
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
+	xdg_desktop_database_update
 }
