@@ -33,7 +33,6 @@ gui-apps/wshowkeys 9999: Displays keypresses on screen
 gui-wm/dwl 9999: wayland compositor inspired by dwm
 gui-wm/hikari 2.0.4: stacking wayland compositor with tiling capabilities
 media-fonts/cozette 1.9.0: A bitmap programming font optimized for coziness
-media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
 media-fonts/iosevka 2.3.3 5.0.5: Slender typeface for code, from code
 media-fonts/luciole 2019: 

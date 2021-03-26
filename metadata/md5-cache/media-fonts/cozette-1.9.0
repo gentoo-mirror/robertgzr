@@ -1,12 +1,13 @@
+BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DEFINED_PHASES=install postinst postrm prepare setup
-DEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DESCRIPTION=A bitmap programming font optimized for coziness
 EAPI=7
 HOMEPAGE=https://github.com/slavfox/Cozette
+INHERIT=font
 IUSE=otb X
 KEYWORDS=~amd64 ~arm ~arm64 ~ppc64 ~x86
 LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://github.com/slavfox/cozette/releases/download/v.1.9.0/cozetteVector.otf -> cozetteVector-1.9.0.otf otb? ( https://github.com/slavfox/cozette/releases/download/v.1.9.0/cozette.otb -> cozette-1.9.0.otb )
-_eclasses_=font	dd073b36fe3fd8b868c23bc23209db45
+_eclasses_=font	0667878c2b594871023dd1833d05996f
 _md5_=ad1115222561319c4033bc0a274701d9

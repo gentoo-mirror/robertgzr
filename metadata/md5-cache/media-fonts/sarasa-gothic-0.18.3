@@ -1,13 +1,15 @@
+BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DEFINED_PHASES=install postinst postrm setup unpack
-DEPEND=app-arch/p7zip X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
+DEPEND=app-arch/p7zip
 DESCRIPTION=CJK programming font based on Iosevka and Source Han Sans
 EAPI=7
 HOMEPAGE=https://github.com/be5invis/Sarasa-Gothic
+INHERIT=font
 IUSE=chinese japanese korean X
 KEYWORDS=~amd64 ~x86
 LICENSE=OFL-1.1
 RDEPEND=app-arch/p7zip
 SLOT=0
 SRC_URI=https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.18.3/sarasa-gothic-ttf-0.18.3.7z
-_eclasses_=font	dd073b36fe3fd8b868c23bc23209db45
+_eclasses_=font	0667878c2b594871023dd1833d05996f
 _md5_=7e62467237bfab52086e776817194c94
