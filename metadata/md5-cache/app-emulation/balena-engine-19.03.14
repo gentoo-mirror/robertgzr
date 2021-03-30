@@ -4,6 +4,7 @@ DEPEND=static? ( apparmor? ( sys-libs/libapparmor[static-libs(+)] ) seccomp? ( >
 DESCRIPTION=Moby-based Container Engine for Embedded, IoT, and Edge uses
 EAPI=7
 HOMEPAGE=https://balena.io/engine
+INHERIT=bash-completion-r1 golang-base linux-info systemd udev
 IUSE=apparmor aufs bash-completion +buildkit cri +container-init hardened seccomp selinux systemd static vim-syntax kernel_linux
 KEYWORDS=~amd64 ~arm ~arm64 ~x86
 LICENSE=Apache-2.0
@@ -11,5 +12,5 @@ RDEPEND=apparmor? ( sys-libs/libapparmor ) seccomp? ( >=sys-libs/libseccomp-2.2.
 RESTRICT=installsources strip
 SLOT=0
 SRC_URI=https://github.com/balena-os/balena-engine/archive/v19.03.14.tar.gz
-_eclasses_=bash-completion-r1	be99724bde4274de21e581204e9d164a	golang-base	904cd4c642d6923795b9bd99b6fe0e74	linux-info	c90a203b1c14cfa77bd3e37a0e96c955	multilib	d410501a125f99ffb560b0c523cd3d1e	systemd	74b223e42834adf09a2d21fe5fe13741	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	udev	452708c3f55cf6e918b045adb949a9e6
+_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	bash-completion-r1	be99724bde4274de21e581204e9d164a	golang-base	904cd4c642d6923795b9bd99b6fe0e74	linux-info	c90a203b1c14cfa77bd3e37a0e96c955	systemd	fdf0d765c3f11f91fe54f8def9a8c0e6	udev	452708c3f55cf6e918b045adb949a9e6
 _md5_=07d8f32f7551fd6d283b0dbf87eec1f5
