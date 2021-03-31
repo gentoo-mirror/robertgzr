@@ -1,0 +1,13 @@
+BDEPEND=dev-lang/perl >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
+DEPEND=net-libs/mbedtls dev-util/gperf
+DESCRIPTION=lightweight terminal IRC client in C
+EAPI=7
+HOMEPAGE=http://rcr.io/rirc/
+INHERIT=git-r3
+LICENSE=MIT
+PROPERTIES=live
+RDEPEND=net-libs/mbedtls dev-util/gperf
+SLOT=0
+_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52
+_md5_=3c1895c29e5d9a30a3a24fa8c825a304
