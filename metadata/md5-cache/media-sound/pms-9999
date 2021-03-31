@@ -1,0 +1,12 @@
+BDEPEND=>=dev-lang/go-1.12 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install postinst unpack
+DESCRIPTION=Practical Music Search is an interactive Vim-like console client for MPD
+EAPI=7
+HOMEPAGE=https://ambientsound.github.io/pms/
+INHERIT=go-module git-r3
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=strip
+SLOT=0
+_eclasses_=go-module	92660621959e7fab813173772987588b	git-r3	b8e8c92aa5fe8df7187e466138eb4e52
+_md5_=42592b67e25dcff56252d99ab64a028a

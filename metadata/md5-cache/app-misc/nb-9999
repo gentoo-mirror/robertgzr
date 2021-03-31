@@ -1,14 +1,15 @@
-DEFINED_PHASES=compile install
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
 DEPEND=app-shells/bash dev-vcs/git virtual/editor
 DESCRIPTION=CLI plain-text note-taking, bookmarking, and archiving.
 EAPI=7
 HOMEPAGE=https://xwmx.github.io/nb
-INHERIT=bash-completion-r1
+INHERIT=bash-completion-r1 git-r3
 IUSE=+bookmark bash-completion
 KEYWORDS=~amd64
 LICENSE=AGPL-3
+PROPERTIES=live
 RDEPEND=app-shells/bash dev-vcs/git virtual/editor
 SLOT=0
-SRC_URI=https://github.com/xwmx/nb/archive/5.7.8.tar.gz
-_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	bash-completion-r1	8e7c071081c68c2c398b77fe3a1d6908
+_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	bash-completion-r1	8e7c071081c68c2c398b77fe3a1d6908	git-r3	b8e8c92aa5fe8df7187e466138eb4e52
 _md5_=de4574134b5ea0f7a6eb1d01f91a95e4

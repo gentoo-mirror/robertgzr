@@ -1,0 +1,12 @@
+BDEPEND=x11-libs/libxkbcommon sys-kernel/linux-headers >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=install postinst prepare unpack
+DESCRIPTION=Provides double key binds, via evdev
+EAPI=7
+HOMEPAGE=https://github.com/exrok/evdoublebind
+INHERIT=git-r3
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+PROPERTIES=live
+SLOT=0
+_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52
+_md5_=47bb09277ade6ff99e79ad4c5fa53f39

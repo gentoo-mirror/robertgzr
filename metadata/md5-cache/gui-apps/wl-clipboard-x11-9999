@@ -1,0 +1,12 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=unpack
+DESCRIPTION=A wrapper to use wl-clipboard as a drop-in replacement to X11 clipboard tools
+EAPI=7
+HOMEPAGE=https://github.com/brunelli/wl-clipboard-x11
+INHERIT=git-r3
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=mirrors
+SLOT=0
+_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52
+_md5_=31b43656254b35d31d431922135f883c
