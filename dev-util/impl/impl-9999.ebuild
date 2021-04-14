@@ -11,7 +11,7 @@ HOMEPAGE="https://github.com/josharian/impl"
 inherit git-r3
 EGIT_REPO_URI="https://github.com/josharian/impl.git"
 
-RESTRICT="network-sandbox"
+RESTRICT="network-sandbox strip"
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
