@@ -13,7 +13,7 @@ app-shells/z_lua 1.8.4: cd command that helps you navigate faster by learning yo
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libucl 0.8.1: Universal configuration library parser
-dev-util/balena-cli 12.39.0 12.39.1 12.40.2: The official balena CLI tool.
+dev-util/balena-cli 12.40.2 12.44.6: The official balena CLI tool.
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
 dev-util/gofumpt 9999: a stricter gofmt
 dev-util/goimports 9999: official go auto-importer
@@ -34,7 +34,7 @@ gui-wm/dwl 9999: wayland compositor inspired by dwm
 gui-wm/hikari 2.0.4: stacking wayland compositor with tiling capabilities
 media-fonts/cozette 1.9.0: A bitmap programming font optimized for coziness
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 2.3.3 5.0.5: Slender typeface for code, from code
+media-fonts/iosevka 2.3.3 5.0.5 5.2.1: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
