@@ -34,13 +34,17 @@ cp -v "${oldebuild}" "${newebuild}"
 
 olderebuilds=$(find . -type f -name \*.ebuild -print | sort | grep -v "${oldebuild}" | grep -v "${newebuild}")
 num_olderebuilds=$(printf "%s" "${olderebuilds}" | wc -l)
+droppedebuilds=""
 if [ "${num_olderebuilds}" -gt 0 ]; then
 	log "there is ${num_olderebuilds} ebuilds, you should drop some..."
 	set -x
 	for eb in ${olderebuilds}; do
 		printf "drop $eb ? (y/n) "
 		read -r yn
-		[ "$yn" = "y" ] && rm "$eb" || true
+		if [ ! "$yn" = "y" ]; then
+			droppedebuilds="${droppedebuilds}${eb} "
+			rm "$eb"
+		fi
 	done
 fi
 
@@ -54,6 +58,7 @@ if [ -n "$(git diff --staged --name-only)" ]; then
 	exit 1
 fi
 git add "${newebuild}" Manifest
+git add "${droppedebuilds}" || true
 git commit -m "${pkgname}: bump to ${newversion}" || git reset . >/dev/null
 
 done=1
