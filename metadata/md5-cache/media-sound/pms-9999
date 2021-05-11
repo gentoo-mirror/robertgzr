@@ -9,4 +9,4 @@ PROPERTIES=live
 RESTRICT=strip
 SLOT=0
 _eclasses_=go-module	92660621959e7fab813173772987588b	git-r3	b8e8c92aa5fe8df7187e466138eb4e52
-_md5_=42592b67e25dcff56252d99ab64a028a
+_md5_=bd30711e5c42136ade2f0d4a550dacaa

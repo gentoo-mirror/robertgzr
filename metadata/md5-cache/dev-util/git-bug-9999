@@ -10,4 +10,4 @@ PROPERTIES=live
 RESTRICT=network-sandbox
 SLOT=0
 _eclasses_=go-module	92660621959e7fab813173772987588b	git-r3	b8e8c92aa5fe8df7187e466138eb4e52
-_md5_=0c0db76e3720dc596147be726f1ed292
+_md5_=79ad895986cb88af008349bedda4e3d8

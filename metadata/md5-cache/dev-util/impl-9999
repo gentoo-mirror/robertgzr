@@ -10,4 +10,4 @@ RDEPEND=dev-vcs/git
 RESTRICT=network-sandbox strip
 SLOT=0
 _eclasses_=go-module	92660621959e7fab813173772987588b	git-r3	b8e8c92aa5fe8df7187e466138eb4e52
-_md5_=01f2bf955d081e78658b6fa1a71e5912
+_md5_=738bb8e28d8e663a1eab7bba2dbb36f4

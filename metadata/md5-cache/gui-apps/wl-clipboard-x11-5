@@ -7,4 +7,4 @@ LICENSE=MIT
 RESTRICT=mirrors
 SLOT=0
 SRC_URI=https://github.com/brunelli/wl-clipboard-x11/archive/v5.tar.gz -> wl-clipboard-x11-5.tar.gz
-_md5_=31b43656254b35d31d431922135f883c
+_md5_=60d2022829033eac464b04fa51c96b3b

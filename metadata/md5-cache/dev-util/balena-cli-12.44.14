@@ -6,5 +6,5 @@ KEYWORDS=~amd64 ~x86
 LICENSE=Apache-2.0
 RESTRICT=strip mirror
 SLOT=0
-SRC_URI=https://github.com/balena-io/balena-cli/releases/download/v12.44.6/balena-cli-v12.44.6-linux-x64-standalone.zip -> balena-cli-12.44.6.zip
-_md5_=460a36238b2bbd97535a473020019e81
+SRC_URI=https://github.com/balena-io/balena-cli/releases/download/v12.44.14/balena-cli-v12.44.14-linux-x64-standalone.zip -> balena-cli-12.44.14.zip
+_md5_=0fd865cc71bfe711b5b138f5b21166ae

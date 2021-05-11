@@ -9,4 +9,4 @@ RDEPEND==virtual/rust-1.47.0
 RESTRICT=strip
 SLOT=0
 SRC_URI=https://github.com/rust-lang/rust/archive/1.47.0.tar.gz -> rust-src-1.47.0.tar.gz
-_md5_=6c6f7823e0b6dedf934e25d9ff8d2063
+_md5_=6ee34f4be29fe51ac329efa9a9f15e56

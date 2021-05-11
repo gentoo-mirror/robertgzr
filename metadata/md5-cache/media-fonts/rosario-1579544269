@@ -11,4 +11,4 @@ LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://www.omnibus-type.com/wp-content/uploads/Rosario.zip?1579544269 -> rosario-1579544269.zip
 _eclasses_=font	0667878c2b594871023dd1833d05996f
-_md5_=65fb61e6c1d7e51eef564b8fbada82fc
+_md5_=1880dacf2cee86f3d53d235fb942670d

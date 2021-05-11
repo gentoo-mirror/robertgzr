@@ -11,4 +11,4 @@ PROPERTIES=live
 RDEPEND=>=sys-fs/fuse-2.2:0= >=dev-libs/gumbo-0.10.1
 SLOT=0
 _eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52
-_md5_=38969fa3c14ee8bed0e96f40688b8270
+_md5_=a74a823964c54e679a6c4be17129fa8a
