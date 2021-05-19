@@ -20,6 +20,7 @@ S="${WORKDIR}/bemenu-pinentry"
 DEPEND="
 	dev-libs/bemenu
 	dev-libs/libassuan
+	dev-libs/libgpg-error
 "
 RDEPEND="${DEPEND}"
 
