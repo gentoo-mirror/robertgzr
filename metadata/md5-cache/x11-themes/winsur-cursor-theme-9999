@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm preinst prepare unpack
+DEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=A combination of MacOS BigSur and Windows 10 cursors
+EAPI=7
+HOMEPAGE=https://github.com/yeyushengfan258/WinSur-dark-cursors
+INHERIT=xdg
+KEYWORDS=~amd64
+LICENSE=GPL-3
+RESTRICT=strip mirror network-sandbox
+SLOT=0
+_eclasses_=xdg-utils	ff2ff954e6b17929574eee4efc5152ba	xdg	c7ba313ea1eaf266f95cc6235f7d6a07
+_md5_=a026541d77283ad98a080fbab9b335c2

@@ -13,28 +13,31 @@ app-shells/z_lua 1.8.4: cd command that helps you navigate faster by learning yo
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libucl 0.8.1: Universal configuration library parser
-dev-util/balena-cli 12.44.14: The official balena CLI tool.
+dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
+dev-util/balena-cli 12.44.14 12.44.16: The official balena CLI tool.
+dev-util/efm-langserver 9999: general purpose language server
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
 dev-util/gofumpt 9999: a stricter gofmt
 dev-util/goimports 9999: official go auto-importer
 dev-util/gopls 9999: official go language server
 dev-util/impl 9999: impl generates method stubs for implementing an interface
+dev-util/lua-language-server 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
-dev-util/rust-src 1.47.0: Source code of the rust programming language
+dev-util/rust-src 1.51.0: Source code of the rust programming language
+dev-util/shfmt 9999: shell script formatter
 dev-util/yaegi 0.8.8: yet another elegant go interpreter
 gui-apps/foot 1.6.4 9999: fast, lightweight and minimalistic Wayland terminal emulator
-gui-apps/gammastep 2.0.7 9999: A screen color temperature adjusting software
 gui-apps/oguri 9999: animated wallpaper daemon
 gui-apps/tinydm 1.0.4: tiny display manager - wayland/x11 session starter for single user machines
 gui-apps/wl-clipboard-x11 4 5 9999: A wrapper to use wl-clipboard as a drop-in replacement to X11 clipboard tools
 gui-apps/wlgreet 0.3: wayland greeter for greetd
+gui-apps/wlsunset 9999: Day/night gamma adjustments for Wayland
 gui-apps/wofi 1.0 9999: launcher/menu program for wlroots based wayland compositors
 gui-apps/wshowkeys 9999: Displays keypresses on screen
-gui-wm/dwl 9999: wayland compositor inspired by dwm
-gui-wm/hikari 2.0.4: stacking wayland compositor with tiling capabilities
 media-fonts/cozette 1.9.0: A bitmap programming font optimized for coziness
+media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 2.3.3 5.2.1 6.1.3: Slender typeface for code, from code
+media-fonts/iosevka 2.3.3 5.2.1 6.1.3 7.0.0_pre1: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
@@ -42,10 +45,12 @@ media-fonts/sarasa-gothic 0.18.3: CJK programming font based on Iosevka and Sour
 media-sound/pms 9999: Practical Music Search is an interactive Vim-like console client for MPD
 media-video/obs-xdg-portal 9999: OBS Studio plugin using the desktop portal for screensharing
 net-fs/httpdirfs 1.2.0 9999: mount http directory listing
+net-im/telegram-desktop-bin 9999: Official desktop client for Telegram (binary package)
 net-irc/rirc 0.1.3 9999: lightweight terminal IRC client in C
 net-irc/soju 9999: user-friendly IRC bouncer
+net-misc/parsec 9999: 
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
 sys-apps/autologin 1.0.0: daemon for automatic login on TTY
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
-www-client/firefox-nightly-bin 9999: Firefox Web Browser
-www-client/vimb 3.6.0: a fast, lightweight, vim-like browser based on webkit
+x11-themes/material-design-icons 9999: 5900+ Material Design Icons form the Community
+x11-themes/winsur-cursor-theme 9999: A combination of MacOS BigSur and Windows 10 cursors

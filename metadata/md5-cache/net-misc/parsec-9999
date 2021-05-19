@@ -1,0 +1,7 @@
+DEFINED_PHASES=install unpack
+DEPEND=x11-libs/libX11 x11-libs/libXi media-libs/libglvnd x11-libs/libXcursor media-libs/alsa-lib sys-fs/eudev dev-libs/openssl
+EAPI=7
+RDEPEND=x11-libs/libX11 x11-libs/libXi media-libs/libglvnd x11-libs/libXcursor media-libs/alsa-lib sys-fs/eudev dev-libs/openssl
+RESTRICT=network-sandbox
+SLOT=0
+_md5_=93c704a23a101667099a68d93ba4e664

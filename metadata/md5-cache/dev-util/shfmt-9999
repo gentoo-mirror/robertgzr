@@ -1,0 +1,14 @@
+BDEPEND=man? ( app-text/scdoc ) >=dev-vcs/git-1.8.2.1[curl] >=dev-lang/go-1.12 app-arch/unzip
+DEFINED_PHASES=compile install postinst unpack
+DESCRIPTION=shell script formatter
+EAPI=7
+HOMEPAGE=https://github.com/mvdan/sh
+INHERIT=git-r3 go-module
+IUSE=+man
+KEYWORDS=~amd64 ~arm64 ~x86
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=network-sandbox strip
+SLOT=0
+_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52	go-module	92660621959e7fab813173772987588b
+_md5_=6d3a9469ac84576b02d796894dbc9650
