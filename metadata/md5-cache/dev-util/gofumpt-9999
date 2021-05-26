@@ -9,5 +9,5 @@ LICENSE=MIT
 PROPERTIES=live
 RESTRICT=network-sandbox strip
 SLOT=0
-_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52	go-module	92660621959e7fab813173772987588b
+_eclasses_=go-module	bf028003684a8b018e4de9e3c272ed33	git-r3	b8e8c92aa5fe8df7187e466138eb4e52
 _md5_=26f2d7ed700f26c49c9b35a65f4df1a8
