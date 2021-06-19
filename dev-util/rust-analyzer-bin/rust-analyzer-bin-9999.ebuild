@@ -16,7 +16,7 @@ RESTRICT="strip mirror network-sandbox"
 S="${WORKDIR}"
 
 src_unpack() {
-	bin_uri=$(wget -O- -q --header='Accept: application/json' "$(wget -O- -q "${MY_SRC_URI}" | grep 'browser_' | cut -d\" -f4)" | grep -o 'https://.*rust-analyzer-x86_64-unknown-linux-gnu.gz')
+	bin_uri=$(wget -O- -q --header='Accept: application/json' "${MY_SRC_URI}" | grep 'browser' | cut -d\" -f4 | egrep -o '.*x86_64-unknown-linux-gnu.*')
 	wget -O ./"${P}.gz" "${bin_uri}" || die
 	unpack ./"${P}.gz"
 }
