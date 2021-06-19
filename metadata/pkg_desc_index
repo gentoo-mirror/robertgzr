@@ -23,7 +23,7 @@ dev-util/gopls 9999: official go language server
 dev-util/impl 9999: impl generates method stubs for implementing an interface
 dev-util/lua-language-server 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
-dev-util/rust-src 1.51.0: Source code of the rust programming language
+dev-util/rust-src 1.51.0 1.52.1: Source code of the rust programming language
 dev-util/shfmt 9999: shell script formatter
 dev-util/yaegi 0.8.8: yet another elegant go interpreter
 gui-apps/foot 1.6.4 9999: fast, lightweight and minimalistic Wayland terminal emulator
@@ -37,7 +37,7 @@ gui-apps/wshowkeys 9999: Displays keypresses on screen
 media-fonts/cozette 1.9.0: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 2.3.3 5.2.1 6.1.3 7.0.0_pre1: Slender typeface for code, from code
+media-fonts/iosevka 5.2.1 7.1.0: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
