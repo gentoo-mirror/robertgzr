@@ -1,0 +1,13 @@
+BDEPEND=>=dev-lang/go-1.12 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install postinst unpack
+DESCRIPTION=your everyday irc student
+EAPI=7
+HOMEPAGE=https://git.sr.ht/~taiite/senpai
+INHERIT=go-module git-r3
+IUSE=+man
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=network-sandbox
+SLOT=0
+_eclasses_=go-module	bf028003684a8b018e4de9e3c272ed33	git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
+_md5_=14cddc8cc2cc506579f3f8b0febdb635
