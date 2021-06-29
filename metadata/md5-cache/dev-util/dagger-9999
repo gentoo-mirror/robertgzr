@@ -1,0 +1,12 @@
+BDEPEND=>=dev-lang/go-1.12 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install postinst unpack
+DESCRIPTION=programmable deployment system
+EAPI=7
+HOMEPAGE=https://dagger.io
+INHERIT=go-module git-r3
+LICENSE=Apache-2.0
+PROPERTIES=live
+RESTRICT=network-sandbox strip
+SLOT=0
+_eclasses_=go-module	bf028003684a8b018e4de9e3c272ed33	git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
+_md5_=494d9684a7e9623d9f1321627b16f0b1
