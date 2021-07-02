@@ -1,3 +1,4 @@
+BDEPEND=app-misc/jq
 DEFINED_PHASES=install postinst postrm preinst prepare unpack
 DEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
 DESCRIPTION=Official desktop client for Telegram (binary package)
@@ -9,4 +10,4 @@ RDEPEND=dev-libs/glib:2 dev-libs/gobject-introspection >=media-libs/fontconfig-2
 RESTRICT=network-sandbox
 SLOT=0
 _eclasses_=desktop	c0d27bf73aa08ca05b663dbd31fbef28	optfeature	cc13a38ea4d26565e83ef21d58bcd4ab	xdg-utils	ff2ff954e6b17929574eee4efc5152ba	xdg	c7ba313ea1eaf266f95cc6235f7d6a07
-_md5_=a402e0accf196ea47e81914aa2cb41e2
+_md5_=0a65fbfbc19839f71c489f919ab386d2
