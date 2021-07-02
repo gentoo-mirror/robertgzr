@@ -16,7 +16,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 src_unpack() {
-	if [ -z "$EGIT_OVERRIDE_REPO_DAGGER_DAGGER" ]; then
+	if [ -z "${EGIT_OVERRIDE_REPO_DAGGER_DAGGER}" ]; then
 		ewarn ""
 		ewarn "NOTE: dagger is invite-only at the moment"
 		ewarn "      clone the repo to your machine and then set"
