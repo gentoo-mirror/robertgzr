@@ -54,14 +54,17 @@ src_install() {
 	doexe "Telegram"
 	newbin "${FILESDIR}"/${PN} "telegram-desktop"
 
+
+	local unpacked_dir=$(ls -1 "${WORKDIR}" | grep tdesktop.*full)
+
 	local icon_size
 	for icon_size in 16 32 48 64 128 256 512; do
 		newicon -s "${icon_size}" \
-			"${WORKDIR}/tdesktop-${MY_PV}-full/Telegram/Resources/art/icon${icon_size}.png" \
+			"${WORKDIR}/${unpacked_dir}/Telegram/Resources/art/icon${icon_size}.png" \
 			telegram.png
 	done
 
-	domenu "${WORKDIR}/tdesktop-${MY_PV}-full"/lib/xdg/telegramdesktop.desktop
+	domenu "${WORKDIR}/${unpacked_dir}"/lib/xdg/telegramdesktop.desktop
 }
 
 pkg_postinst() {
