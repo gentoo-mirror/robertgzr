@@ -39,7 +39,7 @@ BDEPEND="
 "
 
 src_unpack() {
-	tsetup_uri=$(wget -O- -q --header='Accept: application/json' "${MY_SRC_URI}" | jq -r '[ .. | select(.label?=="Linux 64 bit: Binary") ] | .[0] | .browser_download_url')
+	tsetup_uri=$(wget -O- -q --header='Accept: application/json' "${MY_SRC_URI}" | jq -r '[.[]|select(.prerelease==false)]|[.[].assets[]|select(.label|test("Linux"))]|first|.browser_download_url')
 	tdesktop_uri=$(echo "${tsetup_uri}" | sed -e 's|tsetup\.|tdesktop-|' -e 's|\.tar\.xz|-full\.tar\.gz|')
 
 	wget -O "./${P}-tsetup.tar.xz" "${tsetup_uri}" || die
