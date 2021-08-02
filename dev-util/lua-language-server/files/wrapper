@@ -7,5 +7,5 @@ DEFAULT_METAPATH="$TMPPATH/meta"
 
 exec ./lua-language-server -E ./main.lua \
     --logpath="${DEFAULT_LOGPATH}" \
-    --metapath=${DEFAULT_METAPATH}" \
+    --metapath="${DEFAULT_METAPATH}" \
     "$@"
