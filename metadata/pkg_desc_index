@@ -24,7 +24,7 @@ dev-util/gopls 9999: official go language server
 dev-util/impl 9999: impl generates method stubs for implementing an interface
 dev-util/lua-language-server 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
-dev-util/rust-src 1.51.0 1.52.1: Source code of the rust programming language
+dev-util/rust-src 1.51.0 1.52.1 1.53.0: Source code of the rust programming language
 dev-util/shfmt 9999: shell script formatter
 gui-apps/foot 1.6.4 9999: fast, lightweight and minimalistic Wayland terminal emulator
 gui-apps/oguri 9999: animated wallpaper daemon
@@ -34,6 +34,7 @@ gui-apps/wlgreet 0.3: wayland greeter for greetd
 gui-apps/wlsunset 9999: Day/night gamma adjustments for Wayland
 gui-apps/wofi 1.0 9999: launcher/menu program for wlroots based wayland compositors
 gui-apps/wshowkeys 9999: Displays keypresses on screen
+mail-client/meli 0.6.2: terminal mail client
 media-fonts/cozette 1.11.1: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens

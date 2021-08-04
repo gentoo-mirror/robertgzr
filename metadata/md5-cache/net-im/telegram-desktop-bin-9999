@@ -10,4 +10,4 @@ RDEPEND=dev-libs/glib:2 dev-libs/gobject-introspection >=media-libs/fontconfig-2
 RESTRICT=network-sandbox
 SLOT=0
 _eclasses_=desktop	c0d27bf73aa08ca05b663dbd31fbef28	optfeature	30ce9dec2b8943338c9b015bd32bac6a	xdg-utils	27f9a2f19502b925ac117bd657aa2979	xdg	c7ba313ea1eaf266f95cc6235f7d6a07
-_md5_=c86b4b4f0c7feb26b0a8d964142d2707
+_md5_=1590a404db5bd9ea96fba58935bf0c29
