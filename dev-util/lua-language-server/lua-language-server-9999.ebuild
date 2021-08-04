@@ -18,21 +18,17 @@ IUSE=""
 KEYWORDS="~amd64"
 RESTRICT="strip"
 
-PATCHES=(
-	"${FILESDIR}/fix-build.patch"
-)
-
 src_compile() {
 	ninja -C 3rd/luamake -f compile/ninja/linux.ninja
-	./3rd/luamake/luamake rebuild
+	./3rd/luamake/luamake install
 }
 
 src_install() {
 	insinto /usr/libexec/"${PN}"
-
 	doins bin/Linux/*
 	doins -r main.lua platform.lua debugger.lua \
 		locale script meta
 
+	chmod +x ${D}/usr/libexec/${PN}/${PN}
 	sed "s:/usr/:${EPREFIX}&:" "${FILESDIR}"/wrapper | newbin - "${PN}"
 }

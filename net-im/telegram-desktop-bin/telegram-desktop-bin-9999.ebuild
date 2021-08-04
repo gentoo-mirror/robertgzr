@@ -70,4 +70,9 @@ src_install() {
 pkg_postinst() {
 	xdg_pkg_postinst
 	optfeature "spell checker support" app-text/enchant
+
+	tgversion=$(wget -O- -q --header='Accept: application/json' "${MY_SRC_URI}" | jq -r '[.[]|select(.prerelease==false)]|[.[]|select(.assets[].label|test("Linux"))]|first|.tag_name')
+	ewarn ""
+	ewarn "Installed Telegram $tgversion"
+	ewarn ""
 }
