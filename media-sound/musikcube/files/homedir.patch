@@ -1,0 +1,16 @@
+diff --git a/src/musikcore/support/Common.cpp b/src/musikcore/support/Common.cpp
+index 58bc4d2..79120ef 100644
+--- a/src/musikcore/support/Common.cpp
++++ b/src/musikcore/support/Common.cpp
+@@ -82,11 +82,7 @@ static inline void silentDelete(const std::string fn) {
+ namespace musik { namespace core {
+
+     static std::string getDataDirectoryRoot() {
+-    #ifdef WIN32
+         return GetHomeDirectory();
+-    #else
+-        return GetHomeDirectory() + "/.config";
+-    #endif
+     }
+
+     std::string GetPluginDirectory() {
