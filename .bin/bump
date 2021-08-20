@@ -4,24 +4,24 @@ set -e
 [ -n "$DEBUG" ] && set -x
 
 if [ "$1" = "-h" ]; then
-	printf "usage: %s [-e] NEW_VERSION\n" "$(basename "$0")"
-	exit 1
+    printf "usage: %s [-e] NEW_VERSION\n" "$(basename "$0")"
+    exit 1
 fi
 
 edit=
 if [ "$1" = "-e" ]; then
-	edit=1
-	shift
+    edit=1
+    shift
 fi
 
 log() {
-	printf "$(tput setaf 6)[${pkgname}]$(tput sgr0) %s\n" "$@"
+    printf "$(tput setaf 6)[${pkgname}]$(tput sgr0) %s\n" "$@"
 }
 
 cleanup() {
-	[ -n "${done}" ] && return
-	log "cleaning up ${newebuild}"
-	mv "${newebuild}" "${newebuild}.rej"
+    [ -n "${done}" ] && return
+    log "cleaning up ${newebuild}"
+    mv "${newebuild}" "${newebuild}.rej"
 }
 
 done=
@@ -38,19 +38,19 @@ log "new ebuild ${newversion}"
 cp -v "${oldebuild}" "${newebuild}"
 [ -n "${edit}" ] && exec "${EDITOR}" "${newebuild}"
 
-olderebuilds=$(find . -type f -name \*.ebuild -print | sort | grep -v "${newebuild}" | tail -n+2)
+olderebuilds=$(find . -type f -name \*.ebuild -print | sort | grep -v "${newebuild}")
 num_olderebuilds=$(printf "%s" "${olderebuilds}" | wc -l)
 droppedebuilds=""
 if [ "${num_olderebuilds}" -gt 0 ]; then
-	log "there is ${num_olderebuilds} ebuilds, you should drop some..."
-	for eb in ${olderebuilds}; do
-		printf "drop %s ? (y/n) " "${eb}"
-		read -r yn
-		if [ "$yn" = "y" ]; then
-			droppedebuilds="${droppedebuilds}${eb} "
-			rm "$eb"
-		fi
-	done
+    log "there is ${num_olderebuilds} ebuilds, you should drop some..."
+    for eb in ${olderebuilds}; do
+        printf "drop %s ? (y/n) " "${eb}"
+        read -r yn
+        if [ "$yn" = "y" ]; then
+            droppedebuilds="${droppedebuilds}${eb} "
+            rm "$eb"
+        fi
+    done
 fi
 
 log "updating manifest"
@@ -58,9 +58,9 @@ ebuild "${newebuild}" manifest
 
 log "creating commit"
 if [ -n "$(git diff --staged --name-only)" ]; then
-	log "error: staging not clear"
-	git status -s --untracked-files=no
-	exit 1
+    log "error: staging not clear"
+    git status -s --untracked-files=no
+    exit 1
 fi
 
 set -x
