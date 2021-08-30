@@ -14,7 +14,7 @@ dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libucl 0.8.1: Universal configuration library parser
 dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
-dev-util/balena-cli 12.44.29 12.47.0: The official balena CLI tool.
+dev-util/balena-cli 12.47.0 12.48.1: The official balena CLI tool.
 dev-util/dagger 9999: programmable deployment system
 dev-util/efm-langserver 9999: general purpose language server
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
@@ -37,7 +37,7 @@ mail-client/meli 0.6.2: terminal mail client
 media-fonts/cozette 1.11.1: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 5.2.1 10.0.0: Slender typeface for code, from code
+media-fonts/iosevka 5.2.1 10.1.1: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
