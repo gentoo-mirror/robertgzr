@@ -1,5 +1,5 @@
 BDEPEND=>=dev-lang/go-1.12 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
-DEFINED_PHASES=compile install postinst unpack
+DEFINED_PHASES=compile install unpack
 DESCRIPTION=distributed, offline-first bug tracker
 EAPI=7
 HOMEPAGE=https://github.com/MichaelMure/git-bug
@@ -9,5 +9,5 @@ LICENSE=GPL-3
 PROPERTIES=live
 RESTRICT=network-sandbox
 SLOT=0
-_eclasses_=git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da	go-module	236ecaf8d66b4f4c8d98f6f868defed5
+_eclasses_=go-module	66ced1f8651b6b35c0262d39e015fe24	git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
 _md5_=79ad895986cb88af008349bedda4e3d8
