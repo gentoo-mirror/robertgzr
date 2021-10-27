@@ -1,0 +1,69 @@
+From a3483f2b24efe2c6c1dccaba2664298a69342cba Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Robert=20G=C3=BCnzler?= <r@gnzler.io>
+Date: Wed, 27 Oct 2021 13:01:12 +0200
+Subject: [PATCH 4/5] cmake: elogind fallback
+
+---
+ CMakeLists.txt                   | 14 +++++++++++++-
+ src/plugins/mpris/CMakeLists.txt | 14 ++++++++++++--
+ 2 files changed, 25 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index de2097b..16c349d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -155,7 +155,7 @@ endif()
+ 
+ # systemd / MPRIS detection
+ 
+-if (NOT ENABLE_MPRIS MATCHES "false")
++if (NOT ENABLE_MPRIS MATCHES "false" AND ENABLE_SYSTEMD MATCHES "true")
+   find_library(LIB_SYSTEMD NAMES systemd)
+   if (NOT LIB_SYSTEMD MATCHES "LIB_SYSTEMD-NOTFOUND")
+     message(STATUS "[mpris] systemd found at " ${LIB_SYSTEMD})
+@@ -167,6 +167,18 @@ if (NOT ENABLE_MPRIS MATCHES "false")
+   endif()
+ endif()
+ 
++if (NOT ENABLE_MPRIS MATCHES "false" AND ENABLE_ELOGIND MATCHES "true")
++  find_library(LIB_ELOGIND NAMES elogind)
++  if (NOT LIB_ELOGIND MATCHES "LIB_ELOGIND-NOTFOUND")
++    message(STATUS "[mpris] elogind found at " ${LIB_ELOGIND})
++    message(STATUS "[mpris] setting ENABLE_MPRIS=true")
++    set(ENABLE_MPRIS "true")
++  else()
++    message(STATUS "[mpris] elogind *not* found. MPRIS plugin not enabled")
++    set(ENABLE_MPRIS "false")
++  endif()
++endif()
++
+ #end systemd / MPRIS detection
+ 
+ if (${ENABLE_LIBMICROHTTP} MATCHES "false")
+diff --git a/src/plugins/mpris/CMakeLists.txt b/src/plugins/mpris/CMakeLists.txt
+index add3b9c..ddb9a4f 100644
+--- a/src/plugins/mpris/CMakeLists.txt
++++ b/src/plugins/mpris/CMakeLists.txt
+@@ -3,7 +3,17 @@ set (mpris_SOURCES
+   dbus.cpp)
+ 
+ find_package(PkgConfig)
+-pkg_check_modules (SYSTEMD REQUIRED libsystemd)
++
++if (ENABLE_SYSTEMD MATCHES "true")
++  pkg_check_modules (SYSTEMD REQUIRED libsystemd)
++  add_definitions(${SYSTEMD_DEFINITIONS})
++  include_directories(${SYSTEMD_INCLUDE_DIRS})
++endif()
++if (ENABLE_ELOGIND MATCHES "true")
++  pkg_check_modules (ELOGIND REQUIRED libelogind)
++  add_definitions(${ELOGIND_DEFINITIONS})
++  include_directories(${ELOGIND_INCLUDE_DIRS})
++endif()
+ 
+ add_library(mpris SHARED ${mpris_SOURCES})
+-target_link_libraries(mpris ${musikcube_LINK_LIBS} systemd)
++target_link_libraries(mpris ${musikcube_LINK_LIBS})
+-- 
+2.32.0
+

@@ -1,0 +1,35 @@
+From 6808de07a2c373a2e6ac433578cb05f8d8ebedbf Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Robert=20G=C3=BCnzler?= <r@gnzler.io>
+Date: Wed, 27 Oct 2021 16:39:15 +0200
+Subject: [PATCH 5/5] cmake: fix ncurses not finding tinfo
+
+---
+ src/musikcube/CMakeLists.txt | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/musikcube/CMakeLists.txt b/src/musikcube/CMakeLists.txt
+index 916fe19..e4f6efb 100644
+--- a/src/musikcube/CMakeLists.txt
++++ b/src/musikcube/CMakeLists.txt
+@@ -107,14 +107,16 @@ else()
+       # pkg_check_modules(NCURSES REQUIRED ncurses panel)
+       ensure_library_exists(ncurses)
+       ensure_library_exists(panel)
+-      set(NCURSES_LIBRARIES ncurses panel)
++      ensure_library_exists(tinfo)
++      set(NCURSES_LIBRARIES ncurses panel tinfo)
+       message(STATUS "[ncurses] using library names without 'w' prefix")
+     else()
+       # pkg_check_modules fails on some systems, including OpenBSD.
+       # pkg_check_modules(NCURSES REQUIRED ncursesw panelw)
+       ensure_library_exists(ncursesw)
+       ensure_library_exists(panelw)
+-      set(NCURSES_LIBRARIES ncursesw panelw)
++      ensure_library_exists(tinfow)
++      set(NCURSES_LIBRARIES ncursesw panelw tinfow)
+       message(STATUS "[ncurses] using library names with 'w' prefix")
+     endif()
+     target_link_libraries(musikcube ${musikcube_LINK_LIBS} ${NCURSES_LIBRARIES} musikcore)
+-- 
+2.32.0
+
