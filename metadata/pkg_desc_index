@@ -6,6 +6,7 @@ app-misc/an2linuxserver 9999: Sync Android notifications encrypted to a Linux de
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
 app-misc/nb 5.7.8 9999: CLI plain-text note-taking, bookmarking, and archiving.
+app-misc/s6-man 9999: mdoc versions of the HTML documentation for the s6 supervision suite
 app-shells/imrsh 9999: 
 app-shells/mrsh 9999: A minimal POSIX shell
 app-shells/porcelain 0.4.0 9999: git status parser
@@ -14,7 +15,7 @@ dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libucl 0.8.1: Universal configuration library parser
 dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
-dev-util/balena-cli 12.48.1 12.50.2 12.51.1: The official balena CLI tool.
+dev-util/balena-cli 12.51.1 12.53.1: The official balena CLI tool.
 dev-util/dagger 9999: programmable deployment system
 dev-util/efm-langserver 9999: general purpose language server
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
