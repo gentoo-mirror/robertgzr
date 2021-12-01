@@ -20,7 +20,7 @@ DEPEND="
 	media-libs/libglvnd
 	x11-libs/libXcursor
 	media-libs/alsa-lib
-	sys-fs/eudev
+	virtual/udev
 	dev-libs/openssl
 "
 RDEPEND="${DEPEND}"
