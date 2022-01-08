@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. /etc/profile.env
+. /lib/gentoo/functions.sh
+. /lib/rc/sh/functions.sh
+
+USER="$(get_options user)"
+
+if [ -z "${USER}" ]; then
+    eerror "tinydm requires a valid USER value. Set one in /etc/conf.d/display-manager"
+    exit 1
+fi
+
+exec /usr/bin/autologin ${USER} /usr/bin/tinydm-run-session
