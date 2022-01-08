@@ -5,11 +5,17 @@ EAPI=7
 
 DESCRIPTION="tiny display manager - wayland/x11 session starter for single user machines"
 HOMEPAGE="https://gitlab.com/postmarketOS/tinydm"
-SRC_URI="https://gitlab.com/postmarketOS/tinydm/-/archive/1.0.4/tinydm-1.0.4.tar.gz"
+
+if [[ $PV = *9999* ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://gitlab.com/postmarketOS/tinydm"
+else
+	SRC_URI="https://gitlab.com/postmarketOS/tinydm/-/archive/${PV}/tinydm-${PV}.tar.gz"
+	KEYWORDS="~amd64 ~x86 ~aarch64 ~arm"
+fi
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~aarch64 ~arm"
 
 DEPEND="
 	sys-apps/autologin
@@ -18,4 +24,9 @@ RDEPEND="${DEPEND}"
 
 src_compile() {
 	return
+}
+
+src_install() {
+	default
+	dobin ${FILESDIR}/tinydm-run-session-autologin
 }
