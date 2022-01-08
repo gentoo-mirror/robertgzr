@@ -29,10 +29,9 @@ dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/rust-src 1.51.0 1.52.1 1.53.0: Source code of the rust programming language
 dev-util/shfmt 9999: shell script formatter
 gui-apps/oguri 9999: animated wallpaper daemon
-gui-apps/tinydm 1.0.4: tiny display manager - wayland/x11 session starter for single user machines
+gui-apps/tinydm 1.1.0 9999: tiny display manager - wayland/x11 session starter for single user machines
 gui-apps/wl-clipboard-x11 4 5 9999: A wrapper to use wl-clipboard as a drop-in replacement to X11 clipboard tools
 gui-apps/wlgreet 0.3: wayland greeter for greetd
-gui-apps/wlsunset 9999: Day/night gamma adjustments for Wayland
 gui-apps/wofi 1.0 9999: launcher/menu program for wlroots based wayland compositors
 gui-apps/wshowkeys 9999: Displays keypresses on screen
 mail-client/meli 0.6.2: terminal mail client

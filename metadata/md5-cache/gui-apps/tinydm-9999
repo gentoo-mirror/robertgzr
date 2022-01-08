@@ -1,0 +1,13 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
+DEPEND=sys-apps/autologin
+DESCRIPTION=tiny display manager - wayland/x11 session starter for single user machines
+EAPI=7
+HOMEPAGE=https://gitlab.com/postmarketOS/tinydm
+INHERIT=git-r3
+LICENSE=GPL-3
+PROPERTIES=live
+RDEPEND=sys-apps/autologin
+SLOT=0
+_eclasses_=git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
+_md5_=8b6b28edd0555948d84089ba72fe7374
