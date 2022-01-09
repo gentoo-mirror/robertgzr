@@ -2,6 +2,7 @@ app-admin/git-secret 0.3.3: a bash-tool to store your private data inside a git 
 app-containers/balena-engine 19.03.14: Moby-based Container Engine for Embedded, IoT, and Edge uses
 app-containers/toolbox 0.0.99.2 9999: containerized command line environments on Linux
 app-crypt/pinentry-bemenu 9999: 
+app-crypt/sops 9999: simple and flexible tool for managing secrets
 app-i18n/anthywl 9999: japanese input method for wlroots-based compositors
 app-misc/an2linuxserver 9999: Sync Android notifications encrypted to a Linux desktop
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
