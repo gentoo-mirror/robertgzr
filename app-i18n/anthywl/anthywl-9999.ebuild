@@ -17,6 +17,7 @@ KEYWORDS=""
 
 DEPEND="
 	app-i18n/anthy
+	dev-libs/libscfg
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
