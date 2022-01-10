@@ -15,6 +15,7 @@ app-shells/porcelain 0.4.0 9999: git status parser
 app-shells/z_lua 1.8.4: cd command that helps you navigate faster by learning your habits
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-libs/bemenu 9999: dmenu clone for wayland
+dev-libs/libscfg 9999: simple configuration format
 dev-libs/libucl 0.8.1: Universal configuration library parser
 dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
 dev-util/balena-cli 12.53.1 13.1.6: The official balena CLI tool.
