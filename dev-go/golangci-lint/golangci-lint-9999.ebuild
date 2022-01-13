@@ -5,10 +5,10 @@ EAPI=7
 
 inherit git-r3 go-module
 
-DESCRIPTION="a stricter gofmt"
-HOMEPAGE="https://github.com/mvdan/gofumpt"
+DESCRIPTION="linters runner for Go"
+HOMEPAGE="https://github.com/golangci/golangci-lint"
 
-EGIT_REPO_URI="https://github.com/mvdan/gofumpt.git"
+EGIT_REPO_URI="https://github.com/golangci/golangci-lint.git"
 
 RESTRICT="network-sandbox strip"
 LICENSE="MIT"
@@ -23,9 +23,9 @@ src_unpack() {
 }
 
 src_compile() {
-	go build -v -ldflags "-s -w" -o "${PN}"
+	go build -o ./${PN} -ldflags="-w -s -X main.version=${PV} -X main.commit=$(git-r3_peek_remote_ref) -X main.date=$(date -Iseconds)" ./cmd/${PN}
 }
 
 src_install() {
-	dobin ${PN}
+	dobin ./${PN}
 }
