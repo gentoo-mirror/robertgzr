@@ -14,18 +14,19 @@ app-shells/mrsh 9999: A minimal POSIX shell
 app-shells/porcelain 0.4.0 9999: git status parser
 app-shells/z_lua 1.8.4: cd command that helps you navigate faster by learning your habits
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
+dev-go/go-critic 9999: the most opinionated Go source code linter
+dev-go/goimports 9999: official go auto-importer
+dev-go/golangci-lint 9999: linters runner for Go
+dev-go/gopls 9999: official go language server
+dev-go/impl 9999: impl generates method stubs for implementing an interface
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libscfg 9999: simple configuration format
 dev-libs/libucl 0.8.1: Universal configuration library parser
 dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
-dev-util/balena-cli 12.53.1 13.1.6: The official balena CLI tool.
+dev-util/balena-cli 13.1.8: The official balena CLI tool.
 dev-util/dagger 9999: programmable deployment system
 dev-util/efm-langserver 9999: general purpose language server
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
-dev-util/gofumpt 9999: a stricter gofmt
-dev-util/goimports 9999: official go auto-importer
-dev-util/gopls 9999: official go language server
-dev-util/impl 9999: impl generates method stubs for implementing an interface
 dev-util/lua-language-server 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/rust-src 1.51.0 1.52.1 1.53.0: Source code of the rust programming language

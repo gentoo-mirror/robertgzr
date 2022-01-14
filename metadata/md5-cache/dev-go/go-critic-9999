@@ -1,0 +1,13 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl] >=dev-lang/go-1.12 app-arch/unzip
+DEFINED_PHASES=compile install unpack
+DESCRIPTION=the most opinionated Go source code linter
+EAPI=7
+HOMEPAGE=https://github.com/go-critic/go-critic
+INHERIT=git-r3 go-module
+KEYWORDS=~amd64 ~arm64 ~x86
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=network-sandbox strip
+SLOT=0
+_eclasses_=go-module	82631624a3653e595cf9c18164a8c500	git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
+_md5_=1009d3b5ebb736517ad8650ed0f81bb7
