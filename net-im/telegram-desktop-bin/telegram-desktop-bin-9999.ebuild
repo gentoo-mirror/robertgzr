@@ -8,7 +8,14 @@ inherit desktop optfeature xdg
 DESCRIPTION="Official desktop client for Telegram (binary package)"
 HOMEPAGE="https://desktop.telegram.org"
 
-MY_SRC_URI="https://api.github.com/repos/telegramdesktop/tdesktop/releases"
+if [[ ${PV} = *9999* ]]; then
+	MY_SRC_URI="https://api.github.com/repos/telegramdesktop/tdesktop/releases"
+else
+	MY_PV=$(ver_cut 1-3)
+	MY_PV_SUFFIX=$(ver_cut 4-)
+	SRC_URI="https://github.com/telegramdesktop/tdesktop/releases/download/v${MY_PV}/tsetup.${MY_PV}.${MY_PV_SUFFIX}.tar.xz -> ${P}-tsetup.tar.xz
+		https://github.com/telegramdesktop/tdesktop/releases/download/v${MY_PV}/tdesktop-${MY_PV}-full.tar.gz -> ${P}-tdesktop.tar.gz"
+fi
 
 RESTRICT="network-sandbox"
 LICENSE="GPL-3-with-openssl-exception"
@@ -39,14 +46,18 @@ BDEPEND="
 "
 
 src_unpack() {
-	tsetup_uri=$(wget -O- -q --header='Accept: application/json' "${MY_SRC_URI}" | jq -r '[.[]|select(.prerelease==false)]|[.[].assets[]|select(.label|test("Linux"))]|first|.browser_download_url')
-	tdesktop_uri=$(echo "${tsetup_uri}" | sed -e 's|tsetup\.|tdesktop-|' -e 's|\.tar\.xz|-full\.tar\.gz|')
+	if [[ ${PV} = *9999* ]]; then
+		tsetup_uri=$(wget -O- -q --header='Accept: application/json' "${MY_SRC_URI}" | jq -r '[.[]|select(.prerelease==false)]|[.[].assets[]|select(.label|test("Linux"))]|first|.browser_download_url')
+		tdesktop_uri=$(echo "${tsetup_uri}" | sed -e 's|tsetup\.|tdesktop-|' -e 's|\.tar\.xz|-full\.tar\.gz|')
 
-	wget -O "./${P}-tsetup.tar.xz" "${tsetup_uri}" || die
-	wget -O "./${P}-tdesktop.tar.gz" "${tdesktop_uri}" || die
+		wget -O "./${P}-tsetup.tar.xz" "${tsetup_uri}" || die
+		wget -O "./${P}-tdesktop.tar.gz" "${tdesktop_uri}" || die
 
-	unpack "./${P}-tsetup.tar.xz"
-	unpack "./${P}-tdesktop.tar.gz"
+		unpack "./${P}-tsetup.tar.xz"
+		unpack "./${P}-tdesktop.tar.gz"
+	else
+		default
+	fi
 }
 
 src_install() {
