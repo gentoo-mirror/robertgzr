@@ -28,5 +28,9 @@ src_compile() {
 
 src_install() {
 	default
+
 	dobin ${FILESDIR}/tinydm-run-session-autologin
+
+	cp /etc/init.d/display-manager "${D}"/etc/init.d/
+	patch -p1 "${D}"/etc/init.d/display-manager "${FILESDIR}"/display-manager.initd.patch
 }
