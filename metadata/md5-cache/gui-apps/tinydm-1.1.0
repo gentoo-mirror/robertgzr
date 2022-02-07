@@ -8,4 +8,4 @@ LICENSE=GPL-3
 RDEPEND=sys-apps/autologin
 SLOT=0
 SRC_URI=https://gitlab.com/postmarketOS/tinydm/-/archive/1.1.0/tinydm-1.1.0.tar.gz
-_md5_=8b6b28edd0555948d84089ba72fe7374
+_md5_=3046b6cf68026cd3a818947f4788e8c0

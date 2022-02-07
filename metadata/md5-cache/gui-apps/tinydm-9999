@@ -10,4 +10,4 @@ PROPERTIES=live
 RDEPEND=sys-apps/autologin
 SLOT=0
 _eclasses_=git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
-_md5_=8b6b28edd0555948d84089ba72fe7374
+_md5_=3046b6cf68026cd3a818947f4788e8c0
