@@ -9,5 +9,5 @@ PROPERTIES=live
 RDEPEND=dev-vcs/git
 RESTRICT=network-sandbox strip
 SLOT=0
-_eclasses_=go-module	647607f6215b4dcaba913a2ca6586407	git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
+_eclasses_=git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da	go-module	ea6b447321803e690cb8d3e006fd01a3
 _md5_=738bb8e28d8e663a1eab7bba2dbb36f4
