@@ -41,7 +41,7 @@ mail-client/meli 0.6.2: terminal mail client
 media-fonts/cozette 1.11.1: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 5.2.1 11.3.0: Slender typeface for code, from code
+media-fonts/iosevka 5.2.1 11.3.0 15.0.1: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
@@ -61,3 +61,4 @@ sys-apps/autologin 1.0.0: daemon for automatic login on TTY
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
 x11-themes/material-design-icons 9999: 5900+ Material Design Icons form the Community
 x11-themes/winsur-cursor-theme 9999: A combination of MacOS BigSur and Windows 10 cursors
+x11-themes/woodenbeaver-sounds 9999: The WoodenBeaver sound theme
