@@ -9,5 +9,5 @@ LICENSE=GPL-3
 PROPERTIES=live
 RESTRICT=network-sandbox
 SLOT=0
-_eclasses_=go-module	11f18b20461f1739e17be1fd5e5f5974	git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
+_eclasses_=go-module	886a55b833edaab530aa5f2e5cea8ccb	git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
 _md5_=79ad895986cb88af008349bedda4e3d8
