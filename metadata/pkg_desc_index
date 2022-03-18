@@ -13,6 +13,7 @@ app-shells/imrsh 9999:
 app-shells/mrsh 9999: A minimal POSIX shell
 app-shells/porcelain 0.4.0 9999: git status parser
 app-shells/z_lua 1.8.4: cd command that helps you navigate faster by learning your habits
+app-text/pandoc-bin 2.17.1.1: Conversion between markup formats
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-go/go-critic 9999: the most opinionated Go source code linter
 dev-go/goimports 9999: official go auto-importer
@@ -58,6 +59,7 @@ net-misc/parsec 9999:
 net-misc/yt-dlp 2021.10.10: Download videos from YouTube.com (and more sites...)
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
 sys-apps/autologin 1.0.0: daemon for automatic login on TTY
+sys-apps/czkawka-bin 4.0.0: A multi-functional app to find duplicates, empty folders, similar images, etc.
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
 x11-themes/material-design-icons 9999: 5900+ Material Design Icons form the Community
 x11-themes/winsur-cursor-theme 9999: A combination of MacOS BigSur and Windows 10 cursors
