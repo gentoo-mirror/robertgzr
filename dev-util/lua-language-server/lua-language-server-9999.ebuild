@@ -9,25 +9,35 @@ inherit lua ninja-utils
 DESCRIPTION="lua language server written in lua"
 HOMEPAGE="https://github.com/sumneko/lua-language-server"
 
-inherit git-r3
-EGIT_REPO_URI="https://github.com/sumneko/${PN}.git"
+if [[ ${PV} = *9999* ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/sumneko/lua-language-server.git"
+else
+	SRC_URI="https://github.com/sumneko/lua-language-server/releases/download/${PV}/lua-language-server-${PV}-submodules.zip -> ${P}.zip"
+	S="${WORKDIR}"
+	KEYWORDS="~amd64"
+fi
 
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
-KEYWORDS="~amd64"
 RESTRICT="strip"
 
 src_compile() {
-	ninja -C 3rd/luamake -f compile/ninja/linux.ninja
-	./3rd/luamake/luamake install
+	pushd 3rd/luamake &>/dev/null || die
+	einfo "Building luamake"
+	ninja -f compile/ninja/linux.ninja || die "Building luamake failed"
+	popd &>/dev/null || die
+
+	einfo "Building ${PN}"
+	./3rd/luamake/luamake all || die "Building ${PN} failed"
 }
 
 src_install() {
 	insinto /usr/libexec/"${PN}"
-	doins bin/Linux/*
-	doins -r main.lua platform.lua debugger.lua \
-		locale script meta
+	doins bin/*
+	# doins -r main.lua debugger.lua \
+	# 	locale script meta
 
 	chmod +x ${D}/usr/libexec/${PN}/${PN}
 	sed "s:/usr/:${EPREFIX}&:" "${FILESDIR}"/wrapper | newbin - "${PN}"
