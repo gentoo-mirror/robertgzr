@@ -35,10 +35,9 @@ src_compile() {
 
 src_install() {
 	insinto /usr/libexec/"${PN}"
-	doins bin/*
-	# doins -r main.lua debugger.lua \
-	# 	locale script meta
+	doins -r bin locale meta script \
+		main.lua debugger.lua
 
-	chmod +x ${D}/usr/libexec/${PN}/${PN}
+	chmod +x ${D}/usr/libexec/${PN}/bin/${PN}
 	sed "s:/usr/:${EPREFIX}&:" "${FILESDIR}"/wrapper | newbin - "${PN}"
 }
