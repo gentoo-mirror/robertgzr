@@ -1,0 +1,243 @@
+From e533f783343a6542318e3c3950d8ce46c248eca8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Robert=20G=C3=BCnzler?= <r@gnzler.io>
+Date: Sat, 26 Mar 2022 16:02:25 +0100
+Subject: [PATCH] Allow disabling plugins explicitely
+
+---
+ src/plugins/alsaout/CMakeLists.txt           | 14 ++++++---
+ src/plugins/libopenmptdecoder/CMakeLists.txt | 29 ++++++++++--------
+ src/plugins/mpris/CMakeLists.txt             | 32 +++++++++++---------
+ src/plugins/pipewireout/CMakeLists.txt       | 17 +++++++----
+ src/plugins/pulseout/CMakeLists.txt          | 15 ++++++---
+ src/plugins/server/CMakeLists.txt            | 32 +++++++++++---------
+ src/plugins/sndioout/CMakeLists.txt          |  3 +-
+ 7 files changed, 85 insertions(+), 57 deletions(-)
+
+diff --git a/src/plugins/alsaout/CMakeLists.txt b/src/plugins/alsaout/CMakeLists.txt
+index f72dbe1..c7208fb 100755
+--- a/src/plugins/alsaout/CMakeLists.txt
++++ b/src/plugins/alsaout/CMakeLists.txt
+@@ -3,11 +3,15 @@ set (alsaout_SOURCES
+   AlsaOut.cpp
+ )
+ 
+-find_library(LIBASOUND asound)
+-
+-if ("${LIBASOUND}" STREQUAL "LIBASOUND-NOTFOUND")
++if (${ENABLE_ALSA} MATCHES "false")
+   disable_plugin(alsaout)
+ else()
+-  add_library(alsaout SHARED ${alsaout_SOURCES})
+-  target_link_libraries(alsaout ${LIBASOUND})
++  find_library(LIBASOUND asound)
++
++  if ("${LIBASOUND}" STREQUAL "LIBASOUND-NOTFOUND")
++    disable_plugin(alsaout)
++  else()
++    add_library(alsaout SHARED ${alsaout_SOURCES})
++    target_link_libraries(alsaout ${LIBASOUND})
++  endif()
+ endif()
+diff --git a/src/plugins/libopenmptdecoder/CMakeLists.txt b/src/plugins/libopenmptdecoder/CMakeLists.txt
+index f68eaa6..51ed6ea 100644
+--- a/src/plugins/libopenmptdecoder/CMakeLists.txt
++++ b/src/plugins/libopenmptdecoder/CMakeLists.txt
+@@ -5,21 +5,26 @@ set (openmptdecoder_SOURCES
+   OpenMptIndexerSource.cpp
+   Utility.cpp)
+ 
+-add_library(openmptdecoder SHARED ${openmptdecoder_SOURCES})
+-
+-if (${BUILD_STANDALONE} MATCHES "true")
+-  target_include_directories(openmptdecoder BEFORE PRIVATE ${VENDOR_INCLUDE_DIRECTORIES})
+-  find_vendor_library(LIBOPENMPT openmpt)
+-  target_link_libraries(openmptdecoder ${LIBOPENMPT})
++if (${ENABLE_OPENMPT} MATCHES "false")
++  disable_plugin(openmptdecoder)
+ else()
+-  find_library(LIBOPENMPT NAMES openmpt)
+-  find_library(LIBMPG123 NAMES mpg123)
+-  find_library(LIBZ NAMES z)
+-  if ("${LIBOPENMPT}" STREQUAL "LIBOPENMPT-NOTFOUND")
+-    disable_plugin(openmptdecoder)
++  add_library(openmptdecoder SHARED ${openmptdecoder_SOURCES})
++
++  if (${BUILD_STANDALONE} MATCHES "true")
++    target_include_directories(openmptdecoder BEFORE PRIVATE ${VENDOR_INCLUDE_DIRECTORIES})
++    find_vendor_library(LIBOPENMPT openmpt)
++    target_link_libraries(openmptdecoder ${LIBOPENMPT})
+   else()
+-    target_link_libraries(openmptdecoder ${LIBOPENMPT} ${LIBMPG123} ${LIBZ})
++    find_library(LIBOPENMPT NAMES openmpt)
++    find_library(LIBMPG123 NAMES mpg123)
++    find_library(LIBZ NAMES z)
++    if ("${LIBOPENMPT}" STREQUAL "LIBOPENMPT-NOTFOUND")
++      disable_plugin(openmptdecoder)
++    else()
++      target_link_libraries(openmptdecoder ${LIBOPENMPT} ${LIBMPG123} ${LIBZ})
++    endif()
+   endif()
+ endif()
+ 
+ 
++
+diff --git a/src/plugins/mpris/CMakeLists.txt b/src/plugins/mpris/CMakeLists.txt
+index 1180d1c..c8d97c4 100644
+--- a/src/plugins/mpris/CMakeLists.txt
++++ b/src/plugins/mpris/CMakeLists.txt
+@@ -2,21 +2,25 @@ set (mpris_SOURCES
+   mpris.cpp
+   dbus.cpp)
+ 
+-if (USE_ELOGIND MATCHES "true")
+-  set(SDBUS "libelogind >= 239.3")
+-elseif (USE_BASU MATCHES "true")
+-  set(SDBUS "basu")
++if (${ENABLE_MPRIS} MATCHES "false")
++  disable_plugin(mpris)
+ else()
+-  set(SDBUS "libsystemd")
+-endif()
++  if (USE_ELOGIND MATCHES "true")
++    set(SDBUS "libelogind >= 239.3")
++  elseif (USE_BASU MATCHES "true")
++    set(SDBUS "basu")
++  else()
++    set(SDBUS "libsystemd")
++  endif()
+ 
+-find_package(PkgConfig)
+-pkg_check_modules(SDBUS IMPORTED_TARGET ${SDBUS})
++  find_package(PkgConfig)
++  pkg_check_modules(SDBUS IMPORTED_TARGET ${SDBUS})
+ 
+-if (NOT DEFINED SDBUS_LINK_LIBRARIES)
+-  disable_plugin(mpris)
+-else()
+-  message(STATUS "[mpris] plugin enabled. using " ${SDBUS_LINK_LIBRARIES})
+-  add_library(mpris SHARED ${mpris_SOURCES})
+-  target_link_libraries(mpris PkgConfig::SDBUS)
++  if (NOT DEFINED SDBUS_LINK_LIBRARIES)
++    disable_plugin(mpris)
++  else()
++    message(STATUS "[mpris] plugin enabled. using " ${SDBUS_LINK_LIBRARIES})
++    add_library(mpris SHARED ${mpris_SOURCES})
++    target_link_libraries(mpris PkgConfig::SDBUS)
++  endif()
+ endif()
+diff --git a/src/plugins/pipewireout/CMakeLists.txt b/src/plugins/pipewireout/CMakeLists.txt
+index 836b53c..2bd4f06 100644
+--- a/src/plugins/pipewireout/CMakeLists.txt
++++ b/src/plugins/pipewireout/CMakeLists.txt
+@@ -3,12 +3,17 @@ set (pipewireout_SOURCES
+   PipeWireOut.cpp
+ )
+ 
+-find_package(PkgConfig)
+-pkg_check_modules(PIPEWIRE IMPORTED_TARGET libpipewire-0.3)
+-
+-if (NOT DEFINED PIPEWIRE_LINK_LIBRARIES)
++if (${ENABLE_PIPEWIRE} MATCHES "false")
+   disable_plugin(pipewireout)
+ else()
+-  add_library(pipewireout SHARED ${pipewireout_SOURCES})
+-  target_link_libraries(pipewireout PkgConfig::PIPEWIRE)
++  find_package(PkgConfig)
++  pkg_check_modules(PIPEWIRE IMPORTED_TARGET libpipewire-0.3)
++
++  if (("${ENABLE_PIPEWIRE}" STREQUAL "false") OR
++	  (NOT DEFINED PIPEWIRE_LINK_LIBRARIES))
++    disable_plugin(pipewireout)
++  else()
++    add_library(pipewireout SHARED ${pipewireout_SOURCES})
++    target_link_libraries(pipewireout PkgConfig::PIPEWIRE)
++  endif()
+ endif()
+diff --git a/src/plugins/pulseout/CMakeLists.txt b/src/plugins/pulseout/CMakeLists.txt
+index 7f9a233..28e2558 100755
+--- a/src/plugins/pulseout/CMakeLists.txt
++++ b/src/plugins/pulseout/CMakeLists.txt
+@@ -4,11 +4,16 @@ set (pulseout_SOURCES
+   PulseOut.cpp
+ )
+ 
+-find_library(LIBPULSE pulse)
+-
+-if ("${LIBPULSE}" STREQUAL "LIBPULSE-NOTFOUND")
++if (${ENABLE_PULSEAUDIO} MATCHES "false")
+   disable_plugin(pulseout)
+ else()
+-  add_library(pulseout SHARED ${pulseout_SOURCES})
+-  target_link_libraries(pulseout ${LIBPULSE})
++  find_library(LIBPULSE pulse)
++
++  if (("${ENABLE_PULSEAUDIO}" STREQUAL "false") OR
++	  ("${LIBPULSE}" STREQUAL "LIBPULSE-NOTFOUND"))
++    disable_plugin(pulseout)
++  else()
++    add_library(pulseout SHARED ${pulseout_SOURCES})
++    target_link_libraries(pulseout ${LIBPULSE})
++  endif()
+ endif()
+diff --git a/src/plugins/server/CMakeLists.txt b/src/plugins/server/CMakeLists.txt
+index 5bfcb5a..eb49da9 100644
+--- a/src/plugins/server/CMakeLists.txt
++++ b/src/plugins/server/CMakeLists.txt
+@@ -8,22 +8,26 @@ set (server_SOURCES
+   Util.cpp
+   WebSocketServer.cpp)
+ 
+-add_library(server SHARED ${server_SOURCES})
++if (${ENABLE_SERVER} MATCHES "false")
++  disable_plugin(server)
++else()
++  add_library(server SHARED ${server_SOURCES})
+ 
+-target_include_directories(server BEFORE PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include")
+-target_include_directories(server BEFORE PRIVATE ${VENDOR_INCLUDE_DIRECTORIES})
++  target_include_directories(server BEFORE PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include")
++  target_include_directories(server BEFORE PRIVATE ${VENDOR_INCLUDE_DIRECTORIES})
+ 
+-if (${BUILD_STANDALONE} MATCHES "true")
+-  find_vendor_library(LIBMICROHTTPD microhttpd)
+-else()
+-  if (APPLE)
+-    find_library(LIBGNUTLS NAMES gnutls)
+-    set(EXTRA_LIBS "${LIBGNUTLS}")
++  if (${BUILD_STANDALONE} MATCHES "true")
++    find_vendor_library(LIBMICROHTTPD microhttpd)
++  else()
++    if (APPLE)
++      find_library(LIBGNUTLS NAMES gnutls)
++      set(EXTRA_LIBS "${LIBGNUTLS}")
++    endif()
++    find_library(LIBMICROHTTPD NAMES microhttpd)
+   endif()
+-  find_library(LIBMICROHTTPD NAMES microhttpd)
+-endif()
+ 
+-find_library(LIBZ NAMES z)
+-message(STATUS "[server] using " ${LIBMICROHTTPD} ", " ${LIBZ})
++  find_library(LIBZ NAMES z)
++  message(STATUS "[server] using " ${LIBMICROHTTPD} ", " ${LIBZ})
+ 
+-target_link_libraries(server ${Boost_LIBRARIES} ${LIBZ} ${LIBMICROHTTPD} ${EXTRA_LIBS})
++  target_link_libraries(server ${Boost_LIBRARIES} ${LIBZ} ${LIBMICROHTTPD} ${EXTRA_LIBS})
++endif()
+diff --git a/src/plugins/sndioout/CMakeLists.txt b/src/plugins/sndioout/CMakeLists.txt
+index 12cfd7e..1806540 100644
+--- a/src/plugins/sndioout/CMakeLists.txt
++++ b/src/plugins/sndioout/CMakeLists.txt
+@@ -5,7 +5,8 @@ set (sndioout_SOURCES
+ 
+ find_library(LIBSNDIO sndio)
+ 
+-if ("${LIBSNDIO}" STREQUAL "LIBSNDIO-NOTFOUND")
++if (("${ENABLE_SNDIO}" STREQUAL "false") OR
++	("${LIBSNDIO}" STREQUAL "LIBSNDIO-NOTFOUND"))
+   disable_plugin(sndioout)
+ else()
+   add_library(sndioout SHARED ${sndioout_SOURCES})
+-- 
+2.34.1
+
