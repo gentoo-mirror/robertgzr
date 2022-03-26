@@ -13,37 +13,39 @@ if [[ $PV = *9999* ]]; then
 	EGIT_REPO_URI=https://github.com/clangen/musikcube
 else
 	SRC_URI="https://github.com/clangen/musikcube/archive/${PV}.tar.gz"
+	KEYWORDS="~amd64"
 fi
 
-LICENSE="BSD"
+LICENSE="BSD Boost-1.0"
 SLOT="0"
-KEYWORDS="~amd64"
-IUSE="+pipewire +pulseaudio +alsa mpt vorbis ogg ffmpeg server systemd +elogind sndio +mpris"
+IUSE="+pipewire pulseaudio +alsa mpt sndio server +mpris elogind basu"
 
 DEPEND="
-	dev-libs/boost
+	>=dev-libs/boost-1.55.0:=[threads(+)]
 	dev-libs/libev
-	alsa? ( media-libs/alsa-lib )
-	ffmpeg? ( media-video/ffmpeg )
-	ogg? ( media-libs/libogg )
-	mpt? ( media-libs/libopenmpt )
-	vorbis? ( media-libs/libvorbis )
+	media-video/ffmpeg
+	media-sound/lame
 	media-libs/taglib
 	net-misc/curl
 	sys-libs/zlib
-	net-libs/libmicrohttpd
-	pipewire? ( media-video/pipewire )
+	alsa? ( media-libs/alsa-lib )
 	pulseaudio? ( media-sound/pulseaudio )
+	pipewire? ( media-video/pipewire )
+	mpt? ( media-libs/libopenmpt )
+	server? ( net-libs/libmicrohttpd )
+	mpris? (
+		|| (
+			elogind? ( sys-auth/elogind )
+			basu? ( sys-libs/basu )
+			sys-apps/systemd
+		)
+	)
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
 PATCHES=(
-	"${FILESDIR}/0001-homedir-fix.patch"
-	"${FILESDIR}/0002-cmake-allow-disabling-pulse-and-alsa.patch"
-	"${FILESDIR}/0003-cmake-allow-disabling-server-plugin.patch"
-	"${FILESDIR}/0004-cmake-elogind-fallback.patch"
-	"${FILESDIR}/0005-cmake-fix-ncurses-not-finding-tinfo.patch"
+	"${FILESDIR}/0001-Allow-disabling-plugins-explicitely.patch"
 )
 
 src_configure() {
@@ -52,12 +54,15 @@ src_configure() {
 		-DENABLE_PIPEWIRE=$(usex pipewire true false)
 		-DENABLE_PULSEAUDIO=$(usex pulseaudio true false)
 		-DENABLE_MPRIS=$(usex mpris true false)
+		-DUSE_ELOGIND=$(usex elogind true false)
+		# -DUSE_BASU=$(usex basu true false)
+		-DENABLE_OPENMPT=$(usex mpt true false)
 		-DENABLE_SNDIO=$(usex sndio true false )
-		-DENABLE_FFMPEG=$(usex ffmpeg true false)
-		-DENABLE_LIBMICROHTTP=$(usex server true false)
-		-DENABLE_SYSTEMD=$(usex systemd true false)
-		-DENABLE_ELOGIND=$(usex elogind true false)
+		-DENABLE_SERVER=$(usex server true false)
 		-DENABLE_BUNDLED_TAGLIB=false
+
+		# fix for boost detection
+		-DBoost_INCLUDE_DIR=${EPREFIX}/usr/include
 	)
 	cmake_src_configure
 }
