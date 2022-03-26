@@ -19,7 +19,6 @@ dev-go/go-critic 9999: the most opinionated Go source code linter
 dev-go/goimports 9999: official go auto-importer
 dev-go/golangci-lint 9999: linters runner for Go
 dev-go/gopls 9999: official go language server
-dev-go/impl 9999: impl generates method stubs for implementing an interface
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libscfg 9999: simple configuration format
 dev-libs/libucl 0.8.1: Universal configuration library parser
