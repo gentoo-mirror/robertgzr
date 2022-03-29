@@ -60,6 +60,7 @@ src_configure() {
 		-DENABLE_SNDIO=$(usex sndio true false )
 		-DENABLE_SERVER=$(usex server true false)
 		-DENABLE_BUNDLED_TAGLIB=false
+		-DBUILD_STANDALONE=false
 
 		# fix for boost detection
 		-DBoost_INCLUDE_DIR=${EPREFIX}/usr/include
