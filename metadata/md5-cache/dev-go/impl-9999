@@ -1,0 +1,12 @@
+BDEPEND=>=dev-lang/go-1.16 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile configure install unpack
+DESCRIPTION=impl generates method stubs for implementing an interface
+EAPI=8
+HOMEPAGE=https://github.com/josharian/impl
+INHERIT=go git-r3
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=strip network-sandbox
+SLOT=0
+_eclasses_=go-module	3b47b6e0e18257d2abb17663c575fc36	go	725a7fa23a8f5f8c3b8f71f80a6b79d4	git-r3	b9ac6f96d2a88edb5b351df634dc5e53
+_md5_=dbbe635d793fcae8949447b187fcd561
