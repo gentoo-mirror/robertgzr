@@ -27,6 +27,7 @@ dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
 dev-util/balena-cli 13.1.8 13.1.11: The official balena CLI tool.
 dev-util/dagger 9999: programmable deployment system
 dev-util/efm-langserver 9999: general purpose language server
+dev-util/elixir-ls 9999: 
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
 dev-util/lua-language-server 2.6.7 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
