@@ -1,0 +1,29 @@
+From a316aa67f8d41a53b5c1898fdba91e80c4b89577 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Robert=20G=C3=BCnzler?= <r@gnzler.io>
+Date: Thu, 5 May 2022 09:44:45 +0200
+Subject: [PATCH] Define anthywl_ipc when ipc is disabled
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Robert Günzler <r@gnzler.io>
+---
+ include/anthywl.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/include/anthywl.h b/include/anthywl.h
+index 568517d..7aa7bd4 100644
+--- a/include/anthywl.h
++++ b/include/anthywl.h
+@@ -17,6 +17,8 @@
+ #ifdef ANTHYWL_IPC_SUPPORT
+ #include "ipc.h"
+ #include <varlink.h>
++#else
++struct anthywl_ipc{};
+ #endif
+ 
+ 
+-- 
+2.35.1
+
