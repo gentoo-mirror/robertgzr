@@ -1,0 +1,7 @@
+# kanshi logrotate script for Gentoo
+
+/var/log/buildkitd.log {
+    missingok
+    copytruncate
+    notifempty
+}

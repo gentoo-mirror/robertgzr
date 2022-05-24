@@ -1,0 +1,8 @@
+# /etc/conf.d/buildkitd: config file for /etc/init.d/buildkitd
+
+# user and group used to run
+BUILDKITD_USER="root"
+BUILDKITD_GROUP="wheel"
+
+# any other options
+BUILDKITD_ARGS=""
