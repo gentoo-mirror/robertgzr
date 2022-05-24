@@ -1,0 +1,27 @@
+#!/sbin/openrc-run
+# Copyright 1999-2022 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+description="buildkit"
+
+command="/usr/bin/buildkitd"
+command_args="${BUILDKITD_ARGS}"
+
+supervisor="supervise-daemon"
+#pidfile="/run/${RC_SVCNAME}.pid"
+
+user="${BUILDKITD_USER}"
+group="${BUILDKITD_GROUP}"
+retry="TERM/60/KILL/10"
+
+BUILDKITD_LOGFILE="/var/log/${RC_SVCNAME}.log"
+output_log="${BUILDKITD_LOGFILE}"
+error_log="${BUILDKITD_LOGFILE}"
+
+depend() {
+    after logger
+}
+
+start_pre() {
+    checkpath -f -m 0644 -o "${BUILDKITD_USER}:${BUILDKITD_GROUP}" "${BUILDKITD_LOGFILE}"
+}
