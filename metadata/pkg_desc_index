@@ -57,6 +57,7 @@ net-im/telegram-desktop-bin 3.4.5_beta 9999: Official desktop client for Telegra
 net-irc/rirc 0.1.3 9999: lightweight terminal IRC client in C
 net-irc/senpai 9999: your everyday irc student
 net-irc/soju 9999: user-friendly IRC bouncer
+net-misc/go-chromecast 0.2.12: CLI for Google chromecast
 net-misc/parsec 9999: 
 net-misc/yt-dlp 2021.10.10: Download videos from YouTube.com (and more sites...)
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
