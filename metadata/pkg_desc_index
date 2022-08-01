@@ -13,7 +13,6 @@ app-misc/s6-man 9999: mdoc versions of the HTML documentation for the s6 supervi
 app-shells/imrsh 9999: 
 app-shells/mrsh 9999: A minimal POSIX shell
 app-shells/porcelain 0.4.0 9999: git status parser
-app-shells/z_lua 1.8.4: cd command that helps you navigate faster by learning your habits
 app-text/pandoc-bin 2.17.1.1: Conversion between markup formats
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-go/go-critic 9999: the most opinionated Go source code linter
