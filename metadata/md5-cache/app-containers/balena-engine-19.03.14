@@ -12,5 +12,5 @@ RDEPEND=apparmor? ( sys-libs/libapparmor ) seccomp? ( >=sys-libs/libseccomp-2.2.
 RESTRICT=installsources strip
 SLOT=0
 SRC_URI=https://github.com/balena-os/balena-engine/archive/v19.03.14.tar.gz
-_eclasses_=toolchain-funcs	1542e649be915f43f6908a9e93909961	multilib	5ca4e49abed8e3a2f7b56920eadee157	bash-completion-r1	f5e7a020fd9c741740756aac61bf75ff	golang-base	9f0e420ab37bc55a318d74bab3aae891	linux-info	ed0c33b32400b6ee591cdb6dc5b9ef10	systemd	2736b403a83f194b59b767f3b344c2c1	udev	f3a0a3964e2028a140c181f00eea9712
+_eclasses_=toolchain-funcs	1542e649be915f43f6908a9e93909961	multilib	5ca4e49abed8e3a2f7b56920eadee157	bash-completion-r1	f5e7a020fd9c741740756aac61bf75ff	golang-base	9f0e420ab37bc55a318d74bab3aae891	linux-info	529bb8cd5756c8476d37ba89dd41e635	systemd	2736b403a83f194b59b767f3b344c2c1	udev	f3a0a3964e2028a140c181f00eea9712
 _md5_=07d8f32f7551fd6d283b0dbf87eec1f5
