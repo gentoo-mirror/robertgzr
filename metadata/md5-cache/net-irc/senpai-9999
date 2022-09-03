@@ -1,4 +1,4 @@
-BDEPEND=>=dev-lang/go-1.16 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+BDEPEND=>=dev-lang/go-1.18 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=compile configure install unpack
 DESCRIPTION=your everyday irc student
 EAPI=8
@@ -9,5 +9,5 @@ LICENSE=MIT
 PROPERTIES=live
 RESTRICT=strip network-sandbox
 SLOT=0
-_eclasses_=go-module	a13d34fe4e2996720e1ca6c53b9ea95a	go	725a7fa23a8f5f8c3b8f71f80a6b79d4	git-r3	b9ac6f96d2a88edb5b351df634dc5e53
+_eclasses_=go-module	05668e36c51c78c9681fdf4aefa0abec	go	725a7fa23a8f5f8c3b8f71f80a6b79d4	git-r3	b9ac6f96d2a88edb5b351df634dc5e53
 _md5_=b94820cee4cb5443c78e20f617c59da0
