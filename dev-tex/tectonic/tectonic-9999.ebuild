@@ -26,10 +26,6 @@ LICENSE="Apache-2.0 Artistic-2 BSD-2 BSD CC0-1.0 ISC MIT WTFPL-2"
 SLOT="0"
 IUSE="doc"
 
-PATCHES=(
-	"${FILESDIR}/shell-escape-cwd.patch"
-)
-
 DEPEND="
 	dev-libs/icu
 	dev-libs/openssl
