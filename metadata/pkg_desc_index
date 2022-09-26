@@ -34,6 +34,7 @@ dev-util/lua-language-server 2.6.7 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/rust-src 1.51.0 1.52.1 1.53.0: Source code of the rust programming language
 dev-util/shfmt 9999: shell script formatter
+gui-apps/neovim-qt 9999: Neovim client library and GUI in Qt5
 gui-apps/oguri 9999: animated wallpaper daemon
 gui-apps/tinydm 1.1.0 9999: tiny display manager - wayland/x11 session starter for single user machines
 gui-apps/wl-clipboard-x11 4 5 9999: A wrapper to use wl-clipboard as a drop-in replacement to X11 clipboard tools
