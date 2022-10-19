@@ -10,5 +10,5 @@ KEYWORDS=amd64 arm ~arm64 x86
 LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://bboxtype.com/downloads/FiraGO/Download_Folder_FiraGO_1001.zip
-_eclasses_=font	d31f12a0f6e13d56dc3062e76ae58a61
+_eclasses_=font	bc7d91ca9054e47ad87b5763214665a4
 _md5_=e0febc30a422408209d4a681ad38c85a
