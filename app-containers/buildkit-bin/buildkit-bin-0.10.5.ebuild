@@ -17,6 +17,7 @@ S="${WORKDIR}"
 
 src_install() {
 	dobin bin/build{ctl,kitd}
+	dobin bin/buildkit-qemu*
 
 	newinitd "${FILESDIR}"/buildkitd.initd buildkitd
 	newconfd "${FILESDIR}"/buildkitd.confd buildkitd
