@@ -1,6 +1,6 @@
 app-admin/git-secret 0.3.3: a bash-tool to store your private data inside a git repository
 app-containers/balena-engine 19.03.14: Moby-based Container Engine for Embedded, IoT, and Edge uses
-app-containers/buildkit-bin 0.10.3: buildkit
+app-containers/buildkit-bin 0.10.5: buildkit
 app-containers/toolbox 0.0.99.2 9999: containerized command line environments on Linux
 app-crypt/pinentry-bemenu 9999: 
 app-crypt/sops 9999: simple and flexible tool for managing secrets
