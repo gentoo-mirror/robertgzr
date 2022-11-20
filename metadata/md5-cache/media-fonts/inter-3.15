@@ -10,5 +10,5 @@ KEYWORDS=~amd64 ~arm ~arm64 ~ppc64 ~x86
 LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://github.com/rsms/inter/releases/download/v3.15/Inter-3.15.zip -> inter-3.15.zip
-_eclasses_=font	9cdfddf092c05c7c4efd70cc30dea046
+_eclasses_=font	5e03cb70902daa9ff8967c61130f0f60
 _md5_=5b23e3704ea35362a0c16dfbc7ef5586
