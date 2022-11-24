@@ -1,0 +1,14 @@
+BDEPEND=virtual/rust >=virtual/rust-1.53 >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile configure install test unpack
+DESCRIPTION=unofficial bitwarden cli
+EAPI=8
+HOMEPAGE=https://git.tozt.net/rbw
+INHERIT=cargo git-r3
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+PROPERTIES=live
+RESTRICT=network-sandbox
+SLOT=0
+_eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144	multilib	5ca4e49abed8e3a2f7b56920eadee157	cargo	73ed573e1525a108d236a0dffb3a68fb	git-r3	2347f8fe2d392b2a091191f94be37e6f
+_md5_=c567503eeb863e0fd31f060496b6934e
