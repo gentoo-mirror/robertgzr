@@ -7,7 +7,7 @@ inherit meson pam
 
 DESCRIPTION="daemon for automatic login on TTY"
 HOMEPAGE="https://git.sr.ht/~kennylevinsen/autologin"
-SRC_URI="https://git.sr.ht/~kennylevinsen/autologin/archive/${PV}.tar.gz"
+SRC_URI="https://git.sr.ht/~kennylevinsen/autologin/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"

@@ -1,15 +1,15 @@
 --- /etc/init.d/display-manager	2022-01-30 21:11:41.013172907 +0100
 +++ /etc/init.d/display-manager	2022-01-30 21:11:36.882172709 +0100
-@@ -116,12 +116,6 @@
+@@ -116,6 +116,12 @@
  			START_STOP_ARGS="-m --background"
  			PIDFILE=/run/sddm.pid
  			;;
--		tinydm)
--			EXE="/usr/bin/tinydm-run-session-autologin"
--			START_STOP_ARGS="-m --background"
--			PIDFILE=/run/tinydm.pid
--      save_options "user" "${USER}"
--			;;
++		tinydm)
++			EXE="/usr/bin/tinydm-run-session-autologin"
++			START_STOP_ARGS="-m --background"
++			PIDFILE=/run/tinydm.pid
++			save_options "user" "${USER}"
++			;;
  		*)
  			# first find out if there is such executable
  			EXE="$(command -v ${MY_XDM} 2>/dev/null)"
