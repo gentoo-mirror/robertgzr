@@ -22,6 +22,10 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}/log.patch"
+)
+
 src_compile() {
 	return
 }

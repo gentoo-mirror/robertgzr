@@ -1,0 +1,22 @@
+--- a/tinydm-run-session.sh	2022-11-17 15:38:00.370165346 +0100
++++ b/tinydm-run-session.sh	2022-11-18 13:32:26.920022777 +0100
+@@ -3,6 +3,11 @@
+ # SPDX-License-Identifier: GPL-3.0-or-later
+ 
+ setup_log() {
++	if [ "${1}" = "--nologfile" ]; then
++		exec >&1 2>&1
++		return
++	fi
++	
+ 	logfile=${XDG_STATE_HOME:-~/.local/state}/tinydm.log
+ 	mkdir -p "$(dirname "$logfile")"
+         if [ -f "$logfile" ]; then
+@@ -120,6 +121,6 @@
+ 	esac
+ }
+ 
+-setup_log
++setup_log $@
+ source_profile
+ run_session
