@@ -1,0 +1,13 @@
+DEFINED_PHASES=install postinst unpack
+DESCRIPTION=Simple WebM maker for mpv, with no external dependencies.
+EAPI=8
+HOMEPAGE=https://github.com/ekisu/webm
+INHERIT=mpv-plugin
+IUSE=+autoload
+KEYWORDS=~amd64
+LICENSE=MIT
+RDEPEND=media-video/mpv[lua]
+RESTRICT=network-sandbox
+SLOT=0
+_eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a
+_md5_=8eba086b858c5393acea8d2529e3efa7
