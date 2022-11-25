@@ -51,6 +51,7 @@ media-fonts/luciole 2019:
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
 media-fonts/sarasa-gothic 0.18.3: CJK programming font based on Iosevka and Source Han Sans
+media-gfx/vimiv 9999: image viewer with vim-like keybindings
 media-sound/musikcube 9999: 
 media-sound/pms 9999: Practical Music Search is an interactive Vim-like console client for MPD
 media-video/obs-xdg-portal 9999: OBS Studio plugin using the desktop portal for screensharing
