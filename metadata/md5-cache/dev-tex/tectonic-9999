@@ -10,5 +10,5 @@ LICENSE=Apache-2.0 Artistic-2 BSD-2 BSD CC0-1.0 ISC MIT WTFPL-2
 PROPERTIES=live
 RDEPEND=dev-libs/icu dev-libs/openssl media-gfx/graphite2 media-libs/fontconfig media-libs/freetype:2 media-libs/harfbuzz[graphite,icu] media-libs/libpng sys-libs/zlib
 SLOT=0
-_eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	toolchain-funcs	441f754fd75cd4fd1fa06fbc17da6144	multilib	5ca4e49abed8e3a2f7b56920eadee157	cargo	73ed573e1525a108d236a0dffb3a68fb	flag-o-matic	29a755b1291d64133634d80b0328f153	git-r3	2347f8fe2d392b2a091191f94be37e6f
+_eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	toolchain-funcs	959e1d99122907eb98a3a660297a967e	multilib	5ca4e49abed8e3a2f7b56920eadee157	cargo	73ed573e1525a108d236a0dffb3a68fb	flag-o-matic	69394e25812406faa1f90edaf4969395	git-r3	2347f8fe2d392b2a091191f94be37e6f
 _md5_=a891ad356a57c3772fca3fa317e9914b
