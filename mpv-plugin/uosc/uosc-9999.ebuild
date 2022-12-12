@@ -38,4 +38,7 @@ src_install() {
 
 	local MPV_INSTALL_DIR="/usr/$(get_libdir)/mpv"
 	dosym -r "${MPV_INSTALL_DIR}/${PN}/fonts" "/etc/mpv/fonts"
+
+	insinto "${MPV_INSTALL_DIR}/${PN}"
+	doins -r script-opts
 }
