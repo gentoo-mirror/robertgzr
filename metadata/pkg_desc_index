@@ -8,9 +8,11 @@ app-crypt/sops 9999: simple and flexible tool for managing secrets
 app-i18n/anthywl 9999: japanese input method for wlroots-based compositors
 app-misc/an2linuxserver 9999: Sync Android notifications encrypted to a Linux desktop
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
+app-misc/flavours 9999: base16 colorscheme manager
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
 app-misc/nb 5.7.8 9999: CLI plain-text note-taking, bookmarking, and archiving.
 app-misc/s6-man 9999: mdoc versions of the HTML documentation for the s6 supervision suite
+app-misc/zk 9999: plain text note-taking assistant
 app-shells/imrsh 9999: 
 app-shells/mrsh 9999: A minimal POSIX shell
 app-shells/porcelain 0.4.0 9999: git status parser
@@ -46,7 +48,7 @@ mail-client/meli 0.6.2: terminal mail client
 media-fonts/cozette 1.11.1: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 5.2.1 11.3.0 15.6.3 16.3.6: Slender typeface for code, from code
+media-fonts/iosevka 16.7.0: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
