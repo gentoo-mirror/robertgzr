@@ -28,6 +28,7 @@ dev-libs/libscfg 9999: simple configuration format
 dev-libs/libucl 0.8.1: Universal configuration library parser
 dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
 dev-tex/tectonic 9999: A modernized, complete, self-contained TeX/LaTeX engine.
+dev-tex/tectonic-bin 0.12.0: A modernized, complete, self-contained TeX/LaTeX engine.
 dev-util/balena-cli 14.3.1: The official balena CLI tool.
 dev-util/dagger 9999: programmable deployment system
 dev-util/efm-langserver 9999: general purpose language server
