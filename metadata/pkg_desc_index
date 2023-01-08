@@ -71,6 +71,7 @@ net-misc/yt-dlp 2021.10.10: Download videos from YouTube.com (and more sites...)
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
 sys-apps/autologin 1.0.0: daemon for automatic login on TTY
 sys-apps/czkawka-bin 4.0.0: A multi-functional app to find duplicates, empty folders, similar images, etc.
+sys-fs/tmsu 9999: tag our files and access them through a VFS from anywhere
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
 x11-themes/material-design-icons 9999: 5900+ Material Design Icons form the Community
 x11-themes/winsur-cursor-theme 9999: A combination of MacOS BigSur and Windows 10 cursors

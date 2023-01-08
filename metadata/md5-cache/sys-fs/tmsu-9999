@@ -1,0 +1,15 @@
+BDEPEND=>=dev-lang/go-1.18 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile configure install unpack
+DEPEND=dev-db/sqlite:3 sys-fs/fuse
+DESCRIPTION=tag our files and access them through a VFS from anywhere
+EAPI=8
+HOMEPAGE=https://tmsu.org/
+INHERIT=go git-r3
+KEYWORDS=~amd64
+LICENSE=GPL-3 BSD MIT
+PROPERTIES=live
+RDEPEND=dev-db/sqlite:3 sys-fs/fuse
+RESTRICT=network-sandbox strip network-sandbox
+SLOT=0
+_eclasses_=go-module	4c4b34f361efda91762ffeda8f632c02	go	725a7fa23a8f5f8c3b8f71f80a6b79d4	git-r3	2347f8fe2d392b2a091191f94be37e6f
+_md5_=6c3096294c5c3b0bcc54cec72dcd1307
