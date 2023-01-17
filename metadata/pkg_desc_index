@@ -1,7 +1,7 @@
 app-admin/git-secret 0.3.3: a bash-tool to store your private data inside a git repository
 app-admin/rbw 9999: unofficial bitwarden cli
 app-containers/balena-engine 19.03.14: Moby-based Container Engine for Embedded, IoT, and Edge uses
-app-containers/buildkit-bin 0.10.6: buildkit
+app-containers/buildkit-bin 0.10.6 0.11.0: buildkit
 app-containers/toolbox 0.0.99.2 9999: containerized command line environments on Linux
 app-crypt/pinentry-bemenu 9999: 
 app-crypt/sops 9999: simple and flexible tool for managing secrets
@@ -12,6 +12,7 @@ app-misc/flavours 9999: base16 colorscheme manager
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
 app-misc/nb 5.7.8 9999: CLI plain-text note-taking, bookmarking, and archiving.
 app-misc/s6-man 9999: mdoc versions of the HTML documentation for the s6 supervision suite
+app-misc/todoman 9999: A CalDAV based todo manager
 app-misc/zk 9999: plain text note-taking assistant
 app-shells/imrsh 9999: 
 app-shells/mrsh 9999: A minimal POSIX shell
