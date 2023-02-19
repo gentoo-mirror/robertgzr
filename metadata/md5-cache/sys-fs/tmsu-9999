@@ -11,5 +11,5 @@ PROPERTIES=live
 RDEPEND=dev-db/sqlite:3 sys-fs/fuse
 RESTRICT=network-sandbox strip network-sandbox
 SLOT=0
-_eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	go-module	01650d8433daaaf046d2a287306c28cd	go	725a7fa23a8f5f8c3b8f71f80a6b79d4	git-r3	2347f8fe2d392b2a091191f94be37e6f
+_eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	go-module	f2c9bcab49079a176b3ae061c94bb344	go	725a7fa23a8f5f8c3b8f71f80a6b79d4	git-r3	2347f8fe2d392b2a091191f94be37e6f
 _md5_=6c3096294c5c3b0bcc54cec72dcd1307
