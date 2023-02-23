@@ -10,5 +10,5 @@ RDEPEND=dev-libs/glib:2 dev-libs/gobject-introspection >=media-libs/fontconfig-2
 RESTRICT=network-sandbox
 SLOT=0
 SRC_URI=https://github.com/telegramdesktop/tdesktop/releases/download/v3.4.5/tsetup.3.4.5.beta.tar.xz -> telegram-desktop-bin-3.4.5_beta-tsetup.tar.xz https://github.com/telegramdesktop/tdesktop/releases/download/v3.4.5/tdesktop-3.4.5-full.tar.gz -> telegram-desktop-bin-3.4.5_beta-tdesktop.tar.gz
-_eclasses_=desktop	7eb20ad915a0a318176d51bc2508ff5c	optfeature	1a2157392a869265b2afcb63a26c12ac	xdg-utils	ac0e315a3688929e34ac75b139e7349a	xdg	6024fbc93167fad782e2032933654857
+_eclasses_=desktop	021728fdc1b03b36357dbc89489e0f0d	optfeature	1a2157392a869265b2afcb63a26c12ac	xdg-utils	ac0e315a3688929e34ac75b139e7349a	xdg	6024fbc93167fad782e2032933654857
 _md5_=1b0ddfd78f00364091ba56117303edde
