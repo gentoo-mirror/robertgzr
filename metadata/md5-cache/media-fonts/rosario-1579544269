@@ -10,5 +10,5 @@ KEYWORDS=~amd64 ~arm ~arm64 ~ppc64 ~x86
 LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://www.omnibus-type.com/wp-content/uploads/Rosario.zip?1579544269 -> rosario-1579544269.zip
-_eclasses_=font	5e03cb70902daa9ff8967c61130f0f60
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
 _md5_=1880dacf2cee86f3d53d235fb942670d
