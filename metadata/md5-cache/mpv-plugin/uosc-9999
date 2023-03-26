@@ -10,5 +10,5 @@ LICENSE=GPL-3
 PROPERTIES=live
 RDEPEND=media-video/mpv[lua]
 SLOT=0
-_eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a	git-r3	c57c50c922e121043788de0b40ada60a
+_eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a	git-r3	27e13c09a4c7e4c78ac812f74727e676
 _md5_=9134b855e5d6e1036e6ef0526e6f7d36
