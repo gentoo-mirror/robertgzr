@@ -48,7 +48,7 @@ mail-client/meli 0.6.2: terminal mail client
 media-fonts/cozette 1.11.1: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 16.7.0 21.1.1: Slender typeface for code, from code
+media-fonts/iosevka 16.7.0 22.1.0: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
@@ -57,6 +57,7 @@ media-gfx/vimiv 9999: image viewer with vim-like keybindings
 media-sound/musikcube 9999: 
 media-sound/pms 9999: Practical Music Search is an interactive Vim-like console client for MPD
 media-video/obs-xdg-portal 9999: OBS Studio plugin using the desktop portal for screensharing
+mpv-plugin/sponsorblock 9999: Simple sponsorblock implementation for MPV
 mpv-plugin/uosc 9999: Feature-rich minimalist proximity-based UI for MPV player.
 mpv-plugin/webm 9999: Simple WebM maker for mpv, with no external dependencies.
 net-fs/httpdirfs 1.2.0 9999: mount http directory listing
