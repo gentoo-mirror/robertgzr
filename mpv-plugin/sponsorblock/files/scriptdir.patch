@@ -1,0 +1,21 @@
+diff --git a/main.lua b/main.lua
+new file mode 120000
+index 0000000..6a5f9d8
+--- /dev/null
++++ b/main.lua
+@@ -0,0 +1 @@
++sponsorblock.lua
+\ No newline at end of file
+diff --git a/sponsorblock.lua b/sponsorblock.lua
+index 96bfb24..1c05c72 100644
+--- a/sponsorblock.lua
++++ b/sponsorblock.lua
+@@ -92,7 +92,7 @@ end
+ options.local_database = false
+ 
+ local utils = require "mp.utils"
+-scripts_dir = mp.find_config_file("scripts")
++scripts_dir = mp.get_script_directory()
+
+ local sponsorblock = utils.join_path(scripts_dir, "sponsorblock_shared/sponsorblock.py")
+ local uid_path = utils.join_path(scripts_dir, "sponsorblock_shared/sponsorblock.txt")
