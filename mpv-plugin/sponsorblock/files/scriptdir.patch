@@ -10,13 +10,12 @@ diff --git a/sponsorblock.lua b/sponsorblock.lua
 index 96bfb24..1c05c72 100644
 --- a/sponsorblock.lua
 +++ b/sponsorblock.lua
-@@ -92,7 +92,8 @@ end
+@@ -92,7 +92,7 @@ end
  options.local_database = false
  
  local utils = require "mp.utils"
 -scripts_dir = mp.find_config_file("scripts")
 +scripts_dir = mp.get_script_directory()
-+print("???" .. " " .. scripts_dir)
- 
+
  local sponsorblock = utils.join_path(scripts_dir, "sponsorblock_shared/sponsorblock.py")
  local uid_path = utils.join_path(scripts_dir, "sponsorblock_shared/sponsorblock.txt")
