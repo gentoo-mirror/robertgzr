@@ -46,11 +46,6 @@ DOCS=( AUTHORS.rst CHANGELOG.rst docs/source/contributing.rst README.rst config.
 
 distutils_enable_tests pytest
 
-python_prepare_all() {
-	sed -i -e 's/--cov=todoman --cov-report=term-missing //' setup.cfg || die
-	distutils-r1_python_prepare_all
-}
-
 src_install() {
 	distutils-r1_src_install
 	newbin bin/todo todoman
