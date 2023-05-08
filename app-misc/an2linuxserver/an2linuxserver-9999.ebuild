@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6..9} )
+PYTHON_COMPAT=( python3_{9..11} )
 inherit python-r1 python-utils-r1
 
 DESCRIPTION="Sync Android notifications encrypted to a Linux desktop"
