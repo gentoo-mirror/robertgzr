@@ -71,26 +71,30 @@ go_src_compile() {
 
     [ -n "${EGO_STATIC}" ] && local -x CGO_ENABLED=0
 
-    set -- go build \
-        "${gotagsargs[@]}" \
-        -ldflags "$(echo "${goldflags[@]}")" \
-        -trimpath \
-        -o "${S}/${P}" \
-        "${EGO_MAIN}"
-
-    echo "$@" >&2
-    "$@" || die "compile failed"
+    for main in "${EGO_MAIN[@]}"; do
+        set -- go build \
+            "${gotagsargs[@]}" \
+            -ldflags "$(echo "${goldflags[@]}")" \
+            -trimpath \
+            -o "${S}/${P}-${main}" \
+            "${main}"
+        echo "$@" >&2
+        "$@" || die "compile failed"
+    done
 }
 
 go_src_install() {
     debug-print-function ${FUNCNAME} "$@"
 
-    _binname="${PN}"
-    if [[ "${EGO_MAIN}" != "." ]]; then
-        _binname=$(basename "${EGO_MAIN}")
-    fi
-    newbin "${S}/${P}" "${_binname}"
-    # dobin "${S}/${P}"
+    for main in "${EGO_MAIN[@]}"; do
+        if [[ "${main}" == "." ]]; then
+            _binname="${PN}"
+        else
+            _binname=$(basename "${main}")
+        fi
+        newbin "${S}/${P}-${main}" "${_binname}"
+        # dobin "${S}/${P}"
+    done
 }
 
 fi
