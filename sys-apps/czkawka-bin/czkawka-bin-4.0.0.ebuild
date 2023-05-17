@@ -1,7 +1,7 @@
 # Copyright 2020-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="A multi-functional app to find duplicates, empty folders, similar images, etc."
 HOMEPAGE="https://github.com/qarmin/czkawka"

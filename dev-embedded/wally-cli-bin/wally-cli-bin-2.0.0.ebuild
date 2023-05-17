@@ -1,5 +1,5 @@
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Flash your ZSA keyboard the EZ way"
 HOMEPAGE="https://ergodox-ez.com/pages/wally"

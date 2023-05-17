@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit desktop optfeature xdg
 
@@ -62,7 +62,8 @@ src_unpack() {
 
 src_install() {
 	exeinto /usr/lib/${PN}
-	doexe "Telegram"
+	newexe "Telegram" "telegram-desktop"
+
 	newbin "${FILESDIR}"/${PN} "telegram-desktop"
 
 
@@ -75,6 +76,7 @@ src_install() {
 			telegram.png
 	done
 
+	sed -i -e "s|@CMAKE_INSTALL_FULL_BINDIR@|/usr/lib/${PN}|" "${WORKDIR}/${unpacked_dir}"/lib/xdg/org.telegram.desktop.desktop
 	domenu "${WORKDIR}/${unpacked_dir}"/lib/xdg/org.telegram.desktop.desktop
 }
 

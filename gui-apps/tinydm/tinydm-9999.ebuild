@@ -1,7 +1,7 @@
 # Copyright 2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="tiny display manager - wayland/x11 session starter for single user machines"
 HOMEPAGE="https://gitlab.com/postmarketOS/tinydm"

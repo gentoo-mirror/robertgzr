@@ -1,7 +1,7 @@
 # Copyright 2020-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="A wrapper to use wl-clipboard as a drop-in replacement to X11 clipboard tools"
 HOMEPAGE="https://github.com/brunelli/wl-clipboard-x11"
