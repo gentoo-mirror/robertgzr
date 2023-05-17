@@ -2,7 +2,7 @@ BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DEFINED_PHASES=install postinst postrm setup
 DEPEND=app-arch/unzip
 DESCRIPTION=Default typeface for FirefoxOS, designed for legibility
-EAPI=7
+EAPI=8
 HOMEPAGE=https://bboxtype.com/typefaces/FiraGO
 INHERIT=font
 IUSE=X
@@ -11,4 +11,4 @@ LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://bboxtype.com/downloads/FiraGO/Download_Folder_FiraGO_1001.zip
 _eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
-_md5_=e0febc30a422408209d4a681ad38c85a
+_md5_=84b8f3c8458dceca2273aa8744a7c18e

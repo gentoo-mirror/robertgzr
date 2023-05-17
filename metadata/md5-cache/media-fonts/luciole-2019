@@ -1,6 +1,6 @@
 BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DEFINED_PHASES=install postinst postrm setup unpack
-EAPI=7
+EAPI=8
 HOMEPAGE=https://www.luciole-vision.com/luciole-en.html
 INHERIT=font
 IUSE=X
@@ -9,4 +9,4 @@ LICENSE=CC-BY-4.0
 SLOT=0
 SRC_URI=http://www.typographies.fr/N/luciole/Luciole-Regular.ttf http://www.typographies.fr/N/luciole/Luciole-Bold.ttf http://www.typographies.fr/N/luciole/Luciole-Regular-Italic.ttf http://www.typographies.fr/N/luciole/Luciole-Bold-Italic.ttf
 _eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
-_md5_=eeb61fe181aaec1bd1490dc8448a0adf
+_md5_=6711bbb19164977fe6132b69736e214b

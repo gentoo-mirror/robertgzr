@@ -1,13 +1,13 @@
 BDEPEND=>=dev-lang/go-1.18 app-arch/unzip >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=compile install unpack
 DESCRIPTION=distributed, offline-first bug tracker
-EAPI=7
+EAPI=8
 HOMEPAGE=https://github.com/MichaelMure/git-bug
 INHERIT=go-module git-r3
 KEYWORDS=~amd64 ~arm64 ~x86
 LICENSE=GPL-3
 PROPERTIES=live
-RESTRICT=network-sandbox
+RESTRICT=network-sandbox strip
 SLOT=0
 _eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	toolchain-funcs	14a8ae365191b518fad51caad7a08f3e	multilib	104e1332efb829e2f7cbf89307a474f1	go-module	9c75e51a48520b2f01471c1f91762882	git-r3	27e13c09a4c7e4c78ac812f74727e676
-_md5_=79ad895986cb88af008349bedda4e3d8
+_md5_=fc33a209e98eb72affb06f7d82c42404

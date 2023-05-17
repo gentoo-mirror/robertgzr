@@ -2,7 +2,7 @@ BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DEFINED_PHASES=install postinst postrm prepare setup
 DEPEND=app-arch/unzip
 DESCRIPTION=A typeface carefully crafted & designed for computer screens
-EAPI=7
+EAPI=8
 HOMEPAGE=https://rsms.me/inter/
 INHERIT=font
 IUSE=woff woff2 X
@@ -11,4 +11,4 @@ LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://github.com/rsms/inter/releases/download/v3.15/Inter-3.15.zip -> inter-3.15.zip
 _eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
-_md5_=5b23e3704ea35362a0c16dfbc7ef5586
+_md5_=83a68accf199cf1a9979ed3dd77c592a

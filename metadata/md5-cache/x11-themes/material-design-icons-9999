@@ -1,12 +1,12 @@
 BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
-DEFINED_PHASES=install postinst postrm preinst prepare unpack
-DEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
+DEFINED_PHASES=install postinst postrm preinst unpack
 DESCRIPTION=5900+ Material Design Icons form the Community
-EAPI=7
+EAPI=8
 HOMEPAGE=https://materialdesignicons.com/
+IDEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
 INHERIT=xdg git-r3
 LICENSE=Apache-2.0
 PROPERTIES=live
 SLOT=0
 _eclasses_=xdg-utils	baea6080dd821f5562d715887954c9d3	xdg	4a14c5c24f121e7da66e5aab4a168c6e	git-r3	27e13c09a4c7e4c78ac812f74727e676
-_md5_=7c1d66cde233228b98d90d4171557829
+_md5_=af60b6a080d38ca217c0c76f46b51f5e

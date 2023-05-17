@@ -1,6 +1,6 @@
 BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings ) >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=install postinst postrm setup unpack
-EAPI=7
+EAPI=8
 HOMEPAGE=https://materialdesignicons.com/
 INHERIT=font git-r3
 IUSE=X
@@ -9,4 +9,4 @@ LICENSE=OFL-1.1
 PROPERTIES=live
 SLOT=0
 _eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	git-r3	27e13c09a4c7e4c78ac812f74727e676
-_md5_=7be804629700d0c64ba5445506212cf8
+_md5_=e339f9d87f1f5e92beeb50d1d3d13cff
