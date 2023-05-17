@@ -10,6 +10,7 @@ HOMEPAGE="https://git.sr.ht/~robertgzr/pinentry-bemenu"
 
 inherit git-r3
 EGIT_REPO_URI="https://git.sr.ht/~robertgzr/pinentry-bemenu"
+RESTRICT="network-sandbox"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -25,6 +26,12 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${P}"
+
+src_prepare() {
+	default
+
+	meson subprojects download bemenu
+}
 
 pkg_postinst() {
 	eselect pinentry update ifunset
