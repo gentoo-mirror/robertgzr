@@ -1,7 +1,7 @@
 # Copyright 2020-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Provides double key binds, via evdev"
 HOMEPAGE="https://github.com/exrok/evdoublebind"

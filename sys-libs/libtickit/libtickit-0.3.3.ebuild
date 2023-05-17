@@ -1,7 +1,7 @@
 # Copyright 2020-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Library for building interactive full-screen terminal programs"
 HOMEPAGE="http://www.leonerd.org.uk/code/libtickit"
