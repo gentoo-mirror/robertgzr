@@ -3,29 +3,27 @@
 
 EAPI=8
 
-inherit git-r3 go-module
+inherit go
 
 DESCRIPTION="linters runner for Go"
 HOMEPAGE="https://github.com/golangci/golangci-lint"
 
+inherit git-r3
 EGIT_REPO_URI="https://github.com/golangci/golangci-lint.git"
 
 RESTRICT="network-sandbox strip"
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
-KEYWORDS="~amd64 ~arm64 ~x86"
+KEYWORDS=""
 
-src_unpack() {
-	default
-	git-r3_src_unpack
-	go-module_live_vendor
-}
+EGO_MAIN="./cmd/${PN}"
 
-src_compile() {
-	go build -o ./${PN} -ldflags="-w -s -X main.version=${PV} -X main.commit=$(git-r3_peek_remote_ref) -X main.date=$(date -Iseconds)" ./cmd/${PN}
-}
-
-src_install() {
-	dobin ./${PN}
+src_configure() {
+	egoldflags=(
+		-X main.version=${PV}
+		-X main.commit=$(git-r3_peek_remote_ref)
+		-X main.date=$(date -Iseconds)
+	)
+	go_src_configure
 }
