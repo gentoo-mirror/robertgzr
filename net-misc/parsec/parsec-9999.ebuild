@@ -3,13 +3,13 @@
 
 EAPI=8
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="low-latency remote desktop"
+HOMEPAGE="https://parsec.app"
 
 MY_SRC_URI="https://builds.parsecgaming.com/package/parsec-linux.deb"
 RESTRICT="network-sandbox"
 
-LICENSE=""
+LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS=""
 
