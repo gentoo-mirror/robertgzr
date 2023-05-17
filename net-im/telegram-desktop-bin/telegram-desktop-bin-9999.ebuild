@@ -62,7 +62,8 @@ src_unpack() {
 
 src_install() {
 	exeinto /usr/lib/${PN}
-	doexe "Telegram"
+	newexe "Telegram" "telegram-desktop"
+
 	newbin "${FILESDIR}"/${PN} "telegram-desktop"
 
 
@@ -75,6 +76,7 @@ src_install() {
 			telegram.png
 	done
 
+	sed -i -e "s|@CMAKE_INSTALL_FULL_BINDIR@|/usr/lib/${PN}|" "${WORKDIR}/${unpacked_dir}"/lib/xdg/org.telegram.desktop.desktop
 	domenu "${WORKDIR}/${unpacked_dir}"/lib/xdg/org.telegram.desktop.desktop
 }
 
