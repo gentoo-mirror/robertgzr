@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit meson vala
+inherit gnome2-utils meson vala
 
 DESCRIPTION="beautiful, fast, fluent lightweight music player for GTK4"
 HOMEPAGE="https://gitlab.gnome.org/neithern/g4music"
@@ -33,4 +33,14 @@ BDEPEND="$(vala_depend)"
 src_prepare() {
 	default
 	vala_setup
+}
+
+pkg_postinst() {
+    xdg_pkg_postinst
+    gnome2_schemas_update
+}
+
+pkg_postrm() {
+    xdg_pkg_postrm
+    gnome2_schemas_update
 }
