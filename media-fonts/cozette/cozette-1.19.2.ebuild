@@ -8,13 +8,15 @@ inherit font
 DESCRIPTION="A bitmap programming font optimized for coziness"
 HOMEPAGE="https://github.com/slavfox/Cozette"
 
-SRC_URI="https://github.com/slavfox/${PN}/releases/download/v.${PV}/${PN}Vector.otf -> ${PN}Vector-${PV}.otf
+SRC_URI="
 	otb? ( https://github.com/slavfox/${PN}/releases/download/v.${PV}/${PN}.otb -> ${P}.otb )
+	hidpi? ( https://github.com/slavfox/${PN}/releases/download/v.${PV}-hidpi/${PN}Vector.otf -> ${PN}Vector-${PV}.otf )
+	!hidpi? ( https://github.com/slavfox/${PN}/releases/download/v.${PV}/${PN}Vector.otf -> ${PN}Vector-${PV}.otf )
 "
 
 LICENSE="OFL-1.1"
 SLOT="0"
-IUSE="otb"
+IUSE="otb hidpi"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
 
 S="${DISTDIR}"
