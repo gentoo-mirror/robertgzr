@@ -3,25 +3,17 @@
 
 EAPI=8
 
-inherit font git-r3
+inherit font
 
-FONT_PN="MaterialDesignIcons"
 DESCRIPTION=""
 HOMEPAGE="https://materialdesignicons.com/"
 
+inherit git-r3
 EGIT_REPO_URI="https://github.com/Templarian/MaterialDesign-Font.git"
 
 LICENSE="OFL-1.1"
 SLOT="0"
 IUSE=""
-KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~x86"
+KEYWORDS=""
 
-# FONT_S="${WORKDIR}/${P}"
 FONT_SUFFIX="ttf"
-
-# src_unpack() {
-# 	mkdir -p "${FONT_S}"
-# 	for f in ${A}; do
-# 		cp -Lv "${DISTDIR}/${f}" "${FONT_S}/"
-# 	done
-# }
