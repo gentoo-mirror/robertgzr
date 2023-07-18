@@ -30,7 +30,7 @@ trap '{ cleanup; }' EXIT
 newversion="${1:?missing new version}"
 pkgname="$(basename "$(dirname "${PWD}")")"/"$(basename "${PWD}")"
 
-oldebuild=$(find . -type f -name \*.ebuild -print | sort | head -n1)
+oldebuild=$(find . -type f -name \*.ebuild -print | sort | tail -n1)
 oldversion=$(printf "%s" "${oldebuild}" | rev | cut -d"-" -f1 | cut -d"." -f2- | rev)
 newebuild=$(printf "%s" "${oldebuild}" | sed -e "s/${oldversion}/${newversion}/")
 
