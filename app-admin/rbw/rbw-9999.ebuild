@@ -11,17 +11,15 @@ HOMEPAGE="https://git.tozt.net/rbw"
 if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://git.tozt.net/rbw"
+	RESTRICT="network-sandbox"
 else
 	SRC_URI="https://git.tozt.net/rbw/snapshot/rbw-${PV}.tar.gz -> ${P}.tar.gz
 		$(cargo_crate_uris ${CRATES})"
-	KEYWORDS="~amd64"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-RESTRICT="network-sandbox"
-#IUSE=""
 
 DEPEND=""
 RDEPEND="${DEPEND}"
