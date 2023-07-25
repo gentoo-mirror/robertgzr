@@ -10,6 +10,7 @@ app-misc/s6-man 9999: mdoc versions of the HTML documentation for the s6 supervi
 app-misc/segno 1.5.2: QR code encoder
 app-misc/timetrace 9999: simple cli for tracking working time
 app-misc/todoman 9999: A CalDAV based todo manager
+app-misc/wander 9999: tui for sys-cluster/nomad
 app-misc/zk 9999: plain text note-taking assistant
 app-shells/porcelain 9999: git status parser
 app-text/pandoc-bin 2.19.2: Conversion between markup formats
