@@ -25,9 +25,8 @@ src_prepare() {
 	default
 
 	mkdir ${PN}
-	mv fonts ./${PN}/
-	mv scripts/* ./${PN}/
-	mv ./${PN}/${PN}.lua ./${PN}/main.lua
+	mv scripts/${PN}/* ${PN}/
+	mv script-opts ${PN}/
 }
 
 MPV_PLUGIN_FILES=( ${PN} )
@@ -36,9 +35,6 @@ src_install() {
 	default
 	mpv-plugin_src_install
 
-	local MPV_INSTALL_DIR="/usr/$(get_libdir)/mpv"
-	dosym -r "${MPV_INSTALL_DIR}/${PN}/fonts" "/etc/mpv/fonts"
-
-	insinto "${MPV_INSTALL_DIR}/${PN}"
-	doins -r script-opts
+	insinto /etc/mpv/fonts
+	doins fonts/*
 }
