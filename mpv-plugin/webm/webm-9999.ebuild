@@ -16,8 +16,10 @@ RESTRICT="network-sandbox"
 
 S=${WORKDIR}
 
-MPV_PLUGIN_FILES=( ${PN}.lua )
+MPV_PLUGIN_FILES=( ${PN} )
 
 src_unpack() {
-	wget -O webm.lua https://github.com/ekisu/mpv-webm/releases/download/latest/webm.lua
+	mkdir -p ${PN} ${PN}/script-opts
+	wget -O ${PN}/main.lua https://github.com/ekisu/mpv-webm/releases/download/latest/webm.lua
+	wget -O ${PN}/script-opts/webm.conf https://github.com/ekisu/mpv-webm/releases/download/latest/webm.conf
 }
