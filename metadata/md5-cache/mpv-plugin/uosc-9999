@@ -1,5 +1,5 @@
 BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
-DEFINED_PHASES=install postinst prepare unpack
+DEFINED_PHASES=compile install postinst unpack
 DESCRIPTION=Feature-rich minimalist proximity-based UI for MPV player.
 EAPI=8
 HOMEPAGE=https://github.com/tomasklaen/uosc
@@ -9,6 +9,7 @@ KEYWORDS=~amd64
 LICENSE=GPL-3
 PROPERTIES=live
 RDEPEND=media-video/mpv[lua]
+RESTRICT=network-sandbox strip
 SLOT=0
 _eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a	git-r3	5133e393e8717a3a093660f990801dc1
-_md5_=dceb1cfb92420f7fcd0c6d6b66c86b13
+_md5_=ff831957210582e05a5140b1458cf024
