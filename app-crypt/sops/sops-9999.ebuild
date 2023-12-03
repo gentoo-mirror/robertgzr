@@ -6,13 +6,13 @@ EAPI=8
 inherit go
 
 DESCRIPTION="simple and flexible tool for managing secrets"
-HOMEPAGE="https://github.com/mozilla/sops"
+HOMEPAGE="https://github.com/getsops/sops"
 
 inherit git-r3
-EGIT_REPO_URI="https://github.com/mozilla/sops.git"
+EGIT_REPO_URI="https://github.com/getsops/sops.git"
 
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
 
-EGO_MAIN="go.mozilla.org/sops/v3/cmd/sops"
+EGO_MAIN="github.com/getsops/sops/v3/cmd/sops"

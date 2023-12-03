@@ -21,20 +21,17 @@ fi
 LICENSE="GPL-3"
 KEYWORDS="~amd64"
 
-src_prepare() {
-	default
-
-	mkdir ${PN}
-	mv scripts/${PN}/* ${PN}/
-	mv script-opts ${PN}/
+RESTRICT="network-sandbox strip"
+DEPENDS="dev-lang/go"
+src_compile() {
+	go build -ldflags "-s -w" -o src/${PN}/bin/ziggy-linux ./src/ziggy/ziggy.go
 }
 
-MPV_PLUGIN_FILES=( ${PN} )
+MPV_PLUGIN_FILES=( src/${PN} src/${PN}.conf )
 
 src_install() {
-	default
 	mpv-plugin_src_install
 
 	insinto /etc/mpv/fonts
-	doins fonts/*
+	doins src/fonts/*
 }
