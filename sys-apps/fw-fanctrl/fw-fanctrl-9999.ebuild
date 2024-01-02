@@ -30,7 +30,7 @@ BDEPEND=""
 src_install() {
 	newbin ${S}/fanctrl.py fanctrl
 
-	insinto /usr/share/${PN}
+	insinto /etc/${PN}
 	doins ${S}/config.json
 
 	s6-rc_doservice ${FILESDIR}/${PN}.service
