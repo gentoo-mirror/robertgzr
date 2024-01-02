@@ -15,13 +15,12 @@ EGIT_REPO_URI="${HOMEPAGE}.git"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
-IUSE="+ectool-prebuilt"
 
 DEPEND="
 	${PYTHON_DEPS}
 	sys-apps/lm-sensors
 	>=dev-python/watchdog-2.1.9
-	!ectool-prebuilt? ( sys-apps/fw-ectool )
+	sys-apps/fw-ectool
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
@@ -31,7 +30,4 @@ src_install() {
 
 	insinto /usr/share/${PN}
 	doins ${S}/config.json
-
-	# TODO: drop
-	use ectool-prebuilt || dobin bin/ectool
 }
