@@ -59,6 +59,7 @@ net-misc/parsec 9999: low-latency remote desktop
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
 sys-apps/autologin 1.0.0: daemon for automatic login on TTY
 sys-apps/czkawka-bin 4.0.0: A multi-functional app to find duplicates, empty folders, similar images, etc.
+sys-apps/fw-ectool 9999: embedded controller firmware util for framework laptop
 sys-apps/fw-fanctrl 9999: control framework laptop fan
 sys-fs/tmsu 9999: tag our files and access them through a VFS from anywhere
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
