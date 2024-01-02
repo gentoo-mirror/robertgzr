@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+fdmove -c 2 1
+exec fanctrl --no-log --config /etc/fw-fanctrl/config.json
