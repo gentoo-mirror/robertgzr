@@ -3,6 +3,8 @@
 
 EAPI=8
 
+inherit s6-rc
+
 PYTHON_COMPAT=( python3_{9..12} )
 inherit python-r1
 
@@ -30,4 +32,6 @@ src_install() {
 
 	insinto /usr/share/${PN}
 	doins ${S}/config.json
+
+	s6rc_doservice ${FILESDIR}/${PN}.service
 }
