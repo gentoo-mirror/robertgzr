@@ -3,6 +3,8 @@
 
 EAPI=8
 
+inherit s6-rc
+
 PYTHON_COMPAT=( python3_{9..12} )
 inherit python-r1
 
@@ -15,13 +17,12 @@ EGIT_REPO_URI="${HOMEPAGE}.git"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
-IUSE="+ectool-prebuilt"
 
 DEPEND="
 	${PYTHON_DEPS}
 	sys-apps/lm-sensors
 	>=dev-python/watchdog-2.1.9
-	!ectool-prebuilt? ( sys-apps/fw-ectool )
+	sys-apps/fw-ectool
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
@@ -29,9 +30,8 @@ BDEPEND=""
 src_install() {
 	newbin ${S}/fanctrl.py fanctrl
 
-	insinto /usr/share/${PN}
+	insinto /etc/${PN}
 	doins ${S}/config.json
 
-	# TODO: drop
-	use ectool-prebuilt || dobin bin/ectool
+	s6rc_doservice ${FILESDIR}/${PN}.service
 }
