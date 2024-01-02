@@ -3,7 +3,7 @@ app-containers/buildkit-bin 0.11.6: buildkit
 app-crypt/git-secret 0.3.3: a bash-tool to store your private data inside a git repository
 app-crypt/pinentry-bemenu 9999: 
 app-crypt/sops 9999: simple and flexible tool for managing secrets
-app-emulation/quickemu 4.9.1: Create and run optimised Windows, macOS and Linux desktop virtual machines
+app-emulation/quickemu 4.9.2: Create and run optimised Windows, macOS and Linux desktop virtual machines
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
 app-misc/flavours 9999: base16 colorscheme manager
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
@@ -59,6 +59,7 @@ net-misc/parsec 9999: low-latency remote desktop
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
 sys-apps/autologin 1.0.0: daemon for automatic login on TTY
 sys-apps/czkawka-bin 4.0.0: A multi-functional app to find duplicates, empty folders, similar images, etc.
+sys-apps/fw-fanctrl 9999: control framework laptop fan
 sys-fs/tmsu 9999: tag our files and access them through a VFS from anywhere
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
 x11-themes/material-design-icons 9999: 5900+ Material Design Icons form the Community
