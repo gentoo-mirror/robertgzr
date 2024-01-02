@@ -12,7 +12,7 @@ HOMEPAGE="https://github.com/TamtamHero/fw-fanctrl"
 inherit git-r3
 EGIT_REPO_URI="${HOMEPAGE}.git"
 
-LICENSE="BSD-3-Clause"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
 IUSE="+ectool-prebuilt"
