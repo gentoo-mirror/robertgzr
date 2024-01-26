@@ -6,10 +6,10 @@ EAPI=8
 inherit go
 
 DESCRIPTION="plain text note-taking assistant"
-HOMEPAGE="https://github.com/mickael-menu/zk"
+HOMEPAGE="https://github.com/zk-org/zk"
 
 inherit git-r3
-EGIT_REPO_URI="https://github.com/mickael-menu/zk.git"
+EGIT_REPO_URI="https://github.com/zk-org/zk.git"
 
 LICENSE="GPL-3"
 SLOT="0"
