@@ -33,5 +33,6 @@ src_install() {
 	insinto /etc/${PN}
 	doins ${S}/config.json
 
-	s6rc_doservice ${FILESDIR}/${PN}.service
+	s6-rc_doservice ${FILESDIR}/${PN}.service
+	s6-rc_enable boot
 }

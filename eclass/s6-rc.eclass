@@ -25,15 +25,29 @@ esac
 
 if [[ ! ${_S6RC_ECLASS} ]]; then
 _S6RC_ECLASS=1
+_S6RC_DIR=${S6RC_DIR:-/etc/s6-rc/src}
 
-_S6RC_RC_DIR=${S6RC_DIR:-/etc/s6-rc/src}
+EXPORT_FUNCTIONS pkg_postinst
+
+s6-rc_pkg_postinst() {
+	echo
+	elog "Attention: the s6-rc eclass assumes there is a script to refresh the"
+    elog "service db at $_S6RC_DIR/../reload"
+	elog "You should manually trigger a refresh, if that isn't the case!"
+	echo
+
+    test -f $_S6RC_DIR/../reload || eerror "Missing service db refresh script"
+    $_S6RC_DIR/../reload
+}
 
 # @FUNCTION: s6rc_doservice
 # @USAGE: <service-dir> [<new-name>]
 # @DESCRIPTION:
 # Install a s6 service into $s6rc_RC_DIR. Uses newins, thus it is fatal.
-s6rc_doservice() {
+s6-rc_doservice() {
 	debug-print-function ${FUNCNAME} "${@}"
+
+    local svc=${2:-$PN}
 
     test -d "$1" || eerror "${FUNCNAME}: argument needs to be a directory"
     test -f "$1/run" || eerror "${FUNCNAME}: service directory needs to contain a \"run\" file"
@@ -41,8 +55,25 @@ s6rc_doservice() {
 
 	(
 		insopts -m 0755
-		insinto "$_S6RC_RC_DIR"/"${2:-$PN}"
+		insinto "$_S6RC_DIR"/"${svc}"
         doins -r "${1}"/*
+	)
+}
+
+# @FUNCTION: s6rc_enable
+# @USAGE: [<bundle>] [<service-name>]
+# @DESCRIPTION:
+# Enable a s6-rc service. Without arguments the "default" bundle is used
+s6-rc_enable() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+    local bundle=${1:-default}
+    local svc=${2:-$PN}
+    local bundle_dir="$ED"/"$_S6RC_DIR"/"${bundle}"
+
+	(
+		mkdir -p "${bundle_dir}"/contents.d
+        touch "${bundle_dir}"/contents.d/"${svc}"
 	)
 }
 
