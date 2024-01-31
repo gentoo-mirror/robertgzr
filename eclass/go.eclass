@@ -24,7 +24,7 @@ _GO_ECLASS=1
 inherit go-module
 RESTRICT="network-sandbox"
 
-EXPORT_FUNCTIONS src_unpack src_configure src_compile src_install
+EXPORT_FUNCTIONS src_unpack src_configure src_compile src_install src_test
 
 EGO_STATIC=${EGO_STATIC:-}
 EGO_MAIN="${EGO_MAIN:-.}"
@@ -81,6 +81,12 @@ go_src_compile() {
         echo "$@" >&2
         "$@" || die "compile failed"
     done
+}
+
+go_src_test() {
+    debug-print-function ${FUNCNAME} "$@"
+
+    go test -v -ldflags "$(echo "${goldflags[@]}")" ./...
 }
 
 go_src_install() {
