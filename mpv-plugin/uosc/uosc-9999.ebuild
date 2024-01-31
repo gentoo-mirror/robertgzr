@@ -27,9 +27,12 @@ src_compile() {
 	go build -ldflags "-s -w" -o src/${PN}/bin/ziggy-linux ./src/ziggy/ziggy.go
 }
 
-MPV_PLUGIN_FILES=( src/${PN} src/${PN}.conf )
+MPV_PLUGIN_FILES=( uosc )
 
 src_install() {
+	mv src/uosc ${PN}
+	mv src/uosc.conf ${PN}/
+
 	mpv-plugin_src_install
 
 	insinto /etc/mpv/fonts

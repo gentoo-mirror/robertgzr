@@ -24,7 +24,7 @@ _GO_ECLASS=1
 inherit go-module
 RESTRICT="network-sandbox"
 
-EXPORT_FUNCTIONS src_unpack src_configure src_compile src_install
+EXPORT_FUNCTIONS src_unpack src_configure src_compile src_install src_test
 
 EGO_STATIC=${EGO_STATIC:-}
 EGO_MAIN="${EGO_MAIN:-.}"
@@ -66,34 +66,48 @@ go_src_configure() {
     fi
 }
 
+go_get-bin-for-main() {
+    debug-print-function ${FUNCNAME} "$@"
+
+    if [[ "$1" == "." ]]; then
+        printf "%s" "$PN"
+    else
+        printf "%s" "$(basename "$1")"
+    fi
+}
+
 go_src_compile() {
     debug-print-function ${FUNCNAME} "$@"
 
     [ -n "${EGO_STATIC}" ] && local -x CGO_ENABLED=0
 
     for main in "${EGO_MAIN[@]}"; do
+        local binname=$(go_get-bin-for-main "$main")
         set -- go build \
             "${gotagsargs[@]}" \
             -ldflags "$(echo "${goldflags[@]}")" \
             -trimpath \
-            -o "${S}/${P}-${main}" \
+            -o "${S}/${P}-${binname}" \
             "${main}"
         echo "$@" >&2
         "$@" || die "compile failed"
     done
 }
 
+go_src_test() {
+    debug-print-function ${FUNCNAME} "$@"
+
+    go test -v -ldflags "$(echo "${goldflags[@]}")" ./...
+}
+
 go_src_install() {
     debug-print-function ${FUNCNAME} "$@"
 
+    local binname
+
     for main in "${EGO_MAIN[@]}"; do
-        if [[ "${main}" == "." ]]; then
-            _binname="${PN}"
-        else
-            _binname=$(basename "${main}")
-        fi
-        newbin "${S}/${P}-${main}" "${_binname}"
-        # dobin "${S}/${P}"
+        local binname=$(go_get-bin-for-main "$main")
+        newbin "${S}/${P}-${binname}" "${binname}"
     done
 }
 
