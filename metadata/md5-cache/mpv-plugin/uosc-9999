@@ -12,4 +12,4 @@ RDEPEND=media-video/mpv[lua]
 RESTRICT=network-sandbox strip
 SLOT=0
 _eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a	git-r3	86fa1f157b70b9d2ff340c4633b1cf4b
-_md5_=ff831957210582e05a5140b1458cf024
+_md5_=f50d3a7dc61ed836c066a5b367373708
