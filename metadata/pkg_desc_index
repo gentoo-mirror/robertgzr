@@ -43,7 +43,7 @@ media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibili
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
 media-fonts/iosevka 16.7.0 27.3.5 28.1.0: Slender typeface for code, from code
 media-fonts/luciole 2019: 
-media-fonts/material-design-icons 9999: 
+media-fonts/material-design-icons 7.4.47 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
 media-fonts/sarasa-gothic 0.18.3: CJK programming font based on Iosevka and Source Han Sans
 media-gfx/vimiv 9999: image viewer with vim-like keybindings
@@ -63,6 +63,6 @@ sys-apps/fw-ectool 9999: embedded controller firmware util for framework laptop
 sys-apps/fw-fanctrl 9999: control framework laptop fan
 sys-fs/tmsu 9999: tag our files and access them through a VFS from anywhere
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
-x11-themes/material-design-icons 9999: 5900+ Material Design Icons form the Community
+x11-themes/material-design-icons 7.4.47 9999: 5900+ Material Design Icons form the Community
 x11-themes/winsur-cursor-theme 9999: A combination of MacOS BigSur and Windows 10 cursors
 x11-themes/woodenbeaver-sounds 9999: The WoodenBeaver sound theme

@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm preinst
+DESCRIPTION=5900+ Material Design Icons form the Community
+EAPI=8
+HOMEPAGE=https://materialdesignicons.com/
+IDEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
+INHERIT=xdg
+KEYWORDS=amd64 arm arm64 ppc64 x86
+LICENSE=Apache-2.0
+SLOT=0
+SRC_URI=https://github.com/Templarian/MaterialDesign-SVG/archive/refs/tags/v7.4.47.tar.gz -> material-design-icons.tar.gz
+_eclasses_=xdg-utils	baea6080dd821f5562d715887954c9d3	xdg	4a14c5c24f121e7da66e5aab4a168c6e
+_md5_=6b9284ad174d0ff575ac5e31bbcad585
