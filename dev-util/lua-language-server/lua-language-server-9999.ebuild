@@ -7,13 +7,13 @@ LUA_COMPAT=( lua5-{1..4} luajit  )
 inherit lua ninja-utils
 
 DESCRIPTION="lua language server written in lua"
-HOMEPAGE="https://github.com/sumneko/lua-language-server"
+HOMEPAGE="https://github.com/LuaLS/lua-language-server"
 
 if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/sumneko/lua-language-server.git"
+	EGIT_REPO_URI="https://github.com/LuaLS/lua-language-server.git"
 else
-	SRC_URI="https://github.com/sumneko/lua-language-server/releases/download/${PV}/lua-language-server-${PV}-submodules.zip -> ${P}.zip"
+	SRC_URI="https://github.com/LuaLS/lua-language-server/releases/download/${PV}/lua-language-server-${PV}-submodules.zip -> ${P}.zip"
 	S="${WORKDIR}"
 	KEYWORDS="~amd64"
 fi
