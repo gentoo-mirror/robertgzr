@@ -11,5 +11,5 @@ PROPERTIES=live
 RDEPEND=media-video/mpv[lua]
 RESTRICT=network-sandbox
 SLOT=0
-_eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a	git-r3	86fa1f157b70b9d2ff340c4633b1cf4b
+_eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a	git-r3	fbb2889c81f3a05910c1524db69425c1
 _md5_=6b827e7275da1a39d19e3f7dfeda950c
