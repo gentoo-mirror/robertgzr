@@ -20,41 +20,42 @@ log() {
 
 cleanup() {
     [ -n "${done}" ] && return
-    log "cleaning up ${newebuild}"
-    mv "${newebuild}" "${newebuild}.rej"
+    log "cleaning up ${new_ebd}"
+    mv "${new_ebd}" "${new_ebd}.rej"
 }
 
 done=
 trap '{ cleanup; }' EXIT
 
-newversion="${1:?missing new version}"
+new_ver="${1:?missing new version}"
 pkgname="$(basename "$(dirname "${PWD}")")"/"$(basename "${PWD}")"
 
-oldebuild=$(find . -type f -name \*.ebuild -print | sort | tail -n1)
-oldversion=$(printf "%s" "${oldebuild}" | rev | cut -d"-" -f1 | cut -d"." -f2- | rev)
-newebuild=$(printf "%s" "${oldebuild}" | sed -e "s/${oldversion}/${newversion}/")
+old_ebd=$(find . -type f -name \*.ebuild -print | sort | tail -n1)
+old_ver=$(printf "%s" "${old_ebd}" | rev | cut -d"-" -f1 | cut -d"." -f2- | rev)
+new_ebd=$(printf "%s" "${old_ebd}" | sed -e "s/${old_ver}/${new_ver}/")
 
-log "new ebuild ${newversion}"
-cp -v "${oldebuild}" "${newebuild}"
-[ -n "${edit}" ] && exec "${EDITOR}" "${newebuild}"
+log "new ebuild ${new_ver}"
+cp -v "${old_ebd}" "${new_ebd}"
+[ -n "${edit}" ] && exec "${EDITOR}" "${new_ebd}"
 
-olderebuilds=$(find . -type f -name \*.ebuild -print | sort | grep -v "${newebuild}")
-num_olderebuilds=$(printf "%s" "${olderebuilds}" | wc -l)
-droppedebuilds=""
-if [ "${num_olderebuilds}" -gt 0 ]; then
-    log "there is ${num_olderebuilds} ebuilds, you should drop some..."
-    for eb in ${olderebuilds}; do
-        printf "drop %s ? (y/n) " "${eb}"
+old_ebds=$(find . -type f -name \*.ebuild -print | sort | grep -v "${new_ebd}")
+n=$(printf "%s" "${old_ebds}" | wc -l)
+dropped=
+if [ "${n}" -gt 0 ]; then
+    log "there is ${n} ebuilds, you should drop some..."
+    for e in ${old_ebds}; do
+        printf "drop %s ? (y/n) " "${e}"
         read -r yn
-        if [ "$yn" = "y" ]; then
-            droppedebuilds="${droppedebuilds}${eb} "
-            rm "$eb"
+        if [ "$yn" != "y" ]; then
+            continue
         fi
+        dropped="${dropped}${e} "
+        rm "$e"
     done
 fi
 
 log "updating manifest"
-doas ebuild "${newebuild}" manifest
+doas ebuild "${new_ebd}" manifest
 
 log "creating commit"
 if [ -n "$(git diff --staged --name-only)" ]; then
@@ -64,10 +65,11 @@ if [ -n "$(git diff --staged --name-only)" ]; then
 fi
 
 set -x
-git add "${newebuild}"
+git add "${new_ebd}"
 git add Manifest 2>/dev/null || true
-[ -n "${droppedebuilds}" ] && git add ${droppedebuilds}
-git commit -m "${pkgname}: bump to ${newversion}" || git reset . >/dev/null
+[ -n "${dropped}" ] && git rm ${dropped}
+git commit -m "${pkgname}: bump to ${new_ver}" || git reset . >/dev/null
+set +x
 
 done=1
 log "done"
