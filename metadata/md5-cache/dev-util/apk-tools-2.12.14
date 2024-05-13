@@ -1,0 +1,11 @@
+DEFINED_PHASES=configure install
+DEPEND=man? ( virtual/lua )
+EAPI=8
+HOMEPAGE=https://gitlab.alpinelinux.org/alpine/apk-tools
+IUSE=man
+KEYWORDS=~amd64
+LICENSE=GPL-2
+RDEPEND=man? ( virtual/lua )
+SLOT=0
+SRC_URI=https://gitlab.alpinelinux.org/alpine/apk-tools/-/archive/v2.12.14/apk-tools-v2.12.14.tar.bz2
+_md5_=3c94c10c4b32dbb471f245ac44585ebc

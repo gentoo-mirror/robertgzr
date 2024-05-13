@@ -1,3 +1,5 @@
+app-admin/anemos-cli 9999: 
+app-admin/makeimg 9999: Build system images from declarative input
 app-admin/rbw 9999: unofficial bitwarden cli
 app-containers/buildkit-bin 0.11.6: buildkit
 app-crypt/git-secret 0.3.3: a bash-tool to store your private data inside a git repository
@@ -26,6 +28,7 @@ dev-libs/libscfg 9999: simple configuration format
 dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
 dev-tex/tectonic 9999: A modernized, complete, self-contained TeX/LaTeX engine.
 dev-tex/tectonic-bin 0.12.0: A modernized, complete, self-contained TeX/LaTeX engine.
+dev-util/apk-tools 2.12.14: 
 dev-util/balena-cli 14.3.1: The official balena CLI tool.
 dev-util/efm-langserver 9999: general purpose language server
 dev-util/elixir-ls 9999: 
