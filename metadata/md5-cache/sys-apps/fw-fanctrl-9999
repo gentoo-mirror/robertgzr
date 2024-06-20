@@ -1,14 +1,14 @@
 BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
-DEFINED_PHASES=install postinst unpack
+DEFINED_PHASES=install unpack
 DEPEND=python_targets_python3_10? ( dev-lang/python:3.10 ) python_targets_python3_11? ( dev-lang/python:3.11 ) python_targets_python3_12? ( dev-lang/python:3.12 ) sys-apps/lm-sensors >=dev-python/watchdog-2.1.9 sys-apps/fw-ectool
 DESCRIPTION=control framework laptop fan
 EAPI=8
 HOMEPAGE=https://github.com/TamtamHero/fw-fanctrl
-INHERIT=s6-rc python-r1 git-r3
+INHERIT=python-r1 git-r3
 IUSE=python_targets_python3_10 python_targets_python3_11 python_targets_python3_12
 LICENSE=BSD
 PROPERTIES=live
 RDEPEND=python_targets_python3_10? ( dev-lang/python:3.10 ) python_targets_python3_11? ( dev-lang/python:3.11 ) python_targets_python3_12? ( dev-lang/python:3.12 ) sys-apps/lm-sensors >=dev-python/watchdog-2.1.9 sys-apps/fw-ectool
 SLOT=0
-_eclasses_=s6-rc	d995f8a3c0cc477785cafab4aa489a81	out-of-source-utils	1a9007554652a6e627edbccb3c25a439	multibuild	d67e78a235f541871c7dfe4cf7931489	multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	python-utils-r1	8b220bbce5c119fb1d4d5c2f5588f3ea	python-r1	428f5c53276c2adc06a89108fc2f9f46	git-r3	fbb2889c81f3a05910c1524db69425c1
-_md5_=d230dc3ac40bffc9e4aa09ca6dfb2b50
+_eclasses_=out-of-source-utils	1a9007554652a6e627edbccb3c25a439	multibuild	d67e78a235f541871c7dfe4cf7931489	multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	python-utils-r1	8b220bbce5c119fb1d4d5c2f5588f3ea	python-r1	428f5c53276c2adc06a89108fc2f9f46	git-r3	fbb2889c81f3a05910c1524db69425c1
+_md5_=a1b4ed7a7a9b7f6a80104bdf9e359fc9
