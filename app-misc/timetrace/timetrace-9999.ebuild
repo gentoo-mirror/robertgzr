@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit go
+inherit go shell-completion
 
 DESCRIPTION="simple cli for tracking working time"
 HOMEPAGE="https://github.com/dominikbraun/timetrace"
@@ -22,4 +22,13 @@ src_unpack() {
 	git-r3_src_unpack
 	cd ${S} && sed -i -e 's/go 1.15/go 1.18/' ${S}/go.mod && go mod tidy
 	go-module_live_vendor
+}
+
+src_install() {
+	default
+	go_src_install
+
+	timetrace completion bash | newbashcomp - "${PN}"
+	timetrace completion zsh | nezshcomp - "${PN}"
+	timetrace completion fish | newfishcomp - "${PN}"
 }
