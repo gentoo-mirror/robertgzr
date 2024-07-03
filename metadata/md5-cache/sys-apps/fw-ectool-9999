@@ -10,4 +10,4 @@ PROPERTIES=live
 RDEPEND=dev-embedded/libftdi
 SLOT=0
 _eclasses_=git-r3	fbb2889c81f3a05910c1524db69425c1
-_md5_=1286a86258fcf48ad0111b89ab3c98fd
+_md5_=0793a914d604b519c683584b4bc97b67

@@ -11,4 +11,4 @@ PROPERTIES=live
 RDEPEND=media-video/mpv[lua]
 SLOT=0
 _eclasses_=mpv-plugin	d5b74b0d4b9aa2b088badc969f11de7a	git-r3	fbb2889c81f3a05910c1524db69425c1
-_md5_=5784112f34a4c021b712ff8cb27b51ab
+_md5_=cbdffbd3024ea0c563c02925b9faa744

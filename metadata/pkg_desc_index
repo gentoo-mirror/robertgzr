@@ -16,7 +16,6 @@ app-misc/todoman 9999: A CalDAV based todo manager
 app-misc/wander 9999: tui for sys-cluster/nomad
 app-misc/zk 9999: plain text note-taking assistant
 app-shells/porcelain 9999: git status parser
-app-text/pandoc-bin 2.19.2: Conversion between markup formats
 dev-embedded/wally-cli-bin 2.0.0: Flash your ZSA keyboard the EZ way
 dev-go/go-critic 9999: the most opinionated Go source code linter
 dev-go/goimports 9999: official go auto-importer
@@ -48,7 +47,6 @@ media-fonts/iosevka 30.3.1: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 7.4.47 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
-media-fonts/sarasa-gothic 0.18.3: CJK programming font based on Iosevka and Source Han Sans
 media-gfx/vimiv 9999: image viewer with vim-like keybindings
 media-sound/g4music 1.11 9999: beautiful, fast, fluent lightweight music player for GTK4
 mpv-plugin/sponsorblock 9999: Simple sponsorblock implementation for MPV

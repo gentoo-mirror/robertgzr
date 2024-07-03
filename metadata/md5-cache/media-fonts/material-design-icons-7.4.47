@@ -9,4 +9,4 @@ LICENSE=Apache-2.0
 SLOT=0
 SRC_URI=https://github.com/Templarian/MaterialDesign-Webfont/archive/refs/tags/v7.4.47.tar.gz -> material-design-icons-7.4.47.tar.gz
 _eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
-_md5_=b976cc66d4f6e852712dd9bcd98e15ee
+_md5_=173caf1b38bd13d965a3bd7a80092ca9

@@ -5,4 +5,4 @@ HOMEPAGE=https://rust-analyzer.github.io/
 LICENSE=Apache-2.0
 RESTRICT=strip mirror network-sandbox
 SLOT=0
-_md5_=c4afa9ef76cabb6bc3083aeca8493491
+_md5_=ff271a03c9c1fd3d6cccb638c4fcc28a

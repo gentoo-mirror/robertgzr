@@ -9,4 +9,4 @@ RDEPEND=>=dev-lang/elixir-1.10
 RESTRICT=network-sandbox
 SLOT=0
 _eclasses_=git-r3	fbb2889c81f3a05910c1524db69425c1
-_md5_=96712eb0cffb417a19202232afbee085
+_md5_=b07ddebf276345f5df996660e7b1f027

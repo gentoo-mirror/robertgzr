@@ -8,4 +8,4 @@ LICENSE=GPL-2
 RDEPEND=man? ( virtual/lua )
 SLOT=0
 SRC_URI=https://gitlab.alpinelinux.org/alpine/apk-tools/-/archive/v2.12.14/apk-tools-v2.12.14.tar.bz2
-_md5_=3c94c10c4b32dbb471f245ac44585ebc
+_md5_=c0eb21c109b2ef95f0172d9f428d9a0d
