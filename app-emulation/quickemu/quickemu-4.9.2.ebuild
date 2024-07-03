@@ -13,14 +13,14 @@ SRC_URI="https://github.com/quickemu-project/${PN}/archive/refs/tags/${PV}.tar.g
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="zsync tpm X"
+IUSE="zsync tpm cdrom X"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 DEPEND="
 	${PYTHON_DEPS}
 	>=app-emulation/qemu-6.0.0[gtk,sdl,spice,smartcard,usbredir,virgl,virtfs]
 	>=app-shells/bash-4.0:=
-	app-cdr/cdrtools
+	cdrom? ( app-cdr/cdrtools )
 	tpm? ( app-crypt/swtpm )
 	app-misc/jq
 	app-emulation/spice[smartcard]
