@@ -1,9 +1,9 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2024 Robert Günzler
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-inherit cargo
+inherit cargo shell-completion
 
 DESCRIPTION="unofficial bitwarden cli"
 HOMEPAGE="https://git.tozt.net/rbw"
@@ -32,4 +32,12 @@ src_unpack() {
 	else
 		cargo_src_unpack
 	fi
+}
+
+src_install() {
+	cargo_src_install
+
+	$D/usr/bin/rbw gen-completions bash | newbashcomp - "$PN"
+	$D/usr/bin/rbw gen-completions zsh | newzshcomp - "$PN"
+	$D/usr/bin/rbw gen-completions fish | newfishcomp - "$PN"
 }

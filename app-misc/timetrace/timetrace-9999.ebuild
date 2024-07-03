@@ -1,4 +1,4 @@
-# Copyright 2020-2021 Gentoo Authors
+# Copyright 2020-2024 Robert Günzler
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -28,7 +28,7 @@ src_install() {
 	default
 	go_src_install
 
-	timetrace completion bash | newbashcomp - "${PN}"
-	timetrace completion zsh | nezshcomp - "${PN}"
-	timetrace completion fish | newfishcomp - "${PN}"
+	$D/usr/bin/timetrace completion bash | newbashcomp - "${PN}"
+	$D/usr/bin/timetrace completion zsh | nezshcomp - "${PN}"
+	$D/usr/bin/timetrace completion fish | newfishcomp - "${PN}"
 }

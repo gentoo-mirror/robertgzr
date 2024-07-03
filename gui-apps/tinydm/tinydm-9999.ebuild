@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2024 Robert Günzler
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8

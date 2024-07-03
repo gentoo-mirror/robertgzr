@@ -1,4 +1,4 @@
-# Copyright 2022 Gentoo Authors
+# Copyright 2022-2024 Robert Günzler
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -6,10 +6,10 @@ EAPI=8
 inherit go
 
 DESCRIPTION="your everyday irc student"
-HOMEPAGE="https://git.sr.ht/~taiite/senpai"
+HOMEPAGE="https://git.sr.ht/~delthas/senpai"
 
 inherit git-r3
-EGIT_REPO_URI="https://git.sr.ht/~taiite/senpai"
+EGIT_REPO_URI="https://git.sr.ht/~delthas/senpai"
 
 LICENSE="MIT"
 SLOT="0"
