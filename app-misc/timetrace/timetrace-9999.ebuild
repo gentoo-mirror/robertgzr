@@ -28,7 +28,7 @@ src_install() {
 	default
 	go_src_install
 
-	timetrace completion bash | newbashcomp - "${PN}"
-	timetrace completion zsh | nezshcomp - "${PN}"
-	timetrace completion fish | newfishcomp - "${PN}"
+	$D/usr/bin/timetrace completion bash | newbashcomp - "${PN}"
+	$D/usr/bin/timetrace completion zsh | nezshcomp - "${PN}"
+	$D/usr/bin/timetrace completion fish | newfishcomp - "${PN}"
 }
