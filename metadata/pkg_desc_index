@@ -32,6 +32,7 @@ dev-util/balena-cli 14.3.1: The official balena CLI tool.
 dev-util/efm-langserver 9999: general purpose language server
 dev-util/elixir-ls 9999: 
 dev-util/git-bug 0.7.1 9999: distributed, offline-first bug tracker
+dev-util/hadolint-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/lua-language-server 3.7.4 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/shfmt 9999: shell script formatter
@@ -43,7 +44,7 @@ mail-client/meli 0.6.2: terminal mail client
 media-fonts/cozette 1.19.2 1.24.1: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 30.3.1: Slender typeface for code, from code
+media-fonts/iosevka 30.3.2: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 7.4.47 9999: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals

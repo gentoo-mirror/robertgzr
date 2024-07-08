@@ -1,0 +1,8 @@
+DEFINED_PHASES=install unpack
+DESCRIPTION=experimental Rust compiler frontend for IDEs
+EAPI=8
+HOMEPAGE=https://rust-analyzer.github.io/
+LICENSE=GPL-3
+RESTRICT=strip mirror network-sandbox
+SLOT=0
+_md5_=746e862c44db05c200bbf710f3d5da61
