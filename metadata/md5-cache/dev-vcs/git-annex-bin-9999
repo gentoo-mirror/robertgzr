@@ -1,8 +1,8 @@
-DEFINED_PHASES=install postinst unpack
+DEFINED_PHASES=install postinst test unpack
 DESCRIPTION=manage files with git, without checking their contents into git
 EAPI=8
 HOMEPAGE=https://git-annex.branchable.com/
 LICENSE=AGPL-3
 RESTRICT=network-sandbox strip
 SLOT=0
-_md5_=7122ce9dfa173c4cac718cf75bef79d9
+_md5_=c3d7d33e6fb295f9e333b1a5b6888ddb
