@@ -36,6 +36,7 @@ dev-util/hadolint-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/lua-language-server 3.7.4 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/shfmt 9999: shell script formatter
+dev-vcs/git-annex-bin 9999: manage files with git, without checking their contents into git
 gui-apps/swww 9999: Efficient animated wallpaper daemon for wayland, controlled at runtime
 gui-apps/tinydm 1.1.0 9999: tiny display manager - wayland/x11 session starter for single user machines
 gui-apps/wl-clipboard-x11 9999: A wrapper to use wl-clipboard as a drop-in replacement to X11 clipboard tools
