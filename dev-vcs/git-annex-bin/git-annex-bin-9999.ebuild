@@ -25,6 +25,10 @@ src_unpack() {
 	unpack "${archive}" || die
 }
 
+src_test() {
+	${S}/shimmed/git-annex/git-annex test -J$(($(nproc) - 1))
+}
+
 src_install() {
 	dobin ${S}/shimmed/git-annex/git-annex
 	dobin ${S}/shimmed/git-annex-shell/git-annex-shell
