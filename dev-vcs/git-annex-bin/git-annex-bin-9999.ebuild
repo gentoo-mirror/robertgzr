@@ -12,7 +12,9 @@ LICENSE="AGPL-3"
 SLOT="0"
 KEYWORDS=""
 
-DEPEND=""
+DEPEND="
+	sys-process/lsof
+"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
