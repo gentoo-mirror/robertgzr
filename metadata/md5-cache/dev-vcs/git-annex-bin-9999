@@ -1,8 +1,10 @@
 DEFINED_PHASES=install postinst test unpack
+DEPEND=sys-process/lsof
 DESCRIPTION=manage files with git, without checking their contents into git
 EAPI=8
 HOMEPAGE=https://git-annex.branchable.com/
 LICENSE=AGPL-3
+RDEPEND=sys-process/lsof
 RESTRICT=network-sandbox strip
 SLOT=0
-_md5_=c3d7d33e6fb295f9e333b1a5b6888ddb
+_md5_=6e6fa194ca12680a8c641100227ea0de

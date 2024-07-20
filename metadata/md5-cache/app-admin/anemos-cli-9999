@@ -1,5 +1,5 @@
 BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
-DEFINED_PHASES=install unpack
+DEFINED_PHASES=compile install unpack
 EAPI=8
 HOMEPAGE=https://anemos.io
 INHERIT=git-r3
@@ -7,4 +7,4 @@ LICENSE=MIT
 PROPERTIES=live
 SLOT=0
 _eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81
-_md5_=36c8377b33af49b040bb11a8af807bfd
+_md5_=e0411c39c86ea6bb642c6ebe2eb8425c
