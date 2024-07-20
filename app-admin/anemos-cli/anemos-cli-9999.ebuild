@@ -17,6 +17,10 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
+src_compile() {
+	:
+}
+
 src_install() {
 	dobin anemos
 	insinto /usr/share/${PN}
