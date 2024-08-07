@@ -3,10 +3,10 @@
 
 EAPI=8
 
-inherit font unpacker
+inherit font unpacker portability
 
 DESCRIPTION="Slender typeface for code, from code"
-HOMEPAGE="https://be5invis.github.io/iosevka"
+HOMEPAGE="https://typeof.net/Iosevka/"
 
 MY_PV=$(ver_rs 3 '-' 4 '.')
 
@@ -24,15 +24,16 @@ MY_SRC_URI_build() {
 	printf %s ${comp[@]/#/-}
 }
 
-RESTRICT="network-sandbox"
+S="${WORKDIR}"
+
 LICENSE="OFL-1.1"
 SLOT="0"
 IUSE="aile curly +default etoile slab ss01 ss02 ss03 ss04 ss05 ss06 ss07 ss08 ss09 ss10 ss11 ss12 ss13 ss14 ss15 ss16 ss17 ss18 ss19 ss20 fixed term unhinted woff2"
-KEYWORDS=""
 
-S="${WORKDIR}"
 FONT_S="${S}"
 FONT_SUFFIX="ttf"
+
+RESTRICT="network-sandbox"
 
 src_unpack() {
 	local -a pkgs
