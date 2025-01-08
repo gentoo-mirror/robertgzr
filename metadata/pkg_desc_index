@@ -47,7 +47,7 @@ mail-client/meli 0.6.2: terminal mail client
 media-fonts/cozette 1.19.2 1.24.1: A bitmap programming font optimized for coziness
 media-fonts/fira-go 1.001: Default typeface for FirefoxOS, designed for legibility
 media-fonts/inter 3.15: A typeface carefully crafted & designed for computer screens
-media-fonts/iosevka 31.2.0: Slender typeface for code, from code
+media-fonts/iosevka 32.3.1: Slender typeface for code, from code
 media-fonts/luciole 2019: 
 media-fonts/material-design-icons 7.4.47: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
@@ -59,6 +59,7 @@ mpv-plugin/uosc 9999: Feature-rich minimalist proximity-based UI for MPV player.
 mpv-plugin/webm 9999: Simple WebM maker for mpv, with no external dependencies.
 net-im/telegram-desktop-bin 3.4.5_beta 9999: Official desktop client for Telegram (binary package)
 net-irc/senpai 9999: your everyday irc student
+net-mail/pyonji 9999: easy-to-use tool to send e-mail patches
 net-misc/go-chromecast 0.2.12: CLI for Google chromecast
 net-misc/parsec 9999: low-latency remote desktop
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
@@ -69,6 +70,7 @@ sys-apps/fw-fanctrl 9999: control framework laptop fan
 sys-apps/porta 9999: xdg-desktop-portal client cli
 sys-fs/tmsu 9999: tag our files and access them through a VFS from anywhere
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
+x11-terms/ghostty 9999: Fast, feature-rich, and cross-platform terminal emulator
 x11-themes/material-design-icons 7.4.47: 5900+ Material Design Icons form the Community
 x11-themes/winsur-cursor-theme 9999: A combination of MacOS BigSur and Windows 10 cursors
 x11-themes/woodenbeaver-sounds 9999: The WoodenBeaver sound theme
