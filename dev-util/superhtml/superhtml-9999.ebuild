@@ -3,6 +3,7 @@
 
 EAPI=8
 
+ZIG_SLOT=0.13
 inherit zig
 
 DESCRIPTION="HTML language server"
@@ -15,29 +16,25 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS=""
 
-DEPEND="
-"
-RDEPEND="${DEPEND}"
-BDEPEND="
-${ZIG_DEPS}
-"
-
 DOCS=( README.md )
-
-QA_FLAGS_IGNORED="usr/bin/superhtml"
 
 src_unpack() {
 	if [[ ${PV} == 9999 ]]; then
 		git-r3_src_unpack
-		zig_live_src_unpack
+		zig_live_fetch
 	else
 		default_src_unpack
 	fi
 }
 
 src_configure() {
-	local zig_args=(
-		-Doptimize=ReleaseSafe
+	local my_zbs_args=(
+		-Dforce-version=${PV}
 	)
+
 	zig_src_configure
+}
+
+src_test() {
+	zig_src_compile test
 }
