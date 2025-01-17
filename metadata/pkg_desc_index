@@ -10,6 +10,7 @@ app-emulation/quickemu 4.9.2: Create and run optimised Windows, macOS and Linux 
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
 app-misc/flavours 9999: base16 colorscheme manager
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
+app-misc/pimsync 9999: synchronize calendars and contacts
 app-misc/s6-man 9999: mdoc versions of the HTML documentation for the s6 supervision suite
 app-misc/segno 1.5.2: QR code encoder
 app-misc/timetrace 9999: simple cli for tracking working time
