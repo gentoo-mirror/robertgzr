@@ -15,7 +15,9 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS=""
 
-DEPEND=""
+DEPEND="
+	sys-apps/xdg-desktop-portal
+"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
@@ -26,4 +28,8 @@ src_unpack() {
 	else
 		cargo_src_unpack
 	fi
+}
+
+src_install() {
+	cargo_src_install --path client
 }
