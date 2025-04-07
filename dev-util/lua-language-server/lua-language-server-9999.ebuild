@@ -20,7 +20,6 @@ fi
 
 LICENSE="MIT"
 SLOT="0"
-IUSE=""
 RESTRICT="strip"
 
 src_compile() {
@@ -37,6 +36,9 @@ src_install() {
 	insinto /usr/libexec/"${PN}"
 	doins -r bin locale meta script \
 		main.lua debugger.lua
+
+	# required for --version
+	doins -r changelog.md
 
 	chmod +x ${D}/usr/libexec/${PN}/bin/${PN}
 	sed "s:/usr/:${EPREFIX}&:" "${FILESDIR}"/wrapper | newbin - "${PN}"
