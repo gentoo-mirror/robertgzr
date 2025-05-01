@@ -6,7 +6,6 @@ app-containers/buildkit-bin 0.11.6: buildkit
 app-crypt/git-secret 0.3.3: a bash-tool to store your private data inside a git repository
 app-crypt/pinentry-bemenu 9999: 
 app-crypt/sops 9999: simple and flexible tool for managing secrets
-app-emulation/quickemu 4.9.2: Create and run optimised Windows, macOS and Linux desktop virtual machines
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
 app-misc/flavours 9999: base16 colorscheme manager
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
