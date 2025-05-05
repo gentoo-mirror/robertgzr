@@ -4,7 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=( python3_{8..12} )
+PYTHON_COMPAT=( python3_{11..13} )
 inherit distutils-r1
 
 DESCRIPTION="Config management with Python"
@@ -28,14 +28,14 @@ SLOT="0"
 IUSE="+man"
 
 DEPEND="
-	dev-python/cryptography
-	dev-python/passlib
-	dev-python/pyyaml
-	dev-python/requests
-	dev-python/tomlkit
-	dev-python/jinja2
-	dev-python/mako
-	>=dev-python/librouteros-3.0.0
+	dev-python/cryptography[${PYTHON_USEDEP}]
+	dev-python/passlib[${PYTHON_USEDEP}]
+	dev-python/pyyaml[${PYTHON_USEDEP}]
+	dev-python/requests[${PYTHON_USEDEP}]
+	dev-python/tomlkit[${PYTHON_USEDEP}]
+	dev-python/jinja2[${PYTHON_USEDEP}]
+	dev-python/mako[${PYTHON_USEDEP}]
+	>=dev-python/librouteros-3.0.0[${PYTHON_USEDEP}]
 	man? (
 		|| ( app-text/pandoc app-text/pandoc-bin )
 	)
