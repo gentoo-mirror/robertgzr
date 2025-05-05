@@ -1,5 +1,5 @@
 app-admin/anemos-cli 9999: 
-app-admin/bundlewrap 4.21.0: Config management with Python
+app-admin/bundlewrap 4.22.0 9999: Config management with Python
 app-admin/makeimg 9999: Build system images from declarative input
 app-admin/rbw 9999: unofficial bitwarden cli
 app-containers/buildkit-bin 0.11.6: buildkit
@@ -26,6 +26,7 @@ dev-go/impl 9999: impl generates method stubs for implementing an interface
 dev-libs/bemenu 9999: dmenu clone for wayland
 dev-libs/libscfg 9999: simple configuration format
 dev-python/goprocam 9999: Unofficial python lib to connect to GoPro via Wifi
+dev-python/librouteros 3.2.0: Python implementation of MikroTik RouterOS API
 dev-tex/tectonic 9999: A modernized, complete, self-contained TeX/LaTeX engine.
 dev-tex/tectonic-bin 0.12.0: A modernized, complete, self-contained TeX/LaTeX engine.
 dev-util/apk-tools 2.12.14: 
@@ -63,6 +64,7 @@ net-irc/senpai 9999: your everyday irc student
 net-mail/pyonji 9999: easy-to-use tool to send e-mail patches
 net-misc/go-chromecast 0.2.12: CLI for Google chromecast
 net-misc/parsec 9999: low-latency remote desktop
+net-p2p/radicle 9999: 
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
 sys-apps/autologin 1.0.0: daemon for automatic login on TTY
 sys-apps/czkawka-bin 4.0.0: A multi-functional app to find duplicates, empty folders, similar images, etc.
