@@ -14,6 +14,7 @@ EGIT_REPO_URI="https://git.sr.ht/~robertgzr/porta"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS=""
+IUSE="+client +portal"
 
 DEPEND="
 	sys-apps/xdg-desktop-portal
@@ -31,5 +32,6 @@ src_unpack() {
 }
 
 src_install() {
-	cargo_src_install --path client
+	use client && cargo_src_install --path client
+	use portal && cargo_src_install --path portal
 }
