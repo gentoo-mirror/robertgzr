@@ -6,7 +6,6 @@ EAPI=8
 PYTHON_COMPAT=( python3_{9..13} )
 PYTHON_REQ_USE="sqlite"
 DISTUTILS_USE_PEP517=setuptools
-
 inherit distutils-r1
 
 DESCRIPTION="A CalDAV based todo manager"

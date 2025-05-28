@@ -17,7 +17,6 @@ RESTRICT="network-sandbox"
 DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND="
-	>=virtual/rust-1.39.0
 	dbus-notifications? ( sys-apps/dbus )
 "
 
