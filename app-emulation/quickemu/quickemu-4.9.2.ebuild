@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_10 )
+PYTHON_COMPAT=( python3_{11..12} )
 inherit python-single-r1
 
 DESCRIPTION="Create and run optimised Windows, macOS and Linux desktop virtual machines"
@@ -30,8 +30,8 @@ DEPEND="
 	sys-apps/usbutils
 	sys-apps/util-linux
 	|| (
-		sys-firmware/edk2-ovmf
-		sys-firmware/edk2-ovmf-bin
+		sys-firmware/edk2
+		sys-firmware/edk2-bin
 	)
 	sys-process/procps
 	X? ( x11-apps/xrandr )
