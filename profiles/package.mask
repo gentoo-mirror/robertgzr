@@ -1,0 +1,6 @@
+=app-admin/bundlewrap-9999
+=media-fonts/material-design-icons-9999
+sys-fs/udisks
+mail-client/himalaya
+=dev-util/lua-language-server-9999
+app-emulation/quickemu
