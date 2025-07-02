@@ -3,7 +3,7 @@
 
 EAPI=8
 
-ZIG_SLOT=0.13
+ZIG_SLOT=0.14
 inherit zig
 
 DESCRIPTION="HTML language server"
