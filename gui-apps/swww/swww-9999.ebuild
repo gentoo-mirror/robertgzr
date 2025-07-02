@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cargo shell-completion
+inherit cargo shell-completion rust-toolchain
 
 DESCRIPTION="Efficient animated wallpaper daemon for wayland, controlled at runtime"
 HOMEPAGE="https://github.com/Horus645/swww"
@@ -16,6 +16,8 @@ else
 	KEYWORDS="~amd64"
 fi
 
+RUST_MIN_VERSION=1.70.0
+
 LICENSE="0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD ISC MIT Unicode-DFS-2016 Unlicense ZLIB"
 SLOT="0"
 IUSE="+man"
@@ -24,7 +26,6 @@ DEPEND="app-arch/lz4
 	x11-libs/libxkbcommon[wayland]"
 RDEPEND="${DEPEND}"
 BDEPEND="
-	>=virtual/rust-1.70.0
 	man? ( app-text/scdoc )
 "
 

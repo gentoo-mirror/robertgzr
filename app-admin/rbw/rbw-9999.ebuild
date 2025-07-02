@@ -23,7 +23,6 @@ SLOT="0"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
-BDEPEND="virtual/rust"
 
 src_unpack() {
 	if [[ ${PV} = *9999* ]]; then

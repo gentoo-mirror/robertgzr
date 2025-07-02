@@ -28,13 +28,14 @@ SLOT="0"
 IUSE="+man"
 
 DEPEND="
+	dev-python/bcrypt[${PYTHON_USEDEP}]
 	dev-python/cryptography[${PYTHON_USEDEP}]
+	dev-python/jinja2[${PYTHON_USEDEP}]
+	dev-python/mako[${PYTHON_USEDEP}]
 	dev-python/passlib[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
 	dev-python/tomlkit[${PYTHON_USEDEP}]
-	dev-python/jinja2[${PYTHON_USEDEP}]
-	dev-python/mako[${PYTHON_USEDEP}]
 	>=dev-python/librouteros-3.0.0[${PYTHON_USEDEP}]
 	man? (
 		|| ( app-text/pandoc app-text/pandoc-bin )
