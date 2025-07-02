@@ -1,14 +1,14 @@
-BDEPEND=>=virtual/rust-1.70.0 man? ( app-text/scdoc ) || ( >=dev-lang/rust-bin-1.74.1:* >=dev-lang/rust-1.74.1:* ) >=dev-vcs/git-1.8.2.1[curl]
+BDEPEND=man? ( app-text/scdoc ) || ( >=dev-lang/rust-bin-1.74.1:* >=dev-lang/rust-1.74.1:* ) >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=compile configure install setup test unpack
 DEPEND=app-arch/lz4 x11-libs/libxkbcommon[wayland]
 DESCRIPTION=Efficient animated wallpaper daemon for wayland, controlled at runtime
 EAPI=8
 HOMEPAGE=https://github.com/Horus645/swww
-INHERIT=cargo shell-completion git-r3
+INHERIT=cargo shell-completion rust-toolchain git-r3
 IUSE=+man debug
 LICENSE=0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD ISC MIT Unicode-DFS-2016 Unlicense ZLIB
 PROPERTIES=live
 RDEPEND=app-arch/lz4 x11-libs/libxkbcommon[wayland]
 SLOT=0
 _eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	rust	205f396579fe93ffb2775ef7e36a1b20	rust-toolchain	76468983281b0a7fc167ca224f84ecfd	cargo	5da01b45ec362e78575502b4fb82773a	bash-completion-r1	767861f3744f589ee5291c1698b1c082	shell-completion	0b655d0d825e157a5e99c463bddaac16	git-r3	875eb471682d3e1f18da124be97dcc81
-_md5_=1d44c51192aabd28bf8ff32d7bba6904
+_md5_=8c34416ba8ddc3b4f5a8f84296ba1c08
