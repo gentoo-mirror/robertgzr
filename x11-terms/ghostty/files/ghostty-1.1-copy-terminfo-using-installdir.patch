@@ -1,25 +1,47 @@
 diff --git a/src/build/GhosttyResources.zig b/src/build/GhosttyResources.zig
-index 9c5f7f80..594cb42a 100644
+index 10de2584b..0da2b9106 100644
 --- a/src/build/GhosttyResources.zig
 +++ b/src/build/GhosttyResources.zig
-@@ -57,14 +57,12 @@ pub fn init(b: *std.Build, cfg: *const Config) !GhosttyResources {
-             run_step.step.dependOn(&src_install.step);
-
-             {
--                // Use cp -R instead of Step.InstallDir because we need to preserve
--                // symlinks in the terminfo database. Zig's InstallDir step doesn't
--                // handle symlinks correctly yet.
--                const copy_step = RunStep.create(b, "copy terminfo db");
--                copy_step.addArgs(&.{ "cp", "-R" });
--                copy_step.addFileArg(path);
--                copy_step.addArg(b.fmt("{s}/share", .{b.install_path}));
--                try steps.append(&copy_step.step);
-+                const install_dir_step = b.addInstallDirectory(.{
-+                    .source_dir = path,
-+                    .install_dir = .prefix,
-+                    .install_subdir = "share/terminfo",
-+                });
-+                b.getInstallStep().dependOn(&install_dir_step.step);
-             }
+@@ -69,41 +69,7 @@ pub fn init(b: *std.Build, cfg: *const Config) !GhosttyResources {
+             try steps.append(&cap_install.step);
          }
+
+-        // Compile the terminfo source into a terminfo database
+-        {
+-            const run_step = RunStep.create(b, "tic");
+-            run_step.addArgs(&.{ "tic", "-x", "-o" });
+-            const path = run_step.addOutputFileArg(terminfo_share_dir);
+-
+-            run_step.addFileArg(source);
+-            _ = run_step.captureStdErr(); // so we don't see stderr
+-
+-            // Ensure that `share/terminfo` is a directory, otherwise the `cp
+-            // -R` will create a file named `share/terminfo`
+-            const mkdir_step = RunStep.create(b, "make share/terminfo directory");
+-            switch (cfg.target.result.os.tag) {
+-                // windows mkdir shouldn't need "-p"
+-                .windows => mkdir_step.addArgs(&.{"mkdir"}),
+-                else => mkdir_step.addArgs(&.{ "mkdir", "-p" }),
+-            }
+-
+-            mkdir_step.addArg(b.fmt(
+-                "{s}/share/{s}",
+-                .{ b.install_path, terminfo_share_dir },
+-            ));
+-
+-            try steps.append(&mkdir_step.step);
+-
+-            // Use cp -R instead of Step.InstallDir because we need to preserve
+-            // symlinks in the terminfo database. Zig's InstallDir step doesn't
+-            // handle symlinks correctly yet.
+-            const copy_step = RunStep.create(b, "copy terminfo db");
+-            copy_step.addArgs(&.{ "cp", "-R" });
+-            copy_step.addFileArg(path);
+-            copy_step.addArg(b.fmt("{s}/share", .{b.install_path}));
+-            copy_step.step.dependOn(&mkdir_step.step);
+-            try steps.append(&copy_step.step);
+-        }
++        _ = terminfo_share_dir;
      }
+
+     // Shell-integration

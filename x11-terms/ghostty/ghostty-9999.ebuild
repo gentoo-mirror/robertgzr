@@ -7,7 +7,7 @@ DESCRIPTION="Fast, feature-rich, and cross-platform terminal emulator"
 HOMEPAGE="https://ghostty.org/"
 
 MY_PV="${PV}.0.0-gentoo"
-ZIG_SLOT="0.13"
+ZIG_SLOT="0.14"
 ZIG_NEEDS_LLVM=1
 inherit zig xdg git-r3
 
@@ -27,8 +27,8 @@ KEYWORDS="~amd64"
 # TODO: spirv-cross integration (missing Gentoo package)
 RDEPEND="
 	gui-libs/gtk:4=[X?]
+	gui-libs/libadwaita:1=
 
-	adwaita? ( gui-libs/libadwaita:1= )
 	X? ( x11-libs/libX11 )
 	system-fontconfig? ( >=media-libs/fontconfig-2.14.2:= )
 	system-freetype? (
@@ -43,6 +43,7 @@ RDEPEND="
 	system-libxml2? ( >=dev-libs/libxml2-2.11.5:= )
 	system-oniguruma? ( >=dev-libs/oniguruma-6.9.9:= )
 	system-zlib? ( >=sys-libs/zlib-1.3.1:= )
+	system-gtk4layershell? ( gui-libs/gtk4-layer-shell )
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
@@ -53,6 +54,7 @@ IUSE="+X +adwaita man"
 # System integrations
 IUSE+=" +system-fontconfig +system-freetype +system-glslang +system-harfbuzz +system-libpng +system-libxml2"
 IUSE+=" +system-oniguruma +system-zlib"
+IUSE+=" +system-gtk4layershell"
 
 # XXX: Because we set --release=fast below, Zig will automatically strip
 #      the binary. Until Ghostty provides a way to disable the banner while
@@ -74,14 +76,18 @@ src_configure() {
 		# XXX: Ghostty displays a banner saying it is a debug build unless ReleaseFast is used.
 		--release=fast
 
-		-Dapp-runtime=gtk
+		-Dapp-runtime=gtk-ng
 		-Dfont-backend=fontconfig_freetype
 		-Drenderer=opengl
-		-Dgtk-adwaita=$(usex adwaita true false)
 		-Dgtk-x11=$(usex X true false)
 		-Demit-docs=$(usex man true false)
 		-Dversion-string="${MY_PV}"
 
+		-Demit-terminfo=false
+		-Demit-termcap=false
+
+		-fno-sys=simdutf
+		-fno-sys=spirv-cross
 		-f$(usex system-fontconfig sys no-sys)=fontconfig
 		-f$(usex system-freetype sys no-sys)=freetype
 		-f$(usex system-glslang sys no-sys)=glslang
@@ -89,6 +95,7 @@ src_configure() {
 		-f$(usex system-libpng sys no-sys)=libpng
 		-f$(usex system-oniguruma sys no-sys)=oniguruma
 		-f$(usex system-zlib sys no-sys)=zlib
+		-f$(usex system-gtk4layershell sys no-sys)=gtk4-layer-shell
 	)
 
 	zig_src_configure
@@ -99,10 +106,5 @@ src_install() {
 
 	# HACK: fixup QA notice
 	mv ${D}/usr/share/bash-completion/completions/ghostty.bash \
-	   ${D}/usr/share/bash-completion/completions/ghostty \
-
-	# HACK: Zig 0.13.0 build system's InstallDir step has a bug where it
-	#       fails to install symbolic links, so we manually create it
-	#       here.
-	dosym -r /usr/share/terminfo/x/xterm-ghostty /usr/share/terminfo/g/ghostty
+	   ${D}/usr/share/bash-completion/completions/ghostty
 }
