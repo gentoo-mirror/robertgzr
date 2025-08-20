@@ -9,7 +9,9 @@ app-crypt/sops 9999: simple and flexible tool for managing secrets
 app-emulation/quickemu 4.9.2: Create and run optimised Windows, macOS and Linux desktop virtual machines
 app-misc/evdoublebind 9999: Provides double key binds, via evdev
 app-misc/flavours 9999: base16 colorscheme manager
+app-misc/fyi 1.0.4: notify-send alternative
 app-misc/inoxunpack 9999: downloads extensions from the chrome webstore and unpacks them
+app-misc/mkmenu 9999: 
 app-misc/pimsync 9999: synchronize calendars and contacts
 app-misc/s6-man 9999: mdoc versions of the HTML documentation for the s6 supervision suite
 app-misc/segno 1.5.2: QR code encoder
@@ -36,9 +38,10 @@ dev-util/efm-langserver 9999: general purpose language server
 dev-util/elixir-ls 9999: 
 dev-util/hadolint-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/kraftkit 9999: 
-dev-util/lua-language-server 3.14.0 9999: lua language server written in lua
+dev-util/lua-language-server 3.15.0 9999: lua language server written in lua
 dev-util/rust-analyzer-bin 9999: experimental Rust compiler frontend for IDEs
 dev-util/shfmt 9999: shell script formatter
+dev-util/stylua 9999: opinionated lua code formatter
 dev-util/superhtml 9999: HTML language server
 dev-vcs/git-annex-bin 9999: manage files with git, without checking their contents into git
 gui-apps/swww 9999: Efficient animated wallpaper daemon for wayland, controlled at runtime
@@ -55,6 +58,7 @@ media-fonts/luciole 2019:
 media-fonts/material-design-icons 7.4.47: 
 media-fonts/rosario 1579544269: Classic semiserif typeface, ideal for magazines and academic journals
 media-sound/g4music 1.11 9999: beautiful, fast, fluent lightweight music player for GTK4
+media-sound/mpris-scrobbler 0.5.0 9999: daemon to submit song data to libre.fm and listenbrainz.org
 mpv-plugin/sponsorblock 9999: Simple sponsorblock implementation for MPV
 mpv-plugin/thumbfast 9999: High-performance on-the-fly thumbnailer
 mpv-plugin/uosc 9999: Feature-rich minimalist proximity-based UI for MPV player.
@@ -62,7 +66,7 @@ mpv-plugin/webm 9999: Simple WebM maker for mpv, with no external dependencies.
 net-im/telegram-desktop-bin 3.4.5_beta 9999: Official desktop client for Telegram (binary package)
 net-irc/senpai 9999: your everyday irc student
 net-mail/pyonji 9999: easy-to-use tool to send e-mail patches
-net-misc/go-chromecast 0.2.12: CLI for Google chromecast
+net-misc/go-chromecast 9999: CLI for Google chromecast
 net-misc/parsec 9999: low-latency remote desktop
 net-p2p/radicle 9999: 
 net-print/brother-hll8250cdn-bin 1.1.2-r1: Brother printer driver for HL-L8250CDN
@@ -75,6 +79,7 @@ sys-apps/turnstile 9999: Independent session/login tracker
 sys-fs/tmsu 9999: tag our files and access them through a VFS from anywhere
 sys-libs/libtickit 0.3.3: Library for building interactive full-screen terminal programs
 x11-terms/ghostty 9999: Fast, feature-rich, and cross-platform terminal emulator
+x11-themes/adw-gtk3 4.8: GTK3 port of libadwaita
 x11-themes/material-design-icons 7.4.47: 5900+ Material Design Icons form the Community
 x11-themes/winsur-cursor-theme 9999: A combination of MacOS BigSur and Windows 10 cursors
 x11-themes/woodenbeaver-sounds 9999: The WoodenBeaver sound theme
